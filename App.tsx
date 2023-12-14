@@ -1,7 +1,7 @@
 import React, {createContext, useCallback, useEffect, useState} from 'react';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SecureStorage from 'react-native-encrypted-storage';
-import { ScrollView, Text } from "react-native";
+import {ScrollView, Text} from 'react-native';
 import globalStyles from './src/styles/globalStyles';
 // import messaging, {firebase} from '@react-native-firebase/messaging';
 import {Provider} from 'react-redux';
