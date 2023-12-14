@@ -1,118 +1,73 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, {createContext, useCallback, useEffect, useState} from 'react';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import SecureStorage from 'react-native-encrypted-storage';
+import { ScrollView, Text } from "react-native";
+import globalStyles from './src/styles/globalStyles';
+// import messaging, {firebase} from '@react-native-firebase/messaging';
+import {Provider} from 'react-redux';
+import store from './src/store';
+// import {NavigationScreens} from './src/navigation';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+interface AuthContextValue {
+  token?: string | null;
+  setToken: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const queryClient = new QueryClient();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+export const AuthContext = createContext<AuthContextValue>({
+  token: null,
+  setToken: () => {},
 });
+
+function App(): JSX.Element {
+  const [token, setToken] = useState<string | null>(null);
+  const [checkingToken, setCheckingToken] = useState(true);
+
+  useEffect(() => {
+    getOrSetFCMToken();
+    SecureStorage.getItem('token')
+      .then(value => {
+        setToken(value);
+      })
+      .finally(() => setCheckingToken(false));
+  }, []);
+
+  const getOrSetFCMToken = useCallback(async () => {
+    try {
+      let fcmToken = await SecureStorage.getItem('fcmToken');
+      // const enabled = await firebase.messaging().hasPermission();
+      // if (enabled) {
+      //   // if not generate one on firebase and set on database and local storage
+      //   fcmToken = await messaging().getToken();
+      // } else {
+      //   await firebase.messaging().requestPermission();
+      // }
+
+      if (fcmToken != null) {
+        await SecureStorage.setItem('fcmToken', 'fcmToken');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }, [token]);
+
+  if (checkingToken) {
+    return <Text style={globalStyles.title}>Loading...</Text>;
+  }
+
+  return (
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <AuthContext.Provider value={{token, setToken}}>
+          {/*<NavigationScreens />*/}
+          <ScrollView style={{backgroundColor: 'orange', marginTop: 30}}>
+            <Text>Hellows</Text>
+          </ScrollView>
+        </AuthContext.Provider>
+      </QueryClientProvider>
+    </Provider>
+  );
+}
 
 export default App;
