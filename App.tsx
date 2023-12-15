@@ -6,7 +6,7 @@ import globalStyles from './src/styles/globalStyles';
 // import messaging, {firebase} from '@react-native-firebase/messaging';
 import {Provider} from 'react-redux';
 import store from './src/store';
-// import {NavigationScreens} from './src/navigation';
+import {NavigationScreens} from './src/navigation';
 
 interface AuthContextValue {
   token?: string | null;
@@ -60,10 +60,10 @@ function App(): JSX.Element {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <AuthContext.Provider value={{token, setToken}}>
-          {/*<NavigationScreens />*/}
-          <ScrollView style={{backgroundColor: 'orange', marginTop: 30}}>
-            <Text>Hellows</Text>
-          </ScrollView>
+          <NavigationScreens />
+          {/*<ScrollView style={{backgroundColor: 'orange', marginTop: 30}}>*/}
+          {/*  <Text>Hellows</Text>*/}
+          {/*</ScrollView>*/}
         </AuthContext.Provider>
       </QueryClientProvider>
     </Provider>
