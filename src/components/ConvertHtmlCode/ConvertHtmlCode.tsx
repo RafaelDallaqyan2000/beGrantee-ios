@@ -1,3 +1,4 @@
+import React from 'react';
 import {useWindowDimensions, View} from 'react-native';
 import RenderHtml from 'react-native-render-html';
 

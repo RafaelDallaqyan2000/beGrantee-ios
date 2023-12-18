@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Svg, {G, Path, Defs, Mask} from 'react-native-svg';
 
 const SvgPersonInLogin = (props: any) => {
@@ -249,7 +249,7 @@ const SvgPersonInLogin = (props: any) => {
         strokeWidth={2}
         d="M91.63 224.036h91.752"
       />
-      <Defs></Defs>
+      <Defs />
     </Svg>
   );
 };

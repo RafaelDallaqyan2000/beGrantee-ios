@@ -1,3 +1,4 @@
+import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {CheckBox} from '../index';
 import {useNavigation} from '@react-navigation/native';

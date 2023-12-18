@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -6,7 +7,6 @@ import {
   View,
 } from 'react-native';
 import BackIcon from '../../icons/BackIcon';
-import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {ConvertHtmlCode} from '../../components';
 import {fixedData} from '../../data';
