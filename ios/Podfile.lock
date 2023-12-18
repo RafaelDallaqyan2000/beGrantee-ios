@@ -946,6 +946,8 @@ PODS:
     - React-debug
   - react-native-encrypted-storage (4.0.3):
     - React-Core
+  - react-native-render-html (6.3.4):
+    - React-Core
   - react-native-safe-area-context (4.8.1):
     - React-Core
   - React-nativeconfig (0.73.0)
@@ -1123,6 +1125,8 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - RNSVG (13.14.0):
+    - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -1180,6 +1184,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - react-native-encrypted-storage (from `../node_modules/react-native-encrypted-storage`)
+  - react-native-render-html (from `../node_modules/react-native-render-html`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -1203,6 +1208,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1279,6 +1285,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   react-native-encrypted-storage:
     :path: "../node_modules/react-native-encrypted-storage"
+  react-native-render-html:
+    :path: "../node_modules/react-native-render-html"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-nativeconfig:
@@ -1325,6 +1333,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1369,6 +1379,7 @@ SPEC CHECKSUMS:
   React-logger: 008caec0d6a587abc1e71be21bfac5ba1662fe6a
   React-Mapbuffer: 58fe558faf52ecde6705376700f848d0293d1cef
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
+  react-native-render-html: 984dfe2294163d04bf5fe25d7c9f122e60e05ebe
   react-native-safe-area-context: cd1169d797a2ef722a00bfc5af10748d5b6c94f9
   React-nativeconfig: a063483672b8add47a4875b0281e202908ff6747
   React-NativeModulesApple: 169506a5fd708ab22811f76ee06a976595c367a1
@@ -1392,6 +1403,7 @@ SPEC CHECKSUMS:
   ReactCommon: 851280fb976399ca1aabc74cc2c3612069ea70a2
   RNGestureHandler: 61bfdfc05db9b79dd61f894dcd29d3dcc6db3c02
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
+  RNSVG: d00c8f91c3cbf6d476451313a18f04d220d4f396
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 20d6a900dcc8d61d5e3b799bbf627cc34474a8c4
 

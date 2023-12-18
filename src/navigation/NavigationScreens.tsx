@@ -4,9 +4,9 @@ import React, {useContext} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
   PhoneNumberScreen,
-  // PrivacyPolicyWithHeader,
-  // TermsAndConditionsScreen,
-  // VerificationScreen,
+  PrivacyPolicyWithHeader,
+  TermsAndConditionsScreen,
+  VerificationScreen,
 } from '../screens';
 import {AuthContext} from '../../App';
 // import {ServiceModel} from '../models/services';
@@ -34,6 +34,8 @@ export type StackNavigatorParamList = {
   Loading: never;
   ChooseCard: never;
   TeamsAndConditions: never;
+  PrivacyPolicyWithHeader: never;
+  TermsAndConditions: never;
 };
 
 const Stack = createStackNavigator<StackNavigatorParamList>();
@@ -48,20 +50,20 @@ export function NavigationScreens() {
           {/*{!token ? (*/}
           <Stack.Group screenOptions={{headerShown: false}}>
             <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen} />
-          </Stack.Group>
-          {/*    <Stack.Screen*/}
-          {/*      name="Verification"*/}
-          {/*      component={VerificationScreen}*/}
-          {/*    />*/}
 
-          {/*    <Stack.Screen*/}
-          {/*      name="PrivacyPolicyWithHeader"*/}
-          {/*      component={PrivacyPolicyWithHeader}*/}
-          {/*    />*/}
-          {/*    <Stack.Screen*/}
-          {/*      name="TermsAndConditions"*/}
-          {/*      component={TermsAndConditionsScreen}*/}
-          {/*    />*/}
+            <Stack.Screen name="Verification" component={VerificationScreen} />
+
+            <Stack.Screen
+              name="PrivacyPolicyWithHeader"
+              component={PrivacyPolicyWithHeader}
+            />
+
+            <Stack.Screen
+              name="TermsAndConditions"
+              component={TermsAndConditionsScreen}
+            />
+          </Stack.Group>
+
           {/*  </Stack.Group>*/}
           {/*) : (*/}
           {/*  <Stack.Group>*/}

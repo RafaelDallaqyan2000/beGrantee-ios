@@ -11,27 +11,27 @@ import {
   View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-// import {CountryCode} from '../../models/common';
-// import {useMutation, useQuery} from '@tanstack/react-query';
+import {CountryCode} from '../../models/common';
+import {useMutation} from '@tanstack/react-query';
 // import {QueryRoute} from '../../react-query/query-routes';
-// import {getCountryCodes, loginByPhone} from '../../services/authService';
-// import SvgPersonInLogin from '../../images/SvgSignInImage';
+import {loginByPhone} from '../../services/authService';
+import SvgPersonInLogin from '../../images/SvgSignInImage';
 import phoneNumberStyles from './phoneNumberStyles';
-// import AppButton from '../../components/AppButton/AppButton';
+import AppButton from '../../components/AppButton/AppButton';
 import {TextInput} from '@react-native-material/core';
-// import SelectIcon from '../../icons/LogInScreen/SelectIcon';
+import SelectIcon from '../../icons/LogInScreen/SelectIcon';
 import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
-// import WrongIcon from '../../icons/WrongIcon';
-// import {PrivacyPolicyAndTerms} from '../../components/PrivacyPolicyAndTerms/PrivacyPolicyAndTerms';
+import WrongIcon from '../../icons/WrongIcon';
+import {PrivacyPolicyAndTerms} from '../../components';
 
 export const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  // const [countryCode, setCountryCode] = useState<CountryCode>();
+  const [countryCode, setCountryCode] = useState<CountryCode>();
   const [error, setError] = useState<string>();
   const [showAnimation, setShowAnimation] = useState(true);
   const [showImage, setShowImage] = useState(true);
-  // const [checkedPrivacyPolicy, setCheckedPrivacyPolicy] = useState(false);
-  // const navigation = useNavigation();
+  const [checkedPrivacyPolicy, setCheckedPrivacyPolicy] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
     setTimeout(() => setShowAnimation(false), 6000);
@@ -47,42 +47,42 @@ export const PhoneNumberScreen = () => {
   //   },
   //   initialData: [],
   // });
-  //
-  // const signInQuery = useMutation({
-  //   mutationFn: loginByPhone,
-  //   onError: () => {
-  //     setError('failed to login');
-  //   },
-  //   onSuccess: (data, loginParams) => {
-  //     if (data.success) {
-  //       setError('');
-  //       navigation.navigate(
-  //         'Verification' as never,
-  //         {
-  //           phoneNumber: loginParams.phoneNumber,
-  //           phoneCodeId: loginParams.phoneCodeId,
-  //           getResendCode: signInQuery,
-  //         } as never,
-  //       );
-  //     } else {
-  //       setError(data.message);
-  //     }
-  //   },
-  // });
+
+  const signInQuery = useMutation({
+    mutationFn: loginByPhone,
+    onError: () => {
+      setError('failed to login');
+    },
+    onSuccess: (data, loginParams) => {
+      if (data.success) {
+        setError('');
+        navigation.navigate(
+          'Verification' as never,
+          {
+            phoneNumber: loginParams.phoneNumber,
+            phoneCodeId: loginParams.phoneCodeId,
+            getResendCode: signInQuery,
+          } as never,
+        );
+      } else {
+        setError(data.message);
+      }
+    },
+  });
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
     setPhoneNumber(phoneNumber);
     setError('');
   };
 
-  // const handleSubmitBtn = () => {
-  //   if (phoneNumber.length >= 8 && checkedPrivacyPolicy) {
-  //     signInQuery.mutate({
-  //       phoneCodeId: countryCode?.id ?? 1,
-  //       phoneNumber: phoneNumber,
-  //     });
-  //   }
-  // };
+  const handleSubmitBtn = () => {
+    if (phoneNumber.length >= 8 && checkedPrivacyPolicy) {
+      signInQuery.mutate({
+        phoneCodeId: countryCode?.id ?? 1,
+        phoneNumber: phoneNumber,
+      });
+    }
+  };
 
   if (showAnimation) {
     return (
@@ -109,7 +109,7 @@ export const PhoneNumberScreen = () => {
 
         {showImage && (
           <View style={phoneNumberStyles.body}>
-            {/*<SvgPersonInLogin />*/}
+            <SvgPersonInLogin />
           </View>
         )}
 
@@ -171,7 +171,7 @@ export const PhoneNumberScreen = () => {
                           }>
                           ARM
                         </Text>
-                        {/*<SelectIcon error={error} />*/}
+                        <SelectIcon error={error} />
                       </View>
                       <Text
                         style={
@@ -187,47 +187,47 @@ export const PhoneNumberScreen = () => {
                 <View style={phoneNumberStyles.errorContainer}>
                   {error ? (
                     <>
-                      {/*<WrongIcon />*/}
+                      <WrongIcon />
                       <Text style={phoneNumberStyles.errorText}>{error}</Text>
                     </>
                   ) : null}
                 </View>
-                {/*<PrivacyPolicyAndTerms*/}
-                {/*  setChecked={setCheckedPrivacyPolicy}*/}
-                {/*  checked={checkedPrivacyPolicy}*/}
-                {/*/>*/}
+                <PrivacyPolicyAndTerms
+                  setChecked={setCheckedPrivacyPolicy}
+                  checked={checkedPrivacyPolicy}
+                />
               </View>
 
-              {/*<AppButton*/}
-              {/*  title="Request OTP"*/}
-              {/*  isLoading={signInQuery.isLoading}*/}
-              {/*  disabled={*/}
-              {/*    signInQuery.isLoading || phoneNumber.length < 8 || !!error*/}
-              {/*  }*/}
-              {/*  textStyle={[*/}
-              {/*    globalStyles.btnText,*/}
-              {/*    {*/}
-              {/*      color:*/}
-              {/*        phoneNumber.length === 8 && checkedPrivacyPolicy && !error*/}
-              {/*          ? '#FFFFFF'*/}
-              {/*          : '#7B7B7B',*/}
-              {/*    },*/}
-              {/*  ]}*/}
-              {/*  onPress={handleSubmitBtn}*/}
-              {/*  style={[*/}
-              {/*    globalStyles.button,*/}
-              {/*    {*/}
-              {/*      borderColor:*/}
-              {/*        phoneNumber.length === 8 && checkedPrivacyPolicy && !error*/}
-              {/*          ? '#F5F5F5'*/}
-              {/*          : '#DDE0E3',*/}
-              {/*      backgroundColor:*/}
-              {/*        phoneNumber.length === 8 && checkedPrivacyPolicy && !error*/}
-              {/*          ? '#3875F6'*/}
-              {/*          : '#F5F5F5',*/}
-              {/*    },*/}
-              {/*  ]}*/}
-              {/*/>*/}
+              <AppButton
+                title="Request OTP"
+                isLoading={signInQuery.isLoading}
+                disabled={
+                  signInQuery.isLoading || phoneNumber.length < 8 || !!error
+                }
+                textStyle={[
+                  globalStyles.btnText,
+                  {
+                    color:
+                      phoneNumber.length === 8 && checkedPrivacyPolicy && !error
+                        ? '#FFFFFF'
+                        : '#7B7B7B',
+                  },
+                ]}
+                onPress={handleSubmitBtn}
+                style={[
+                  globalStyles.button,
+                  {
+                    borderColor:
+                      phoneNumber.length === 8 && checkedPrivacyPolicy && !error
+                        ? '#F5F5F5'
+                        : '#DDE0E3',
+                    backgroundColor:
+                      phoneNumber.length === 8 && checkedPrivacyPolicy && !error
+                        ? '#3875F6'
+                        : '#F5F5F5',
+                  },
+                ]}
+              />
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
