@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React, {useContext} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
+  MainScreen,
   PhoneNumberScreen,
   PrivacyPolicyWithHeader,
   TermsAndConditionsScreen,
@@ -47,52 +48,53 @@ export function NavigationScreens() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          {/*{!token ? (*/}
-          <Stack.Group screenOptions={{headerShown: false}}>
-            <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen} />
+          {!token ? (
+            <Stack.Group screenOptions={{headerShown: false}}>
+              <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen} />
 
-            <Stack.Screen name="Verification" component={VerificationScreen} />
+              <Stack.Screen
+                name="Verification"
+                component={VerificationScreen}
+              />
 
-            <Stack.Screen
-              name="PrivacyPolicyWithHeader"
-              component={PrivacyPolicyWithHeader}
-            />
+              <Stack.Screen
+                name="PrivacyPolicyWithHeader"
+                component={PrivacyPolicyWithHeader}
+              />
 
-            <Stack.Screen
-              name="TermsAndConditions"
-              component={TermsAndConditionsScreen}
-            />
-          </Stack.Group>
-
-          {/*  </Stack.Group>*/}
-          {/*) : (*/}
-          {/*  <Stack.Group>*/}
-          {/*    <Stack.Screen*/}
-          {/*      name="Home"*/}
-          {/*      component={TabScreens}*/}
-          {/*      options={{*/}
-          {/*        headerShown: false,*/}
-          {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
-          {/*      }}*/}
-          {/*    />*/}
-          {/*    <Stack.Screen*/}
-          {/*      name="Loading"*/}
-          {/*      component={LoadingScreen}*/}
-          {/*      options={{*/}
-          {/*        headerShown: false,*/}
-          {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
-          {/*      }}*/}
-          {/*    />*/}
-          {/*    <Stack.Screen*/}
-          {/*      name="ChooseCard"*/}
-          {/*      component={ChooseCardPopup}*/}
-          {/*      options={{*/}
-          {/*        headerShown: false,*/}
-          {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
-          {/*      }}*/}
-          {/*    />*/}
-          {/*  </Stack.Group>*/}
-          {/*)}*/}
+              <Stack.Screen
+                name="TermsAndConditions"
+                component={TermsAndConditionsScreen}
+              />
+            </Stack.Group>
+          ) : (
+            <Stack.Group>
+              <Stack.Screen
+                name="Home"
+                component={MainScreen}
+                options={{
+                  headerShown: false,
+                  cardStyle: {backgroundColor: '#FFFFFF'},
+                }}
+              />
+              {/*    <Stack.Screen*/}
+              {/*      name="Loading"*/}
+              {/*      component={LoadingScreen}*/}
+              {/*      options={{*/}
+              {/*        headerShown: false,*/}
+              {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
+              {/*      }}*/}
+              {/*    />*/}
+              {/*    <Stack.Screen*/}
+              {/*      name="ChooseCard"*/}
+              {/*      component={ChooseCardPopup}*/}
+              {/*      options={{*/}
+              {/*        headerShown: false,*/}
+              {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
+              {/*      }}*/}
+              {/*    />*/}
+            </Stack.Group>
+          )}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
