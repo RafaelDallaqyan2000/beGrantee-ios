@@ -1,0 +1,122 @@
+import {Dimensions, StyleSheet} from 'react-native';
+
+const window = Dimensions.get('window');
+
+export const serviceScreenStyle = StyleSheet.create({
+  screen: {
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    flex: 1,
+    height: window.height,
+  },
+
+  topScreen: {
+    position: 'relative',
+    overflow: 'hidden',
+    width: window.width,
+    flexGrow: 0,
+    zIndex: 2000000,
+    flexShrink: 1,
+  },
+
+  container: {
+    marginBottom: -200,
+    marginTop: -68,
+    backgroundColor: '#FFF',
+    borderRadius: 48,
+    // zIndex: 1000,
+    paddingTop: 14,
+    position: 'relative',
+  },
+
+  companyLogo: {
+    position: 'absolute',
+    marginLeft: 30,
+    marginTop: 20,
+    borderRadius: 50,
+  },
+
+  title: {
+    fontWeight: '600',
+    fontSize: 24,
+    color: '#344054',
+    display: 'flex',
+    flexWrap: 'wrap',
+    fontFamily: 'NotoSansArmenian-Regular',
+    maxWidth: 240,
+  },
+
+  productName: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    fontSize: 12,
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    color: '#8EAEFD',
+    borderColor: '#8EAEFD',
+    fontFamily: 'NotoSansArmenian-Regular',
+    height: 24,
+  },
+
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  companyLogoAlt: {
+    color: '#FFF',
+    borderColor: '#FFF',
+    borderWidth: 1,
+    height: 46,
+    width: 46,
+    lineHeight: 40,
+    textAlign: 'center',
+    position: 'absolute',
+    margin: 30,
+    borderRadius: 50,
+    fontSize: 24,
+    fontFamily: 'NotoSansArmenian-Regular',
+    backgroundColor: '#7C819E',
+  },
+
+  opacityContainer: {
+    width: window.width,
+    backgroundColor: '#FFF',
+    height: 5,
+    position: 'absolute',
+  },
+
+  showMoreContainer: {
+    width: window.width,
+    backgroundColor: '#FFF',
+    position: 'absolute',
+    bottom: 0,
+    height: 35,
+  },
+
+  showMoreButton: {
+    position: 'absolute',
+    bottom: 0,
+    marginLeft: 25,
+    paddingHorizontal: 5,
+    paddingBottom: 11,
+    paddingTop: 5,
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    gap: 6,
+    alignItems: 'center',
+  },
+
+  showMoreButtonText: {
+    color: '#8EAEFD',
+    backgroundColor: '#FFF',
+    fontWeight: '600',
+    fontSize: 12,
+    fontFamily: 'NotoSansArmenian-Medium', // ?
+  },
+});
