@@ -3,7 +3,7 @@ import {PackageModel} from '../../models/packages';
 import {Image, Text, View} from 'react-native';
 import globalStyles from '../../styles/globalStyles';
 import packageCardStyle from './packageCardStyle';
-import {formatDateToMMD} from '../../helpers';
+// import {formatDateToMMD} from '../../helpers';
 import {HOST} from '../../services';
 
 interface PackageCardProps {
@@ -65,7 +65,7 @@ export function PackageCard({data, isEmpty = false}: PackageCardProps) {
           AMD {data.amount}
         </Text>
         <Text style={packageCardStyle.date}>
-          {data.endDate ? `Expiration: ${formatDateToMMD(data.endDate)}` : null}
+          {/*{data.endDate ? `Expiration: ${formatDateToMMD(data.endDate)}` : null}*/}
         </Text>
       </View>
     </View>

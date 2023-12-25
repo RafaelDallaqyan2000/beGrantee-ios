@@ -1,5 +1,5 @@
 import {NavigationBar} from './NavigationBar';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {serviceDetailsBodyStyle} from './serviceDetailsBodyStyle';
 import {ConvertHtmlCode} from '../../../../components';

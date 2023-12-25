@@ -6,14 +6,13 @@ import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import {mainScreenStyles} from './mainScreenStyles';
 import {AuthContext} from '../../../App';
-import {getAllCategories} from '../../services/getAllCategories';
-import {getAllServices} from '../../services/getAllServices';
+import {getAllCategories, getAllServices} from '../../services';
 import {useSelector} from 'react-redux';
 import {ErrorMainScreen} from './ErrorMainScreen';
 import {LoadingMainScreen} from '../../LoadingScreens';
 import {window} from '../index';
-import {NotifyIcon} from '../../icons';
-import {notificationStyles} from '../NotificationScreen/notificationStyles';
+// import {NotifyIcon} from '../../icons';
+// import {notificationStyles} from '../NotificationScreen/notificationStyles';
 
 export function EmptyMainScreen({refreshPackages, loadingPackages}: any) {
   // #region States
@@ -93,10 +92,10 @@ export function EmptyMainScreen({refreshPackages, loadingPackages}: any) {
             justifyContent: 'center',
             height: window.height - 200,
           }}>
-          <NotifyIcon />
-          <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
-          </Text>
+          {/*<NotifyIcon />*/}
+          {/*<Text style={notificationStyles.emptyNotificationText}>*/}
+          {/*  OOOPS! It’s Empty*/}
+          {/*</Text>*/}
         </View>
       </ScrollView>
     );

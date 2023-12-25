@@ -1,7 +1,7 @@
-import React, {createContext, useCallback, useEffect, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SecureStorage from 'react-native-encrypted-storage';
-import {ScrollView, Text} from 'react-native';
+import {Text} from 'react-native';
 import globalStyles from './src/styles/globalStyles';
 // import messaging, {firebase} from '@react-native-firebase/messaging';
 import {Provider} from 'react-redux';
@@ -25,7 +25,6 @@ function App(): JSX.Element {
   const [checkingToken, setCheckingToken] = useState(true);
 
   useEffect(() => {
-    getOrSetFCMToken();
     SecureStorage.getItem('token')
       .then(value => {
         setToken(value);
@@ -33,24 +32,24 @@ function App(): JSX.Element {
       .finally(() => setCheckingToken(false));
   }, []);
 
-  const getOrSetFCMToken = useCallback(async () => {
-    try {
-      let fcmToken = await SecureStorage.getItem('fcmToken');
-      // const enabled = await firebase.messaging().hasPermission();
-      // if (enabled) {
-      //   // if not generate one on firebase and set on database and local storage
-      //   fcmToken = await messaging().getToken();
-      // } else {
-      //   await firebase.messaging().requestPermission();
-      // }
-
-      if (fcmToken != null) {
-        await SecureStorage.setItem('fcmToken', 'fcmToken');
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, [token]);
+  // const getOrSetFCMToken = useCallback(async () => {
+  //   try {
+  //     let fcmToken = await SecureStorage.getItem('fcmToken');
+  //     // const enabled = await firebase.messaging().hasPermission();
+  //     // if (enabled) {
+  //     //   // if not generate one on firebase and set on database and local storage
+  //     //   fcmToken = await messaging().getToken();
+  //     // } else {
+  //     //   await firebase.messaging().requestPermission();
+  //     // }
+  //
+  //     if (fcmToken != null) {
+  //       await SecureStorage.setItem('fcmToken', 'fcmToken');
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }, [token]);
 
   if (checkingToken) {
     return <Text style={globalStyles.title}>Loading...</Text>;
@@ -61,9 +60,6 @@ function App(): JSX.Element {
       <QueryClientProvider client={queryClient}>
         <AuthContext.Provider value={{token, setToken}}>
           <NavigationScreens />
-          {/*<ScrollView style={{backgroundColor: 'orange', marginTop: 30}}>*/}
-          {/*  <Text>Hellows</Text>*/}
-          {/*</ScrollView>*/}
         </AuthContext.Provider>
       </QueryClientProvider>
     </Provider>

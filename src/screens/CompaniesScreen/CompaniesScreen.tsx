@@ -4,10 +4,9 @@ import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
 import React, {useContext, useState} from 'react';
 import {AuthContext} from '../../../App';
-import {getCompanies} from '../../services/getCompanies';
+import {getCompanies} from '../../services';
 import {notificationStyles} from '../NotificationScreen/notificationStyles';
 import {NotifyIcon} from '../../icons';
-import {useFocusEffect} from '@react-navigation/native';
 import {LoadingCompaniesScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
 

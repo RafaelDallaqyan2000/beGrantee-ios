@@ -41,7 +41,7 @@ const serviceCardStyle = StyleSheet.create({
   },
 
   defaultIconText: {
-    ontFamily: 'NotoSansArmenian-Medium', // << ?
+    fontFamily: 'NotoSansArmenian-Medium', // << ?
     fontWeight: '500',
     fontSize: 24,
     lineHeight: 28,

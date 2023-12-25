@@ -17,16 +17,15 @@ import {
 } from 'react-native';
 import {ServiceDetailsBody} from './Components';
 import {serviceScreenStyle} from './serviceScreenStyle';
-import {HOST} from '../../services';
+import {HOST, getServiceDetailsByCompanyId} from '../../services';
 import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
-import {getServiceDetailsByCompanyId} from '../../services/serviceService';
 import {AuthContext} from '../../../App';
 import {connect} from 'react-redux';
 import {handleChange} from '../../store';
 import {MoreLessBtn} from './Components/MoreLessBtn/MoreLessBtn';
 import {LoadingServiceScreen} from '../../LoadingScreens';
-import {ErrorScreen} from '../../components';
+// import {ErrorScreen} from '../../components';
 
 interface RouteProps extends RouteProp<StackNavigatorParamList, 'Service'> {}
 
@@ -127,9 +126,9 @@ function ServiceScreenContainer({
     );
   }
 
-  if (showErrorScreen) {
-    return <ErrorScreen marginTop={150} />;
-  }
+  // if (showErrorScreen) {
+  //   return <ErrorScreen marginTop={150} />;
+  // }
 
   return (
     <View style={serviceScreenStyle.screen}>

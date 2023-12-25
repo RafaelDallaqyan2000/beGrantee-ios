@@ -12,11 +12,11 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({data, onPress}: ServiceCardProps) {
+  const {companyName} = data;
+
   const handlePress = useCallback(() => {
     onPress(data);
   }, [data]);
-  const {companyName} = data;
-
 
   return (
     <TouchableOpacity onPress={handlePress} style={styles.card}>
@@ -53,7 +53,6 @@ export function ServiceCard({data, onPress}: ServiceCardProps) {
           <Text style={serviceCardStyle.topicText}>{data.subject}</Text>
         </View>
       )}
-
     </TouchableOpacity>
   );
 }

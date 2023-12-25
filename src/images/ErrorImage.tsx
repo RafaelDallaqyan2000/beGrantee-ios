@@ -205,7 +205,7 @@ const ErrorImage = (props: any) => (
         />
       </G>
     </G>
-    <Defs></Defs>
+    <Defs />
   </Svg>
 );
 export default ErrorImage;

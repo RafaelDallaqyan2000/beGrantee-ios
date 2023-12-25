@@ -5,12 +5,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {RefreshControl, ScrollView} from 'react-native';
-// import {
-  // PackageList,
-  // ServiceCard,
-  // ServiceTypeList
-// } from '../../components';
+import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import {PackageList, ServiceCard, ServiceTypeList} from '../../components';
 import {PackageModel} from '../../models/packages';
 import {ServiceModel, ServiceType} from '../../models/services';
 import {
@@ -26,13 +22,12 @@ import {mainScreenStyles} from './mainScreenStyles';
 import {AuthContext} from '../../../App';
 import {useDispatch, useSelector} from 'react-redux';
 import {handleChange} from '../../store';
-// import {EmptyMainScreen} from './EmptyMainScreen';
-// import {LoadingMainScreen} from '../../LoadingScreens';
-// import {ErrorMainScreen} from './ErrorMainScreen';
+import {EmptyMainScreen} from './EmptyMainScreen';
+import {LoadingMainScreen} from '../../LoadingScreens';
+import {ErrorMainScreen} from './ErrorMainScreen';
 import {window} from '../index';
-import SecureStorage from "react-native-encrypted-storage";
-// import {notificationStyles} from '../NotificationScreen/notificationStyles';
-// import {NotifyIcon} from '../../icons';
+import {notificationStyles} from '../NotificationScreen/notificationStyles';
+import {NotifyIcon} from '../../icons';
 
 export function MainScreen() {
   // #region States
@@ -185,46 +180,46 @@ export function MainScreen() {
   );
   //#endregion
 
-  // if (loadingScreen) {
-  //   return <LoadingMainScreen />;
-  // }
-  // if (errorScreen) {
-  //   return (
-  //     <ErrorMainScreen
-  //       loadingScreen={loadingPackages}
-  //       refresh={refetchPackages}
-  //     />
-  //   );
-  // }
-  // if (showEmptyScreen) {
-  //   return (
-  //     <EmptyMainScreen
-  //       loadingPackages={loadingPackages}
-  //       refetchPackages={refetchPackages}
-  //     />
-  //   );
-  // }
-  // if (emptyBox) {
-  //   return (
-  //     <ScrollView style={{backgroundColor: '#F8F8F9'}}>
-  //       <View
-  //         style={{
-  //           alignItems: 'center',
-  //           justifyContent: 'center',
-  //           height: window.height - 200,
-  //         }}>
-  //         <NotifyIcon />
-  //         <Text style={notificationStyles.emptyNotificationText}>
-  //           OOOPS! It’s Empty
-  //         </Text>
-  //       </View>
-  //     </ScrollView>
-  //   );
-  // }
+  if (loadingScreen) {
+    return <LoadingMainScreen />;
+  }
+  if (errorScreen) {
+    return (
+      <ErrorMainScreen
+        loadingScreen={loadingPackages}
+        refresh={refetchPackages}
+      />
+    );
+  }
+  if (showEmptyScreen) {
+    return (
+      <EmptyMainScreen
+        loadingPackages={loadingPackages}
+        refetchPackages={refetchPackages}
+      />
+    );
+  }
+  if (emptyBox) {
+    return (
+      <ScrollView style={{backgroundColor: '#F8F8F9'}}>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: window.height - 200,
+          }}>
+          <NotifyIcon />
+          <Text style={notificationStyles.emptyNotificationText}>
+            OOOPS! It’s Empty
+          </Text>
+        </View>
+      </ScrollView>
+    );
+  }
 
   return (
     <ScrollView
-      style={{backgroundColor: 'red'}}
+      style={{backgroundColor: 'orange'}}
       refreshControl={
         <RefreshControl
           refreshing={loadingPackages}
@@ -233,28 +228,28 @@ export function MainScreen() {
           colors={['#3875F6', '']}
         />
       }>
-      {/*<PackageList*/}
-      {/*  carouselRef={carouselRef}*/}
-      {/*  data={cards}*/}
-      {/*  onSelectPackage={handlePackageSelect}*/}
-      {/*/>*/}
-      {/*{!!selectedPackage && (*/}
-      {/*  <View style={mainScreenStyles.categorysAndServiceCardsContainer}>*/}
-      {/*    <ServiceTypeList*/}
-      {/*      data={categories}*/}
-      {/*      onTypeSelect={handleTypeSelect}*/}
-      {/*      selectedType={selectedServiceType}*/}
-      {/*    />*/}
-      {/*    {loadingServices ? (*/}
-      {/*      <Text style={[globalStyles.title, {margin: 16}]}>Loading...</Text>*/}
-      {/*    ) : (*/}
-      {/*      services.length > 0 &&*/}
-      {/*      services?.map((s: ServiceModel) => (*/}
-      {/*        <ServiceCard key={s?.id} onPress={handleServiceOpen} data={s} />*/}
-      {/*      ))*/}
-      {/*    )}*/}
-      {/*  </View>*/}
-      {/*)}*/}
+      <PackageList
+        carouselRef={carouselRef}
+        data={cards}
+        onSelectPackage={handlePackageSelect}
+      />
+      {!!selectedPackage && (
+        <View style={mainScreenStyles.categorysAndServiceCardsContainer}>
+          <ServiceTypeList
+            data={categories}
+            onTypeSelect={handleTypeSelect}
+            selectedType={selectedServiceType}
+          />
+          {loadingServices ? (
+            <Text style={[globalStyles.title, {margin: 16}]}>Loading...</Text>
+          ) : (
+            services.length > 0 &&
+            services?.map((s: ServiceModel) => (
+              <ServiceCard key={s?.id} onPress={handleServiceOpen} data={s} />
+            ))
+          )}
+        </View>
+      )}
     </ScrollView>
   );
 }

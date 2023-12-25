@@ -6,7 +6,7 @@ import {
 } from '../ServiceHistoryItem/TransactionHistoryItem';
 import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
-import {getTransactionHistory} from '../../services/getTransactionHistory';
+import {getTransactionHistory} from '../../services';
 import React, {useCallback, useContext, useState} from 'react';
 import {AuthContext} from '../../../App';
 import {useFocusEffect} from '@react-navigation/native';

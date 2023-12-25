@@ -1,4 +1,5 @@
 export interface ServiceModel {
+  subject?: any;
   productName?: string;
   productBackgroundColor?: string;
   companyName: string;

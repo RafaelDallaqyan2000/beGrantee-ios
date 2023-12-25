@@ -16,6 +16,8 @@ import {AuthContext} from '../../App';
 // import {ChooseCardPopup} from '../components';
 // import {PrivacyPolicyScreen} from '../screens/PrivacyPolicyScreen/PrivacyPolicyScreen';
 import {StyleSheet} from 'react-native';
+import { MainStack } from "./MainStack.tsx";
+import { TabScreens } from "./TabScreens.tsx";
 
 export interface VerificationScreenParams {
   phoneNumber: string;
@@ -71,28 +73,28 @@ export function NavigationScreens() {
             <Stack.Group>
               <Stack.Screen
                 name="Home"
-                component={MainScreen}
+                component={TabScreens}
                 options={{
                   headerShown: false,
                   cardStyle: {backgroundColor: '#FFFFFF'},
                 }}
               />
-              {/*    <Stack.Screen*/}
-              {/*      name="Loading"*/}
-              {/*      component={LoadingScreen}*/}
-              {/*      options={{*/}
-              {/*        headerShown: false,*/}
-              {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
-              {/*      }}*/}
-              {/*    />*/}
-              {/*    <Stack.Screen*/}
-              {/*      name="ChooseCard"*/}
-              {/*      component={ChooseCardPopup}*/}
-              {/*      options={{*/}
-              {/*        headerShown: false,*/}
-              {/*        cardStyle: {backgroundColor: '#FFFFFF'},*/}
-              {/*      }}*/}
-              {/*    />*/}
+              {/*<Stack.Screen*/}
+              {/*  name="Loading"*/}
+              {/*  component={LoadingScreen}*/}
+              {/*  options={{*/}
+              {/*    headerShown: false,*/}
+              {/*    cardStyle: {backgroundColor: '#FFFFFF'},*/}
+              {/*  }}*/}
+              {/*/>*/}
+              {/*<Stack.Screen*/}
+              {/*  name="ChooseCard"*/}
+              {/*  component={ChooseCardPopup}*/}
+              {/*  options={{*/}
+              {/*    headerShown: false,*/}
+              {/*    cardStyle: {backgroundColor: '#FFFFFF'},*/}
+              {/*  }}*/}
+              {/*/>*/}
             </Stack.Group>
           )}
         </Stack.Navigator>

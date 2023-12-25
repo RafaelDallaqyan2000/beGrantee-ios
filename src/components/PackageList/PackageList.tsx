@@ -1,7 +1,8 @@
-import React, { Ref, useEffect, useRef, useState } from "react";
+import React, {Ref, useEffect, useState} from 'react';
 import {PackageModel} from '../../models/packages';
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 import {PackageCard} from '../PackageCard';
+//@ts-ignore
 import Carousel from 'react-native-snap-carousel';
 import {useSelector} from 'react-redux';
 

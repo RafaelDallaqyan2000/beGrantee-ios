@@ -1,19 +1,15 @@
 import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import {useQuery} from '@tanstack/react-query';
 import {NotifyIcon} from '../../icons';
 import React, {useCallback, useContext, useState} from 'react';
 import {ErrorScreen, NotificationItem} from '../../components';
 import {notificationStyles} from './notificationStyles';
-import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
-import {
-  getNotifications,
-  getOnReadNotification,
-} from '../../services/getNotifications';
+import {getNotifications, getOnReadNotification} from '../../services';
 import {AuthContext} from '../../../App';
-import {NotificationItemType} from '../../components/NotificationItem/NotificationItem';
-import {useFocusEffect} from '@react-navigation/native';
 import {LoadingNotificationScreen} from '../../LoadingScreens';
-import ErrorImage from '../../images/ErrorImage';
+import {NotificationItemType} from '../../components/NotificationItem';
 
 export function NotificationScreen() {
   const [loadingNotificationScreen, setLoadingNotificationScreen] =
@@ -99,6 +95,7 @@ export function NotificationScreen() {
     );
   }
 
+  // @ts-ignore
   return (
     <>
       <Text style={notificationStyles.notificationTitle}>Notification</Text>

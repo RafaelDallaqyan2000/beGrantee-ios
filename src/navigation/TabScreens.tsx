@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {MainStack} from './MainStack';
 import {
   NotificationScreen,
-  QRCodeScannerScreen,
+//   QRCodeScannerScreen,
   ServiceScreen,
   TransactionHistory,
 } from '../screens';
@@ -15,7 +15,7 @@ import {
   ScanIcon,
   TransactionIcon,
 } from '../icons';
-import {ProfileStack} from './ProfileStack';
+// import {ProfileStack} from './ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,24 +69,24 @@ export function TabScreens() {
       />
 
       {/*navigate to Scan screen*/}
-      <Tab.Screen
-        name="QrScanner"
-        component={QRCodeScannerScreen}
-        options={{
-          tabBarLabelStyle: {display: 'none'},
-          tabBarIcon: icon => (
-            <View
-              style={[
-                tabBarStyle.scanPlace,
-                {
-                  backgroundColor: icon.focused ? '#3875F6' : '#FFF',
-                },
-              ]}>
-              <ScanIcon inFocus={icon.focused} style={tabBarStyle.everyIcon} />
-            </View>
-          ),
-        }}
-      />
+      {/*<Tab.Screen*/}
+      {/*  name="QrScanner"*/}
+      {/*  component={QRCodeScannerScreen}*/}
+      {/*  options={{*/}
+      {/*    tabBarLabelStyle: {display: 'none'},*/}
+      {/*    tabBarIcon: icon => (*/}
+      {/*      <View*/}
+      {/*        style={[*/}
+      {/*          tabBarStyle.scanPlace,*/}
+      {/*          {*/}
+      {/*            backgroundColor: icon.focused ? '#3875F6' : '#FFF',*/}
+      {/*          },*/}
+      {/*        ]}>*/}
+      {/*        <ScanIcon inFocus={icon.focused} style={tabBarStyle.everyIcon} />*/}
+      {/*      </View>*/}
+      {/*    ),*/}
+      {/*  }}*/}
+      {/*/>*/}
 
       {/*navigate to Transaction history screen*/}
       <Tab.Screen
@@ -107,22 +107,22 @@ export function TabScreens() {
       />
 
       {/* navigate to Profile screen */}
-      <Tab.Screen
-        name="myProfile"
-        component={ProfileStack}
-        options={{
-          tabBarActiveTintColor: '#FFF',
-          tabBarLabelStyle: {display: 'none'},
-          tabBarIcon: icon => (
-            <View style={[tabBarStyle.iconContainer]}>
-              <PersonIcon
-                inFocus={icon.focused}
-                style={tabBarStyle.everyIcon}
-              />
-            </View>
-          ),
-        }}
-      />
+      {/*<Tab.Screen*/}
+      {/*  name="myProfile"*/}
+      {/*  component={ProfileStack}*/}
+      {/*  options={{*/}
+      {/*    tabBarActiveTintColor: '#FFF',*/}
+      {/*    tabBarLabelStyle: {display: 'none'},*/}
+      {/*    tabBarIcon: icon => (*/}
+      {/*      <View style={[tabBarStyle.iconContainer]}>*/}
+      {/*        <PersonIcon*/}
+      {/*          inFocus={icon.focused}*/}
+      {/*          style={tabBarStyle.everyIcon}*/}
+      {/*        />*/}
+      {/*      </View>*/}
+      {/*    ),*/}
+      {/*  }}*/}
+      {/*/>*/}
     </Tab.Navigator>
   );
 }

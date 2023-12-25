@@ -9,9 +9,7 @@ export function getPackages(token: string, searchText: string) {
         Authorization: `Bearer ${token}`, // notice the Bearer before your token
       },
     })
-    .then(res => {
-      return res.data.data;
-    });
+    .then(res => res.data.data);
   // .catch(err => {
   //   console.log(err, 'error from /api/cards');
   //   return err;

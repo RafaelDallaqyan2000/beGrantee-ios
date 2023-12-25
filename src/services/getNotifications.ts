@@ -19,7 +19,7 @@ export function getNotifications({token}: NotificationsType) {
 export function getOnReadNotification({
   token,
 }: {
-  token: string;
+  token: string | null | undefined;
 }) {
   return axios
     .get(`${HOST}/api/notification/read`, {
