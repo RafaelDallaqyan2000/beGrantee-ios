@@ -6,7 +6,6 @@ import {
 //   QRCodeScannerScreen,
   ServiceScreen,
   TransactionHistory,
-  UserProfileScreen
 } from '../screens';
 import {StyleSheet, View} from 'react-native';
 import {
@@ -16,7 +15,7 @@ import {
   ScanIcon,
   TransactionIcon,
 } from '../icons';
-// import {ProfileStack} from './ProfileStack';
+import {ProfileStack} from './ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -110,7 +109,7 @@ export function TabScreens() {
       {/* navigate to Profile screen */}
       <Tab.Screen
         name="myProfile"
-        component={UserProfileScreen}
+        component={ProfileStack}
         options={{
           tabBarActiveTintColor: '#FFF',
           tabBarLabelStyle: {display: 'none'},

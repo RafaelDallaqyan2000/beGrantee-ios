@@ -13,11 +13,7 @@ import {uploadImageProfileStyle} from './uploadImageProfileStyle';
 import {CameraIcon} from '../../../../icons';
 import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../../../react-query/query-routes';
-import {
-  HOST,
-  editProfileImage,
-  getProfileInfo,
-} from '../../../../services';
+import {HOST, editProfileImage, getProfileInfo} from '../../../../services';
 import {AuthContext} from '../../../../../App';
 import {useFocusEffect} from '@react-navigation/native';
 import {LoadingProfileScreen} from '../../../../LoadingScreens';
