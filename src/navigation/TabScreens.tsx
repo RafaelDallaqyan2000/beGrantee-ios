@@ -6,6 +6,7 @@ import {
 //   QRCodeScannerScreen,
   ServiceScreen,
   TransactionHistory,
+  UserProfileScreen
 } from '../screens';
 import {StyleSheet, View} from 'react-native';
 import {
@@ -107,22 +108,22 @@ export function TabScreens() {
       />
 
       {/* navigate to Profile screen */}
-      {/*<Tab.Screen*/}
-      {/*  name="myProfile"*/}
-      {/*  component={ProfileStack}*/}
-      {/*  options={{*/}
-      {/*    tabBarActiveTintColor: '#FFF',*/}
-      {/*    tabBarLabelStyle: {display: 'none'},*/}
-      {/*    tabBarIcon: icon => (*/}
-      {/*      <View style={[tabBarStyle.iconContainer]}>*/}
-      {/*        <PersonIcon*/}
-      {/*          inFocus={icon.focused}*/}
-      {/*          style={tabBarStyle.everyIcon}*/}
-      {/*        />*/}
-      {/*      </View>*/}
-      {/*    ),*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <Tab.Screen
+        name="myProfile"
+        component={UserProfileScreen}
+        options={{
+          tabBarActiveTintColor: '#FFF',
+          tabBarLabelStyle: {display: 'none'},
+          tabBarIcon: icon => (
+            <View style={[tabBarStyle.iconContainer]}>
+              <PersonIcon
+                inFocus={icon.focused}
+                style={tabBarStyle.everyIcon}
+              />
+            </View>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
