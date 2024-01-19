@@ -13,3 +13,4 @@ export {NotificationScreen} from './NotificationScreen';
 export {TransactionHistory} from './TransactionHistory';
 export {UserProfileScreen} from './UserProfileScreen';
 export {LanguageScreen} from './LanguageScreen';
+export {QRCodeScannerScreen} from './QRCodeScannerScreen';
