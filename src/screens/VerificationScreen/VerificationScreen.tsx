@@ -7,13 +7,14 @@ import {
   ScrollView,
   Dimensions,
   KeyboardAvoidingView,
+  SafeAreaView,
 } from 'react-native';
 import styles from '../../styles/globalStyles';
 import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
 import {RouteProp} from '@react-navigation/native';
 import {AuthContext} from '../../../App';
 import {useMutation} from '@tanstack/react-query';
-import {verifyCode} from '../../services/authService';
+import {verifyCode} from '../../services';
 import verificationScreenStyle from './verificationScreenStyle';
 import BackIcon from '../../icons/BackIcon';
 import globalStyles from '../../styles/globalStyles';
@@ -124,118 +125,123 @@ export function VerificationScreen() {
 
   // @ts-ignore
   return (
-    <ScrollView style={styles.container}>
-      <WelcomeScreen visible={openWelcomePopUp} />
-      <View
-        style={[
-          globalStyles.screenContainer,
-          {
-            flex: 1,
-          },
-        ]}>
-        <View style={verificationScreenStyle.header}>
-          <View style={verificationScreenStyle.backIcon}>
-            <BackIcon onPress={() => navigation.goBack()} />
-          </View>
-
-          <Text style={verificationScreenStyle.topicOTP}>OTP Verification</Text>
-        </View>
-
-        <View style={verificationScreenStyle.mainContainer}>
-          <View style={verificationScreenStyle.body}>
-            <Text style={[globalStyles.screenTitle, {marginBottom: 0}]}>
-              Enter the code
-            </Text>
-
-            <Text style={[globalStyles.text, verificationScreenStyle.subtitle]}>
-              We just sent you a 4-digit verification code to +374******
-              {phoneNumber.slice(phoneNumber.length - 2)}
-            </Text>
-          </View>
-
-          <View style={[{marginTop: 72}, verificationScreenStyle.footer]}>
-            <View>
-              <SmsVerification
-                ref={verifyCodeRef}
-                defaultValue={
-                  <View
-                    style={[
-                      verificationScreenStyle.defaultVerificationValue,
-                      {
-                        backgroundColor:
-                          s <= 0 || error ? '#FF9292' : '#EAECF0',
-                      },
-                    ]}
-                  />
-                }
-                verifyCodeLength={4}
-                codeFontSize={24}
-                codeViewWidth={64}
-                codeViewBackgroundColor={checkBgColor}
-                codeViewBorderColor={checkBorderColor}
-                codeViewStyle={{borderRadius: 8}}
-                containerStyle={{width: window.width, alignItems: 'center'}}
-                codeColor={checkColor}
-                containerPaddingLeft={window.width / 14}
-                containerPaddingRight={window.width / 7}
-                codeStyle={verificationScreenStyle.codeVerificationText}
-                containerMarginLeft={10}
-                autoFocus={true}
-                error={s <= 0 || error}
-                onInputChangeText={handleCodeChange}
-                errorBorderColor={checkBorderColor}
-              />
-
-              {error ? (
-                <Text style={[verificationScreenStyle.incorrectCode]}>
-                  {error}
-                </Text>
-              ) : s <= 0 ? (
-                <Text style={[verificationScreenStyle.incorrectCode]}>
-                  Empty OTP
-                </Text>
-              ) : null}
+    <SafeAreaView style={{flex: 1}}>
+      <ScrollView style={styles.container}>
+        <WelcomeScreen visible={openWelcomePopUp} />
+        <View
+          style={[
+            globalStyles.screenContainer,
+            {
+              flex: 1,
+            },
+          ]}>
+          <View style={verificationScreenStyle.header}>
+            <View style={verificationScreenStyle.backIcon}>
+              <BackIcon onPress={() => navigation.goBack()} />
             </View>
-            <KeyboardAvoidingView
-              behavior="padding"
-              keyboardVerticalOffset={window.height / 2 - 60}>
+
+            <Text style={verificationScreenStyle.topicOTP}>
+              OTP Verification
+            </Text>
+          </View>
+
+          <View style={verificationScreenStyle.mainContainer}>
+            <View style={verificationScreenStyle.body}>
+              <Text style={[globalStyles.screenTitle, {marginBottom: 0}]}>
+                Enter the code
+              </Text>
+
               <Text
                 style={[globalStyles.text, verificationScreenStyle.subtitle]}>
-                Didn’t receive any code?
+                We just sent you a 4-digit verification code to +374******
+                {phoneNumber.slice(phoneNumber.length - 2)}
               </Text>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 5,
-                }}>
-                <Text
-                  onPress={handlePressResendOTP}
-                  style={[
-                    verificationScreenStyle.resendCode,
-                    {
-                      color: s <= 0 ? '#3875F6' : '#E7E2DE',
-                      textDecorationLine: 'underline',
-                    },
-                  ]}>
-                  Resend OTP
-                </Text>
-                {s > 0 ? (
-                  <Text
-                    style={[
-                      verificationScreenStyle.resendCode,
-                      {color: '#3875F6'},
-                    ]}>
-                    in 00:
-                    {s.toString().length < 2 ? `0${s}` : s}
+            </View>
+
+            <View style={[{marginTop: 72}, verificationScreenStyle.footer]}>
+              <View>
+                <SmsVerification
+                  ref={verifyCodeRef}
+                  defaultValue={
+                    <View
+                      style={[
+                        verificationScreenStyle.defaultVerificationValue,
+                        {
+                          backgroundColor:
+                            s <= 0 || error ? '#FF9292' : '#EAECF0',
+                        },
+                      ]}
+                    />
+                  }
+                  verifyCodeLength={4}
+                  codeFontSize={24}
+                  codeViewWidth={64}
+                  codeViewBackgroundColor={checkBgColor}
+                  codeViewBorderColor={checkBorderColor}
+                  codeViewStyle={{borderRadius: 8}}
+                  containerStyle={{width: window.width, alignItems: 'center'}}
+                  codeColor={checkColor}
+                  containerPaddingLeft={window.width / 14}
+                  containerPaddingRight={window.width / 7}
+                  codeStyle={verificationScreenStyle.codeVerificationText}
+                  containerMarginLeft={10}
+                  autoFocus={true}
+                  error={s <= 0 || error}
+                  onInputChangeText={handleCodeChange}
+                  errorBorderColor={checkBorderColor}
+                />
+
+                {error ? (
+                  <Text style={[verificationScreenStyle.incorrectCode]}>
+                    {error}
+                  </Text>
+                ) : s <= 0 ? (
+                  <Text style={[verificationScreenStyle.incorrectCode]}>
+                    Empty OTP
                   </Text>
                 ) : null}
               </View>
-            </KeyboardAvoidingView>
+              <KeyboardAvoidingView
+                behavior="padding"
+                keyboardVerticalOffset={window.height / 2 - 60}>
+                <Text
+                  style={[globalStyles.text, verificationScreenStyle.subtitle]}>
+                  Didn’t receive any code?
+                </Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 5,
+                  }}>
+                  <Text
+                    onPress={handlePressResendOTP}
+                    style={[
+                      verificationScreenStyle.resendCode,
+                      {
+                        color: s <= 0 ? '#3875F6' : '#E7E2DE',
+                        textDecorationLine: 'underline',
+                      },
+                    ]}>
+                    Resend OTP
+                  </Text>
+                  {s > 0 ? (
+                    <Text
+                      style={[
+                        verificationScreenStyle.resendCode,
+                        {color: '#3875F6'},
+                      ]}>
+                      in 00:
+                      {s.toString().length < 2 ? `0${s}` : s}
+                    </Text>
+                  ) : null}
+                </View>
+              </KeyboardAvoidingView>
+            </View>
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

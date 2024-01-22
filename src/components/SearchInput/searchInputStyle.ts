@@ -7,7 +7,10 @@ export const searchInputStyle = StyleSheet.create({
     width: window.width,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: 57,
+    shadowColor: '#171717',
+    shadowOffset: {width: -1, height: 1},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   containerStyle: {
     width: window.width - 76, //314
@@ -16,8 +19,6 @@ export const searchInputStyle = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 8,
-    // borderColor: 'blue',
-    // borderWidth: 1,
     elevation: 5,
   },
   searchInput: {
