@@ -13,7 +13,7 @@ export const notificationStyles = StyleSheet.create({
     color: '#000000CC',
     backgroundColor: '#FFF',
     textAlign: 'center',
-    paddingTop: 30,
+    // paddingTop: 30,
   },
 
   ifNotNotification: {

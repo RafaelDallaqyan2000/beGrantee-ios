@@ -15,7 +15,6 @@ export const serviceScreenStyle = StyleSheet.create({
     overflow: 'hidden',
     width: window.width,
     flexGrow: 0,
-    zIndex: 2000000,
     flexShrink: 1,
   },
 
@@ -24,9 +23,13 @@ export const serviceScreenStyle = StyleSheet.create({
     marginTop: -68,
     backgroundColor: '#FFF',
     borderRadius: 48,
-    // zIndex: 1000,
+    zIndex: 1000,
     paddingTop: 14,
     position: 'relative',
+    shadowColor: '#171717',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 
   companyLogo: {

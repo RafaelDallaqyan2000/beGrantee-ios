@@ -10,11 +10,11 @@ import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
 import {
   Dimensions,
   Image,
-  RefreshControl,
+  RefreshControl, SafeAreaView,
   ScrollView,
   Text,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 import {ServiceDetailsBody} from './Components';
 import {serviceScreenStyle} from './serviceScreenStyle';
 import {HOST, getServiceDetailsByCompanyId} from '../../services';
@@ -131,7 +131,7 @@ function ServiceScreenContainer({
   // }
 
   return (
-    <View style={serviceScreenStyle.screen}>
+    <SafeAreaView style={serviceScreenStyle.screen}>
       <ScrollView
         scrollEnabled={false}
         style={serviceScreenStyle.topScreen}
@@ -194,7 +194,7 @@ function ServiceScreenContainer({
       {showMoreButton ? (
         <MoreLessBtn handleBtnClick={handleClickShowMoreButton} />
       ) : null}
-    </View>
+    </SafeAreaView>
   );
 }
 

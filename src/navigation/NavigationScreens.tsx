@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React, {useContext} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
-  MainScreen,
   PhoneNumberScreen,
   PrivacyPolicyWithHeader,
   TermsAndConditionsScreen,
@@ -11,13 +10,10 @@ import {
 } from '../screens';
 import {AuthContext} from '../../App';
 // import {ServiceModel} from '../models/services';
-// import {TabScreens} from './';
 // import {LoadingScreen} from '../components/LoadingScreen/LoadingScreen';
 // import {ChooseCardPopup} from '../components';
-// import {PrivacyPolicyScreen} from '../screens/PrivacyPolicyScreen/PrivacyPolicyScreen';
 import {StyleSheet} from 'react-native';
-import { MainStack } from "./MainStack.tsx";
-import { TabScreens } from "./TabScreens.tsx";
+import {TabScreens} from './TabScreens.tsx';
 
 export interface VerificationScreenParams {
   phoneNumber: string;

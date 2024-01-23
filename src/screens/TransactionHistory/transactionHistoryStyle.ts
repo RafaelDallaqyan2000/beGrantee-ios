@@ -15,7 +15,6 @@ export const transactionHistoryStyle = StyleSheet.create({
     letterSpacing: 0.48,
     color: '#262626',
     textAlign: 'center',
-    marginTop: 30,
     // marginBottom: 18,
   },
 });
