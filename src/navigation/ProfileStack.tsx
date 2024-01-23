@@ -5,7 +5,7 @@ import {
   PrivacyPolicyScreen,
   LanguageScreen,
 } from '../screens';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {CompaniesScreen} from '../screens/CompaniesScreen/CompaniesScreen';
 import {PackagesScreen} from '../screens/PackagesScreen/PackagesScreen';
 import BackIcon from '../icons/BackIcon';
@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
+const window = Dimensions.get('window');
 export function ProfileStack() {
   const {navigate} = useNavigation();
   const navigateToPreviousScreen = () => navigate('Profile' as never);
@@ -41,11 +42,20 @@ export function ProfileStack() {
       <Stack.Screen
         options={{
           headerLeft: BackComponent,
-          headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerStatusBarHeight: 5,
+          headerLeftContainerStyle: {
+            position: 'absolute',
+            bottom: 0,
+            left: 20,
+          },
+          headerStatusBarHeight: 30,
           headerTitle: 'Companies',
           headerStyle: {elevation: 0},
-          headerTitleContainerStyle: {width: '100%', paddingLeft: 30},
+          headerTitleContainerStyle: {
+            width: '100%',
+            alignItems: 'center',
+            left: 70,
+            bottom: 2,
+          },
           headerTitleStyle: style.titleStyle,
         }}
         name="Companies"
@@ -56,10 +66,15 @@ export function ProfileStack() {
         options={{
           headerLeft: BackComponent,
           headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerStatusBarHeight: 5,
+          headerStatusBarHeight: 30,
           headerTitle: 'Packages',
           headerStyle: {elevation: 0},
-          headerTitleContainerStyle: {width: '100%', paddingLeft: 30},
+          headerTitleContainerStyle: {
+            width: '100%',
+            alignItems: 'center',
+            left: 70,
+            bottom: 2,
+          },
           headerTitleStyle: style.titleStyle,
         }}
         name="Packages"
@@ -84,10 +99,15 @@ export function ProfileStack() {
         options={{
           headerLeft: BackComponent,
           headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerStatusBarHeight: 5,
+          headerStatusBarHeight: 30,
           headerTitle: 'Privacy Policy',
           headerStyle: {elevation: 0},
-          headerTitleContainerStyle: {width: '100%', paddingLeft: 30},
+          headerTitleContainerStyle: {
+            width: '100%',
+            alignItems: 'center',
+            left: 80,
+            bottom: 2,
+          },
           headerTitleStyle: style.titleStyle,
         }}
         name="PrivacyPolicy"
@@ -100,11 +120,10 @@ export function ProfileStack() {
 const style = StyleSheet.create({
   titleStyle: {
     color: '#333333',
-    fontFamily: 'NotoSansArmneian-SemiBold',
+    fontFamily: 'NotoSansArmenian-SemiBold',
     fontWeight: '600',
     fontSize: 24,
     lineHeight: 32,
     paddingTop: 15,
-    textAlign: 'center',
   },
 });

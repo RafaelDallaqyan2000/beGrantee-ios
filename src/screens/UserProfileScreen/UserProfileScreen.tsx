@@ -32,7 +32,7 @@ export function UserProfileScreen() {
   const handlePrivacyPolicyPress = () => navigate('PrivacyPolicy' as never);
 
   return (
-    <View style={{height: window.height, backgroundColor: '#F8F8F9'}}>
+    <View style={{flex: 1, backgroundColor: '#FFF', paddingTop: 40}}>
       {loadingScreen ? null : (
         <Text
           style={[globalStyles.screenTitle, userProfileScreenStyle.pageTitle]}>
