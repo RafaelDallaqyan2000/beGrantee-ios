@@ -15,7 +15,7 @@ import {AuthContext} from '../../../App';
 import {useNavigation} from '@react-navigation/native';
 import {handleChange} from '../../store';
 import {useDispatch} from 'react-redux';
-import { Text } from "react-native";
+import {Text} from 'react-native';
 
 export function QRCodeScannerScreen() {
   const [openPackageListPopUp, setOpenPackageListPopUp] = useState(false);
@@ -31,8 +31,9 @@ export function QRCodeScannerScreen() {
     queryFn: () => getPackagesByServiceId(token, serviceId),
   });
 
-  const onQRSuccess = (e
-                         // : BarCodeReadEvent
+  const onQRSuccess = (
+    e,
+    // : BarCodeReadEvent
   ) => {
     setOpenPackageListPopUp(true);
     dispatch(handleChange('canceledTransaction', false));

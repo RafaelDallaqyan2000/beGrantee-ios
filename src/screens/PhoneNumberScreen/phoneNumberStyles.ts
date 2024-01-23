@@ -10,7 +10,6 @@ const phoneNumberStyles = StyleSheet.create({
     lineHeight: 28,
     color: '#344054',
     textAlign: 'center',
-    marginTop: 38,
   },
 
   imageContainer: {
@@ -32,7 +31,6 @@ const phoneNumberStyles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 20,
     color: '#344054',
-    // marginLeft: 16,
   },
 
   inputContainer: {
@@ -76,7 +74,6 @@ const phoneNumberStyles = StyleSheet.create({
   },
 
   body: {
-    height: 256,
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },

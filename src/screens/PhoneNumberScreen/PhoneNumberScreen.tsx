@@ -23,13 +23,14 @@ import {SelectIcon} from '../../icons';
 import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
 import WrongIcon from '../../icons/WrongIcon';
 import {PrivacyPolicyAndTerms} from '../../components';
+import CustomInput from '../../components/CustomInput/CustomInput.tsx';
 
 export const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState<CountryCode>();
   const [error, setError] = useState<string>();
   const [showAnimation, setShowAnimation] = useState(true);
-  const [showImage, setShowImage] = useState(true);
+  const [focusedInput, setFocusedInput] = useState(false);
   const [checkedPrivacyPolicy, setCheckedPrivacyPolicy] = useState(false);
   const navigation = useNavigation();
 
@@ -107,7 +108,7 @@ export const PhoneNumberScreen = () => {
           <Text style={phoneNumberStyles.topic}>Login to your account</Text>
         </View>
 
-        {showImage && (
+        {!focusedInput && (
           <View style={phoneNumberStyles.body}>
             <SvgPersonInLogin />
           </View>
@@ -123,14 +124,14 @@ export const PhoneNumberScreen = () => {
               <View>
                 <Text style={phoneNumberStyles.inputLabel}>Phone number</Text>
 
-                <TextInput
+                <CustomInput
                   id={'textInput'}
                   showSoftInputOnFocus={true}
                   keyboardType={'numeric'}
                   variant="standard"
                   maxLength={8}
-                  onFocus={() => setShowImage(false)}
-                  onBlur={() => setShowImage(true)}
+                  onFocus={() => setFocusedInput(true)}
+                  onBlur={() => setFocusedInput(false)}
                   textContentType="telephoneNumber"
                   placeholder={'00000000'}
                   placeholderTextColor={'#E7E2DE'}
@@ -144,12 +145,18 @@ export const PhoneNumberScreen = () => {
                     {
                       alignItems: 'center',
                       top: 6,
-                      paddingStart: 2,
+                      paddingStart: 5,
                     },
                   ]}
                   inputContainerStyle={[
                     phoneNumberStyles.inputContainer,
-                    {borderColor: error ? '#FF9292' : '#DDE0E3'},
+                    {
+                      borderColor: error
+                        ? '#FF9292'
+                        : focusedInput
+                        ? '#3875F6'
+                        : '#DDE0E3',
+                    },
                   ]}
                   style={{width: 315}}
                   leadingContainerStyle={

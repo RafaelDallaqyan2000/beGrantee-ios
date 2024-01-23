@@ -10,7 +10,6 @@ export const userProfileScreenStyle = StyleSheet.create({
     lineHeight: 32,
     letterSpacing: 0.48,
     backgroundColor: '#FFF',
-    paddingTop: 30,
     marginBottom: 0,
   },
 

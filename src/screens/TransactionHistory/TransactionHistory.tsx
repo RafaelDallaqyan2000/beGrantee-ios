@@ -93,7 +93,7 @@ export function TransactionHistory() {
   }
 
   return (
-    <View style={{backgroundColor: '#FFF'}}>
+    <View style={{backgroundColor: '#FFF', paddingTop: 40}}>
       <Text style={transactionHistoryStyle.title}>Transaction</Text>
       <ScrollView
         style={transactionHistoryStyle.screen}

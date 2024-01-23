@@ -38,13 +38,16 @@ const serviceCardStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#7C819E',
+    shadowColor: '#171717',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 
   defaultIconText: {
     fontFamily: 'NotoSansArmenian-Medium', // << ?
     fontWeight: '500',
     fontSize: 24,
-    lineHeight: 28,
     fontStyle: 'normal',
     color: '#FFF',
   },
@@ -84,10 +87,14 @@ const serviceCardStyle = StyleSheet.create({
     fontSize: 14,
     color: '#FFF',
     backgroundColor: '#3875F6',
-    borderRadius: 8,
-    marginTop: 5,
-    height: 24,
+    paddingVertical: 4,
     paddingHorizontal: 6,
+    shadowColor: '#3875F6',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 8,
+    overflow: 'hidden',
   },
 
   descriptionText: {

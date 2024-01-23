@@ -5,7 +5,13 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import {
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {PackageList, ServiceCard, ServiceTypeList} from '../../components';
 import {PackageModel} from '../../models/packages';
 import {ServiceModel, ServiceType} from '../../models/services';
@@ -183,6 +189,7 @@ export function MainScreen() {
   if (loadingScreen) {
     return <LoadingMainScreen />;
   }
+
   if (errorScreen) {
     return (
       <ErrorMainScreen
@@ -191,6 +198,7 @@ export function MainScreen() {
       />
     );
   }
+
   if (showEmptyScreen) {
     return (
       <EmptyMainScreen
@@ -199,6 +207,7 @@ export function MainScreen() {
       />
     );
   }
+
   if (emptyBox) {
     return (
       <ScrollView style={{backgroundColor: '#F8F8F9'}}>
@@ -218,38 +227,40 @@ export function MainScreen() {
   }
 
   return (
-    <ScrollView
-      style={{backgroundColor: 'orange'}}
-      refreshControl={
-        <RefreshControl
-          refreshing={loadingPackages}
-          onRefresh={refetchAll}
-          progressBackgroundColor={'white'}
-          colors={['#3875F6', '']}
-        />
-      }>
-      <PackageList
-        carouselRef={carouselRef}
-        data={cards}
-        onSelectPackage={handlePackageSelect}
-      />
-      {!!selectedPackage && (
-        <View style={mainScreenStyles.categorysAndServiceCardsContainer}>
-          <ServiceTypeList
-            data={categories}
-            onTypeSelect={handleTypeSelect}
-            selectedType={selectedServiceType}
+    <SafeAreaView style={{flex: 1}}>
+      <ScrollView
+        style={{backgroundColor: '#FFF'}}
+        refreshControl={
+          <RefreshControl
+            refreshing={loadingPackages}
+            onRefresh={refetchAll}
+            progressBackgroundColor={'white'}
+            colors={['#3875F6', '']}
           />
-          {loadingServices ? (
-            <Text style={[globalStyles.title, {margin: 16}]}>Loading...</Text>
-          ) : (
-            services.length > 0 &&
-            services?.map((s: ServiceModel) => (
-              <ServiceCard key={s?.id} onPress={handleServiceOpen} data={s} />
-            ))
-          )}
-        </View>
-      )}
-    </ScrollView>
+        }>
+        <PackageList
+          carouselRef={carouselRef}
+          data={cards}
+          onSelectPackage={handlePackageSelect}
+        />
+        {!!selectedPackage && (
+          <View style={mainScreenStyles.categorysAndServiceCardsContainer}>
+            <ServiceTypeList
+              data={categories}
+              onTypeSelect={handleTypeSelect}
+              selectedType={selectedServiceType}
+            />
+            {loadingServices ? (
+              <Text style={[globalStyles.title, {margin: 16}]}>Loading...</Text>
+            ) : (
+              services.length > 0 &&
+              services?.map((s: ServiceModel) => (
+                <ServiceCard key={s?.id} onPress={handleServiceOpen} data={s} />
+              ))
+            )}
+          </View>
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 }

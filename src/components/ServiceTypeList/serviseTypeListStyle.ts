@@ -29,8 +29,11 @@ const serviceTypeListStyle = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 8,
-    shadowColor: '#000',
     elevation: 5,
+    shadowColor: '#171717',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   navItemText: {
     fontFamily: 'NotoSansArmenian-SemiBold',
