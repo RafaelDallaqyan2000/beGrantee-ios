@@ -1,15 +1,15 @@
 import React, {useContext, useState} from 'react';
-// import QRCodeScanner from 'react-native-qrcode-scanner';
-// import {BarCodeReadEvent} from 'react-native-camera';
-// import {
-//   ChooseCardPopup,
-//   CustomMarker,
-//   // TransactionSocketProvider,
-// } from '../../components';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {BarCodeReadEvent} from 'react-native-camera';
+import {
+  ChooseCardPopup,
+  CustomMarker,
+  // TransactionSocketProvider,
+} from '../../components';
 import {getPackagesByServiceId} from '../../services';
 import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
-// import {qrScannerScreenStyle} from './qrScannerScreen';
+import {qrScannerScreenStyle} from './qrScannerScreen';
 import {AuthContext} from '../../../App';
 // import {signal} from '../../SignalR/SignalR';
 import {useNavigation} from '@react-navigation/native';
@@ -31,10 +31,7 @@ export function QRCodeScannerScreen() {
     queryFn: () => getPackagesByServiceId(token, serviceId),
   });
 
-  const onQRSuccess = (
-    e,
-    // : BarCodeReadEvent
-  ) => {
+  const onQRSuccess = (e: BarCodeReadEvent) => {
     setOpenPackageListPopUp(true);
     dispatch(handleChange('canceledTransaction', false));
     setServiceId(e?.data);
@@ -48,7 +45,7 @@ export function QRCodeScannerScreen() {
 
   return (
     <>
-      {/*<TransactionSocketProvider>*/}
+      {/* <TransactionSocketProvider> */}
       {/*  <ChooseCardPopup*/}
       {/*    isOpen={openPackageListPopUp}*/}
       {/*    onClose={closeCardPopup}*/}
@@ -56,19 +53,18 @@ export function QRCodeScannerScreen() {
       {/*    qrCode={serviceId}*/}
       {/*  />*/}
       {/*</TransactionSocketProvider>*/}
-      <Text style={{backgroundColor: 'red'}}>Qr screen</Text>
-      {/*{!openPackageListPopUp && (*/}
-      {/*  <QRCodeScanner*/}
-      {/*    cameraType={'back'}*/}
-      {/*    reactivate={!openPackageListPopUp}*/}
-      {/*    reactivateTimeout={2000}*/}
-      {/*    onRead={onQRSuccess}*/}
-      {/*    showMarker={true}*/}
-      {/*    customMarker={<CustomMarker />}*/}
-      {/*    cameraStyle={qrScannerScreenStyle.scanContainer}*/}
-      {/*    containerStyle={{backgroundColor: '#fff'}}*/}
-      {/*  />*/}
-      {/*)}*/}
+      {!openPackageListPopUp && (
+        <QRCodeScanner
+          cameraType={'back'}
+          reactivate={!openPackageListPopUp}
+          reactivateTimeout={2000}
+          onRead={onQRSuccess}
+          showMarker={true}
+          customMarker={<CustomMarker />}
+          cameraStyle={qrScannerScreenStyle.scanContainer}
+          containerStyle={{backgroundColor: '#fff'}}
+        />
+      )}
     </>
   );
 }

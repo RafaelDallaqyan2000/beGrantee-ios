@@ -18,7 +18,6 @@ import {loginByPhone} from '../../services';
 import SvgPersonInLogin from '../../images/SvgSignInImage';
 import phoneNumberStyles from './phoneNumberStyles';
 import AppButton from '../../components/AppButton/AppButton';
-import {TextInput} from '@react-native-material/core';
 import {SelectIcon} from '../../icons';
 import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
 import WrongIcon from '../../icons/WrongIcon';
@@ -223,6 +222,7 @@ export const PhoneNumberScreen = () => {
                 onPress={handleSubmitBtn}
                 style={[
                   globalStyles.button,
+                  // eslint-disable-next-line react-native/no-inline-styles
                   {
                     borderColor:
                       phoneNumber.length === 8 && checkedPrivacyPolicy && !error

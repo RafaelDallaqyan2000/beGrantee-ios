@@ -32,8 +32,6 @@ export function VerificationScreen() {
   const [error, setError] = useState('');
   const [date, setDate] = useState(new Date().getTime());
   const [openWelcomePopUp, setOpenWelcomePopUp] = useState(false);
-
-  // @ts-ignore
   const {phoneNumber, phoneCodeId, getResendCode} = route.params;
 
   const verifyCodeRef = useRef<TextInput>();
@@ -83,7 +81,6 @@ export function VerificationScreen() {
     if (code.length === 4) {
       handleVerifyCode();
     }
-    //@ts-ignore
   }, [code]);
 
   const seconds = useRef(0);
@@ -128,13 +125,7 @@ export function VerificationScreen() {
     <SafeAreaView style={{flex: 1}}>
       <ScrollView style={styles.container}>
         <WelcomeScreen visible={openWelcomePopUp} />
-        <View
-          style={[
-            globalStyles.screenContainer,
-            {
-              flex: 1,
-            },
-          ]}>
+        <View style={[globalStyles.screenContainer, {flex: 1}]}>
           <View style={verificationScreenStyle.header}>
             <View style={verificationScreenStyle.backIcon}>
               <BackIcon onPress={() => navigation.goBack()} />
