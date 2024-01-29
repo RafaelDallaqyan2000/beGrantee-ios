@@ -1,26 +1,26 @@
 import {Text, View} from 'react-native';
-// import {SuccessIcon} from '../../icons/SuccessIcon';
+import {SuccessIcon} from '../../icons/SuccessIcon';
 import {successOrErrorPupUpStyle} from './successOrErrorPupUpStyle';
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
-// import CanceledIcon from '../../icons/QRcodeScreen/CanceledIcon';
-// import {ErrorIcon} from '../../icons/ErrorIcon';
+import CanceledIcon from '../../icons/QRcodeScreen/CanceledIcon';
+import {ErrorIcon} from '../../icons/ErrorIcon';
 
 const popUpData = {
   success: {
     title: 'Payment Accepted',
     info: 'Your transaction has accepted been completed. For more details, check your transaction history.',
-    // icon: <SuccessIcon />,
+    icon: <SuccessIcon />,
   },
   rejected: {
     title: 'Payment Rejected',
     info: 'Your transaction was rejected. For more details, check your transaction history.',
-    // icon: <ErrorIcon />,
+    icon: <ErrorIcon />,
   },
   cancelled: {
     title: 'Payment Cancelled',
     info: 'Your transaction was cancelled. For more details, check your transaction history.',
-    // icon: <CanceledIcon />,
+    icon: <CanceledIcon />,
   },
 };
 
@@ -68,7 +68,7 @@ export function SuccessOrErrorPopUp({
       <View style={successOrErrorPupUpStyle.bgContainer} />
       <View style={successOrErrorPupUpStyle.container}>
         <View style={{alignItems: 'center'}}>
-          {/*{popUpData[transactionDataToString].icon}*/}
+          {popUpData[transactionDataToString].icon}
           <Text style={successOrErrorPupUpStyle.message}>
             {popUpData[transactionDataToString].title}
           </Text>

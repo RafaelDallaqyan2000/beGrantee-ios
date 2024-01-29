@@ -14,6 +14,7 @@ import {notificationStyles} from '../NotificationScreen/notificationStyles';
 import {NotifyIcon} from '../../icons';
 import {LoadingTransactionsScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export function TransactionHistory() {
   const {token}: any = useContext(AuthContext);
@@ -93,7 +94,7 @@ export function TransactionHistory() {
   }
 
   return (
-    <View style={{backgroundColor: '#FFF', paddingTop: 40}}>
+    <SafeAreaView style={{backgroundColor: '#FFF'}}>
       <Text style={transactionHistoryStyle.title}>Transaction</Text>
       <ScrollView
         style={transactionHistoryStyle.screen}
@@ -105,12 +106,12 @@ export function TransactionHistory() {
             colors={['#3875F6', '']}
           />
         }>
-        <View>
+        <View style={{marginBottom: 35}}>
           {transactions?.map((data: HistoryDataProps) => (
             <ServiceHistoryItem data={data} />
           ))}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

@@ -8,9 +8,9 @@ import {Modal, ScrollView, Text, View} from 'react-native';
 import {chooseCardPopUpStyle} from './chooseCardPopUpStyle';
 import {ChooseCardPackageItem} from '../ChooseCardPackageItem';
 import AppButton from '../AppButton/AppButton';
-// import {SuccessOrErrorPopUp} from '../SuccessOrErrorPopUp/SuccessOrErrorPopUp';
+import {SuccessOrErrorPopUp} from '../SuccessOrErrorPopUp/SuccessOrErrorPopUp';
 import {useNavigation} from '@react-navigation/native';
-// import {LoadingScreen} from '../LoadingScreen/LoadingScreen';
+import {LoadingScreen} from '../LoadingScreen/LoadingScreen';
 import BackIcon from '../../icons/BackIcon';
 import globalStyles from '../../styles/globalStyles';
 import {connect} from 'react-redux';
@@ -19,6 +19,7 @@ import {handleChange} from '../../store';
 import {successOrErrorPupUpStyle} from '../SuccessOrErrorPopUp/successOrErrorPupUpStyle';
 import {getTransactionData} from '../../services';
 import {AuthContext} from '../../../App';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface ChooseCardPopupProps {
   data?: PackageModel[];
@@ -103,16 +104,16 @@ function ChooseCardPopupContainer({
     handleChange('openTransactionMessagePopUp', false);
   };
 
-  // if (loadingSocket) {
-  //   return (
-  //     <LoadingScreen
-  //       token={token}
-  //       transactionIds={transactionIds}
-  //       companyAmounts={Array.from(selectedPackages.values())}
-  //       isLoading={true}
-  //     />
-  //   );
-  // }
+  if (loadingSocket) {
+    return (
+      <LoadingScreen
+        token={token}
+        transactionIds={transactionIds}
+        companyAmounts={Array.from(selectedPackages.values())}
+        isLoading={true}
+      />
+    );
+  }
 
   if (data?.length <= 0 && isOpen) {
     return (
@@ -137,70 +138,73 @@ function ChooseCardPopupContainer({
   }
 
   return (
-    <Modal style={{position: 'relative'}} visible={isOpen}>
-      {/*{isOpen ? (*/}
-      {/*  <SuccessOrErrorPopUp*/}
-      {/*    success={success}*/}
-      {/*    isOpen={!!openTransactionMessagePopUp}*/}
-      {/*    onContinue={handleContinue}*/}
-      {/*    onTryAgain={handleTryAgain}*/}
-      {/*  />*/}
-      {/*) : null}*/}
+    <SafeAreaView>
+      <Modal style={{position: 'relative'}} visible={isOpen}>
+        {isOpen ? (
+          <SuccessOrErrorPopUp
+            success={success}
+            isOpen={!!openTransactionMessagePopUp}
+            onContinue={handleContinue}
+            onTryAgain={handleTryAgain}
+          />
+        ) : null}
 
-      <View style={chooseCardPopUpStyle.container}>
-        <View style={chooseCardPopUpStyle.header}>
-          <View style={chooseCardPopUpStyle.closeBtn}>
-            <BackIcon onPress={onClose} />
+        <View style={chooseCardPopUpStyle.container}>
+          <View style={chooseCardPopUpStyle.header}>
+            <View style={chooseCardPopUpStyle.closeBtn}>
+              <BackIcon onPress={onClose} />
+            </View>
+
+            <Text style={chooseCardPopUpStyle.title}>Choose package</Text>
           </View>
 
-          <Text style={chooseCardPopUpStyle.title}>Choose package</Text>
-        </View>
+          <Text style={chooseCardPopUpStyle.topic}>Payment</Text>
 
-        <Text style={chooseCardPopUpStyle.topic}>Payment</Text>
+          <ScrollView style={{marginTop: 16, marginBottom: 8}}>
+            {data?.map(pkg => (
+              <View key={pkg?.id}>
+                <ChooseCardPackageItem
+                  data={pkg}
+                  key={pkg?.id}
+                  onAmountChange={handleAmountChange}
+                />
+              </View>
+            ))}
+          </ScrollView>
 
-        <ScrollView style={{marginTop: 16, marginBottom: 8}}>
-          {data?.map(pkg => (
-            <View key={pkg?.id}>
-              <ChooseCardPackageItem
-                data={pkg}
-                key={pkg?.id}
-                onAmountChange={handleAmountChange}
+          <View
+            style={[
+              chooseCardPopUpStyle.footerContainer,
+              {width: '100%', marginBottom: 4},
+            ]}>
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={chooseCardPopUpStyle.totalText}>Total</Text>
+              <Text style={chooseCardPopUpStyle.totalText}>{total} AMD</Text>
+            </View>
+
+            <View style={{alignItems: 'center', marginTop: 42}}>
+              <AppButton
+                disabled={total === 0}
+                title="Checkout"
+                textStyle={[
+                  chooseCardPopUpStyle.btnText,
+                  {color: total > 0 ? '#FFF' : '#7B7B7B'},
+                ]}
+                onPress={handleSubmit}
+                style={[
+                  globalStyles.button,
+                  {
+                    backgroundColor: total > 0 ? '#3875F6' : '#F5F5F5',
+                    borderColor: total > 0 ? '#3875F6' : '#D0D5DD',
+                  },
+                ]}
               />
             </View>
-          ))}
-        </ScrollView>
-
-        <View
-          style={[
-            chooseCardPopUpStyle.footerContainer,
-            {width: '100%', marginBottom: 4},
-          ]}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={chooseCardPopUpStyle.totalText}>Total</Text>
-            <Text style={chooseCardPopUpStyle.totalText}>{total} AMD</Text>
-          </View>
-
-          <View style={{alignItems: 'center', marginTop: 42}}>
-            <AppButton
-              disabled={total === 0}
-              title="Checkout"
-              textStyle={[
-                chooseCardPopUpStyle.btnText,
-                {color: total > 0 ? '#FFF' : '#7B7B7B'},
-              ]}
-              onPress={handleSubmit}
-              style={[
-                globalStyles.button,
-                {
-                  backgroundColor: total > 0 ? '#3875F6' : '#F5F5F5',
-                  borderColor: total > 0 ? '#3875F6' : '#D0D5DD',
-                },
-              ]}
-            />
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </SafeAreaView>
   );
 }
 

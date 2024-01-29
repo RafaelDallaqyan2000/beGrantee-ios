@@ -8,6 +8,7 @@ import {UploadImageProfile} from './Components/ImageProfile';
 import {ProfileSettings} from './Components/ProfileSettings.tsx/ProfileSettings';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const window = Dimensions.get('window');
 
@@ -32,7 +33,7 @@ export function UserProfileScreen() {
   const handlePrivacyPolicyPress = () => navigate('PrivacyPolicy' as never);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFF', paddingTop: 40}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
       {loadingScreen ? null : (
         <Text
           style={[globalStyles.screenTitle, userProfileScreenStyle.pageTitle]}>
@@ -52,6 +53,6 @@ export function UserProfileScreen() {
           logOutClick={handleLogOutBtnClick}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

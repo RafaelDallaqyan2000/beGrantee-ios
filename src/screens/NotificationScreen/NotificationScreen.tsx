@@ -1,4 +1,10 @@
-import { RefreshControl, SafeAreaView, ScrollView, Text, View } from "react-native";
+import {
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import {NotifyIcon} from '../../icons';
@@ -97,7 +103,7 @@ export function NotificationScreen() {
 
   // @ts-ignore
   return (
-    <View style={{flex: 1, paddingTop: 40, backgroundColor: '#FFF'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
       <Text style={notificationStyles.notificationTitle}>Notification</Text>
       <ScrollView
         style={{backgroundColor: '#F8F8F9'}}
@@ -114,6 +120,6 @@ export function NotificationScreen() {
             <NotificationItem key={item.id} item={item} />
           ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

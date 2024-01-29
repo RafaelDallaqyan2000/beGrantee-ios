@@ -80,6 +80,7 @@ export const PhoneNumberScreen = () => {
       signInQuery.mutate({
         phoneCodeId: countryCode?.id ?? 1,
         phoneNumber: phoneNumber,
+        hashCode: 'defaultString',
       });
     }
   };

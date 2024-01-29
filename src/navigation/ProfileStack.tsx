@@ -47,7 +47,6 @@ export function ProfileStack() {
             bottom: 0,
             left: 20,
           },
-          headerStatusBarHeight: 30,
           headerTitle: 'Companies',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
@@ -66,14 +65,12 @@ export function ProfileStack() {
         options={{
           headerLeft: BackComponent,
           headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerStatusBarHeight: 30,
           headerTitle: 'Packages',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
             alignItems: 'center',
             left: 70,
-            bottom: 2,
           },
           headerTitleStyle: style.titleStyle,
         }}
@@ -99,14 +96,12 @@ export function ProfileStack() {
         options={{
           headerLeft: BackComponent,
           headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerStatusBarHeight: 30,
           headerTitle: 'Privacy Policy',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
             alignItems: 'center',
-            left: 80,
-            bottom: 2,
+            left: 70,
           },
           headerTitleStyle: style.titleStyle,
         }}
@@ -123,7 +118,6 @@ const style = StyleSheet.create({
     fontFamily: 'NotoSansArmenian-SemiBold',
     fontWeight: '600',
     fontSize: 24,
-    lineHeight: 32,
     paddingTop: 15,
   },
 });

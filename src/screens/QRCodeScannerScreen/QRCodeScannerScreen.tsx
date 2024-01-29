@@ -4,7 +4,7 @@ import {BarCodeReadEvent} from 'react-native-camera';
 import {
   ChooseCardPopup,
   CustomMarker,
-  // TransactionSocketProvider,
+  TransactionSocketProvider,
 } from '../../components';
 import {getPackagesByServiceId} from '../../services';
 import {useQuery} from '@tanstack/react-query';
@@ -45,14 +45,14 @@ export function QRCodeScannerScreen() {
 
   return (
     <>
-      {/* <TransactionSocketProvider> */}
-      {/*  <ChooseCardPopup*/}
-      {/*    isOpen={openPackageListPopUp}*/}
-      {/*    onClose={closeCardPopup}*/}
-      {/*    data={packages?.data}*/}
-      {/*    qrCode={serviceId}*/}
-      {/*  />*/}
-      {/*</TransactionSocketProvider>*/}
+      <TransactionSocketProvider>
+        <ChooseCardPopup
+          isOpen={openPackageListPopUp}
+          onClose={closeCardPopup}
+          data={packages?.data}
+          qrCode={serviceId}
+        />
+      </TransactionSocketProvider>
       {!openPackageListPopUp && (
         <QRCodeScanner
           cameraType={'back'}

@@ -12,7 +12,7 @@ export {PopUp} from './PopUp/PopUp';
 export {NotificationItem} from './NotificationItem';
 export {ConvertHtmlCode} from './ConvertHtmlCode';
 // export {Swiper} from './Swiper';
-// export {TransactionSocketProvider} from './TransactionSocketProvider';
+export {TransactionSocketProvider} from './TransactionSocketProvider';
 export {CustomMarker} from './CustomMarker';
 export {CheckBox} from './CheckBox/CheckBox';
 export {ErrorScreen} from './ErrorScreen';

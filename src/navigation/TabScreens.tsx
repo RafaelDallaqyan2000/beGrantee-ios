@@ -133,12 +133,12 @@ const tabBarStyle = StyleSheet.create({
     backgroundColor: '#FFF',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    height: 70,
+    minHeight: 70,
     paddingTop: 8,
     paddingBottom: 8,
     borderTopWidth: 1,
-    borderColor: 'red',
     borderStyle: 'solid',
+    borderTopColor: 'lightgray',
   },
 
   iconContainer: {

@@ -5,7 +5,7 @@ export const chooseCardPopUpStyle = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
     height: window.height,
-    paddingTop: 25,
+    paddingTop: 50,
     paddingRight: 30,
     paddingLeft: 30,
   },
