@@ -10,13 +10,13 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {ConvertHtmlCode} from '../../components';
 import {fixedData} from '../../data.ts';
-
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export function TermsAndConditionsScreen() {
   const navigation = useNavigation();
   return (
     <>
-      <View style={{position: 'relative', backgroundColor: '#FFF'}}>
+      <SafeAreaView style={{position: 'relative', backgroundColor: '#FFF'}}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.backIcon}
@@ -27,18 +27,15 @@ export function TermsAndConditionsScreen() {
           <Text style={styles.headerText}>Terms and Conditions</Text>
         </View>
         <ScrollView style={{backgroundColor: '#FFF', padding: 30}}>
-          {/*@ts-ignore*/}
           <ConvertHtmlCode data={fixedData.termsAndConditions} mb={150} />
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
 
-
 const styles = StyleSheet.create({
   header: {
-    marginTop: 30,
     height: 46,
     flexDirection: 'row',
     justifyContent: 'center',

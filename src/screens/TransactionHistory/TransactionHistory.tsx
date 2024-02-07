@@ -72,29 +72,31 @@ export function TransactionHistory() {
 
   if (showEmptyScreen) {
     return (
-      <ScrollView
-        style={{backgroundColor: '#F8F8F9'}}
-        refreshControl={
-          <RefreshControl
-            refreshing={loadingTransactions}
-            onRefresh={reloadTransactions}
-            progressBackgroundColor={'#FFF'}
-            colors={['#3875F6', '']}
-          />
-        }>
-        <View style={{alignItems: 'center'}}>
-          <Text style={notificationStyles.ifNotNotification}>Transaction</Text>
-          <NotifyIcon />
-          <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
-          </Text>
-        </View>
-      </ScrollView>
+      <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
+        <ScrollView
+          style={{backgroundColor: '#F8F8F9'}}
+          refreshControl={
+            <RefreshControl
+              refreshing={loadingTransactions}
+              onRefresh={reloadTransactions}
+              progressBackgroundColor={'#FFF'}
+              colors={['#3875F6', '']}
+            />
+          }>
+          <View style={{alignItems: 'center'}}>
+            <Text style={notificationStyles.ifNotNotification}>Transaction</Text>
+            <NotifyIcon />
+            <Text style={notificationStyles.emptyNotificationText}>
+              OOOPS! It’s Empty
+            </Text>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={{backgroundColor: '#FFF'}}>
+    <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
       <Text style={transactionHistoryStyle.title}>Transaction</Text>
       <ScrollView
         style={transactionHistoryStyle.screen}

@@ -5,8 +5,8 @@ export const transactionHistoryStyle = StyleSheet.create({
   screen: {
     backgroundColor: '#F8F8F9',
     // height: window.height - 120,
-    flexShrink: 1,
-    flexGrow: 1,
+    // flexShrink: 1,
+    // flexGrow: 1,
   },
   title: {
     fontFamily: 'NotoSansArmenian-SemiBold',

@@ -79,25 +79,29 @@ export function NotificationScreen() {
         marginTop={210}
       />
     );
-  } else if (showEmptyScreen) {
+  } else if (true) {
     return (
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={loadingNotifications}
-            onRefresh={refetchNotifications}
-            progressBackgroundColor={'#FFF'}
-            colors={['#3875F6', '']}
-          />
-        }>
-        <View style={{alignItems: 'center'}}>
-          <Text style={notificationStyles.ifNotNotification}>Notification</Text>
-          <NotifyIcon />
-          <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
-          </Text>
-        </View>
-      </ScrollView>
+      <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={loadingNotifications}
+              onRefresh={refetchNotifications}
+              progressBackgroundColor={'#FFF'}
+              colors={['#3875F6', '']}
+            />
+          }>
+          <View style={{alignItems: 'center'}}>
+            <Text style={notificationStyles.ifNotNotification}>
+              Notification
+            </Text>
+            <NotifyIcon />
+            <Text style={notificationStyles.emptyNotificationText}>
+              OOOPS! It’s Empty
+            </Text>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 
