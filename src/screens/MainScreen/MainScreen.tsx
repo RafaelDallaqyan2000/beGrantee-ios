@@ -175,8 +175,8 @@ export function MainScreen() {
     refetchPackages();
     refetchServiceTypes();
     refetchServices();
-    // dispatch('searchValue', '');
-    // dispatch('searchText', '');
+    dispatch(handleChange('searchValue', ''));
+    dispatch(handleChange('searchText', ''));
   }, [refetchPackages, refetchServiceTypes, refetchServices]);
 
   useFocusEffect(
