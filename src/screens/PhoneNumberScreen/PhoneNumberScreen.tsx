@@ -13,7 +13,6 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {CountryCode} from '../../models/common';
 import {useMutation} from '@tanstack/react-query';
-// import {QueryRoute} from '../../react-query/query-routes';
 import {loginByPhone} from '../../services';
 import SvgPersonInLogin from '../../images/SvgSignInImage';
 import phoneNumberStyles from './phoneNumberStyles';
@@ -23,6 +22,7 @@ import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
 import WrongIcon from '../../icons/WrongIcon';
 import {PrivacyPolicyAndTerms} from '../../components';
 import CustomInput from '../../components/CustomInput/CustomInput.tsx';
+import { getNativePropsForTNode } from "react-native-render-html";
 
 export const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -71,8 +71,12 @@ export const PhoneNumberScreen = () => {
   });
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
-    setPhoneNumber(phoneNumber);
-    setError('');
+    const onlyNumber = /^[0-9]+$/;
+
+    if ((onlyNumber.test(phoneNumber)) || (phoneNumber === '')) {
+      setPhoneNumber(phoneNumber);
+      setError('');
+    }
   };
 
   const handleSubmitBtn = () => {
@@ -127,7 +131,7 @@ export const PhoneNumberScreen = () => {
                 <CustomInput
                   id={'textInput'}
                   showSoftInputOnFocus={true}
-                  keyboardType={'numeric'}
+                  keyboardType={'number-pad'}
                   variant="standard"
                   maxLength={8}
                   onFocus={() => setFocusedInput(true)}

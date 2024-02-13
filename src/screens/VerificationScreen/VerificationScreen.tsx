@@ -53,8 +53,12 @@ export function VerificationScreen() {
   });
 
   const handleCodeChange = (code: string) => {
-    setCode(code);
-    setError('');
+    const onlyNumber = /^[0-9]+$/;
+
+    if (onlyNumber.test(code) || code === '') {
+      setCode(code);
+      setError('');
+    }
   };
 
   const handleVerifyCode = () => {
