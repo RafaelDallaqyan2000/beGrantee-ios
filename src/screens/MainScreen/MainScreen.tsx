@@ -48,7 +48,7 @@ export function MainScreen() {
   const [emptyBox, setEmptyBox] = useState(false);
   const [errorScreen, setErrorScreen] = useState(false);
   const navigation = useNavigation();
-  const carouselRef = useRef();
+  const carouselRef: any = useRef();
   //#endregion
   let {token}: any = useContext(AuthContext);
 
@@ -175,6 +175,8 @@ export function MainScreen() {
     refetchPackages();
     refetchServiceTypes();
     refetchServices();
+    // dispatch('searchValue', '');
+    // dispatch('searchText', '');
   }, [refetchPackages, refetchServiceTypes, refetchServices]);
 
   useFocusEffect(
@@ -210,7 +212,16 @@ export function MainScreen() {
 
   if (emptyBox) {
     return (
-      <ScrollView style={{backgroundColor: '#F8F8F9'}}>
+      <ScrollView
+        style={{backgroundColor: '#F8F8F9'}}
+        refreshControl={
+          <RefreshControl
+            refreshing={loadingPackages}
+            onRefresh={refetchAll}
+            progressBackgroundColor={'white'}
+            colors={['#3875F6', '']}
+          />
+        }>
         <View
           style={{
             alignItems: 'center',
