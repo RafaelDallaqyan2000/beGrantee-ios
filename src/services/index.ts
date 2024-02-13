@@ -1,4 +1,4 @@
-export const HOST: string = 'https://staging-mobile.begrantee.com';
+export const HOST: string = 'https://mobile-api.begrantee.com';
 //https://staging-mobile.begrantee.com
 
 export {getAllCategories} from './getAllCategories.ts';

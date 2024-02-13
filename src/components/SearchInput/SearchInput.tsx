@@ -1,24 +1,23 @@
 import {TextInput, TouchableOpacity, View} from 'react-native';
 import SearchIcon from '../../icons/MainScreen/SearchIcon';
-import React, {useState} from 'react';
+import React from 'react';
 import {searchInputStyle} from './searchInputStyle';
 import {CloseIcon} from '../../icons';
 import {connect} from 'react-redux';
 import {handleChange} from '../../store';
 
-function SearchInputContainer({handleMainChange}: any) {
-  const [value, setValue] = useState('');
+function SearchInputContainer({searchValue, handleMainChange}: any) {
 
   const handleChange = (e: string) => {
-    setValue(e);
+    handleMainChange('searchValue', e);
   };
 
   const handleSubmit = () => {
-    handleMainChange('searchText', value);
+    handleMainChange('searchText', searchValue);
   };
 
   const handleClear = () => {
-    setValue('');
+    handleMainChange('searchValue', '');
     handleMainChange('searchText', '');
   };
 
@@ -30,11 +29,11 @@ function SearchInputContainer({handleMainChange}: any) {
           style={searchInputStyle.searchInput}
           placeholderTextColor={'rgba(123, 123, 123, 1)'}
           placeholder={'Search'}
-          value={value}
+          value={searchValue}
           onChangeText={handleChange}
           onSubmitEditing={handleSubmit}
         />
-        {value ? (
+        {searchValue ? (
           <TouchableOpacity onPress={handleClear} style={{marginRight: 8}}>
             <CloseIcon fill="#7B7B7B" />
           </TouchableOpacity>
@@ -46,7 +45,7 @@ function SearchInputContainer({handleMainChange}: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    searchValue: state.reducer?.searchValue,
+    searchValue: state.reducer?.searchValue ?? '',
   };
 };
 
