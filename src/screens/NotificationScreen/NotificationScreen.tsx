@@ -79,7 +79,7 @@ export function NotificationScreen() {
         marginTop={210}
       />
     );
-  } else if (true) {
+  } else if (showEmptyScreen) {
     return (
       <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
         <ScrollView
