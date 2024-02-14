@@ -41,7 +41,6 @@ function UploadImageProfileComponent({
     initialData: [],
     queryFn: () => getProfileInfo({token}),
     onSuccess: data => {
-      console.log(data, '<<<<<<<<<<');
       handleChange('loadingUserProfileScreen', false);
       setImageUrl(data?.imagePath);
     },
