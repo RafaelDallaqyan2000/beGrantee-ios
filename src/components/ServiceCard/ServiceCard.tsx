@@ -18,7 +18,6 @@ export function ServiceCard({data, onPress}: ServiceCardProps) {
     onPress(data);
   }, [data]);
 
-  console.log(data);
 
   return (
     <TouchableOpacity onPress={handlePress} style={styles.card}>

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-// import {launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {uploadImageProfileStyle} from './uploadImageProfileStyle';
 import {CameraIcon} from '../../../../icons';
 import {useQuery} from '@tanstack/react-query';
@@ -41,6 +41,7 @@ function UploadImageProfileComponent({
     initialData: [],
     queryFn: () => getProfileInfo({token}),
     onSuccess: data => {
+      console.log(data, '<<<<<<<<<<');
       handleChange('loadingUserProfileScreen', false);
       setImageUrl(data?.imagePath);
     },
@@ -62,10 +63,10 @@ function UploadImageProfileComponent({
   };
 
   const handleImageLibrary = async () => {
-    // const result = await launchImageLibrary({mediaType: 'photo'});
-    // if (result.assets) {
-    //   handleImagePick(result);
-    // }
+    const result = await launchImageLibrary({mediaType: 'photo'});
+    if (result.assets) {
+      handleImagePick(result);
+    }
   };
 
   useFocusEffect(

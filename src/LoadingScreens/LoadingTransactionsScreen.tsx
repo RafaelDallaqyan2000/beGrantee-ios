@@ -5,7 +5,6 @@ import {Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 
 export const LoadingTransactionsScreen = (props: any) => {
-  console.log(windowWidth);
   return (
     <ContentLoader
       speed={1}
