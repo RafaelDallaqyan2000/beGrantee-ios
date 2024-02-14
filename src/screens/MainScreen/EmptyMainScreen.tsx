@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import {RefreshControl, ScrollView, View} from 'react-native';
 import {PackageCard, ServiceCard, ServiceTypeList} from '../../components';
 import {ServiceModel, ServiceType} from '../../models/services';
 import {useNavigation} from '@react-navigation/native';
@@ -11,10 +11,13 @@ import {useSelector} from 'react-redux';
 import {ErrorMainScreen} from './ErrorMainScreen';
 import {LoadingMainScreen} from '../../LoadingScreens';
 import {window} from '../index';
-// import {NotifyIcon} from '../../icons';
-// import {notificationStyles} from '../NotificationScreen/notificationStyles';
 
-export function EmptyMainScreen({refreshPackages, loadingPackages}: any) {
+type EmptyMainType = {
+  refreshScreen: any;
+  isLoadingScreen: boolean;
+}
+
+export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType) {
   // #region States
   const [selectedServiceType, setSelectedServiceType] =
     useState<ServiceType | null>({id: 0});
@@ -106,8 +109,8 @@ export function EmptyMainScreen({refreshPackages, loadingPackages}: any) {
       style={{backgroundColor: '#FFF'}}
       refreshControl={
         <RefreshControl
-          refreshing={loadingPackages}
-          onRefresh={refreshPackages}
+          refreshing={isLoadingScreen}
+          onRefresh={refreshScreen}
           progressBackgroundColor={'white'}
           colors={['#3875F6', '']}
         />

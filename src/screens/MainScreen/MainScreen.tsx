@@ -194,18 +194,15 @@ export function MainScreen() {
 
   if (errorScreen) {
     return (
-      <ErrorMainScreen
-        loadingScreen={loadingPackages}
-        refresh={refetchPackages}
-      />
+      <ErrorMainScreen loadingScreen={loadingPackages} refresh={refetchAll} />
     );
   }
 
   if (showEmptyScreen) {
     return (
       <EmptyMainScreen
-        loadingPackages={loadingPackages}
-        refetchPackages={refetchPackages}
+        isLoadingScreen={loadingPackages}
+        refreshScreen={refetchAll}
       />
     );
   }
