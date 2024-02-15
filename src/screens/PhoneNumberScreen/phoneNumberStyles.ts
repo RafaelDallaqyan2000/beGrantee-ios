@@ -1,4 +1,4 @@
-import {Dimensions, Keyboard, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 const window = Dimensions.get('window');
 
@@ -7,9 +7,10 @@ const phoneNumberStyles = StyleSheet.create({
     fontFamily: 'NotoSansArmenian-Medium',
     fontSize: 18,
     fontWeight: '500',
-    lineHeight: 28,
+    // lineHeight: 28,
     color: '#344054',
     textAlign: 'center',
+    marginTop: window.height > 800 ? 38 : 0,
   },
 
   imageContainer: {
@@ -67,10 +68,6 @@ const phoneNumberStyles = StyleSheet.create({
     width: 90,
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-
-  header: {
-    marginTop: 40,
   },
 
   body: {

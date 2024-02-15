@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
   text: {
     color: '#000000',
-    maxWidth: window.width - 100,
+    maxWidth: window.width - 130,
     fontFamily: 'NotoSansArmenian-Regular',
     fontSize: 14,
     fontStyle: 'normal',

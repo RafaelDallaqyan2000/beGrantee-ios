@@ -3,6 +3,7 @@ import globalStyles from '../../styles/globalStyles';
 import {
   Keyboard,
   KeyboardAvoidingView,
+  SafeAreaView,
   ScrollView,
   StatusBar,
   Text,
@@ -22,7 +23,7 @@ import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
 import WrongIcon from '../../icons/WrongIcon';
 import {PrivacyPolicyAndTerms} from '../../components';
 import CustomInput from '../../components/CustomInput/CustomInput.tsx';
-import { getNativePropsForTNode } from "react-native-render-html";
+import {getNativePropsForTNode} from 'react-native-render-html';
 
 export const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -73,7 +74,7 @@ export const PhoneNumberScreen = () => {
   const handlePhoneNumberChange = (phoneNumber: string) => {
     const onlyNumber = /^[0-9]+$/;
 
-    if ((onlyNumber.test(phoneNumber)) || (phoneNumber === '')) {
+    if (onlyNumber.test(phoneNumber) || phoneNumber === '') {
       setPhoneNumber(phoneNumber);
       setError('');
     }
@@ -101,12 +102,12 @@ export const PhoneNumberScreen = () => {
 
   return (
     <ScrollView style={globalStyles.container}>
-      <View
+      <SafeAreaView
         style={[
           globalStyles.screenContainer,
           {justifyContent: 'space-evenly'},
         ]}>
-        <View style={phoneNumberStyles.header}>
+        <View>
           <Text style={globalStyles.screenTitle}>BeGrantee</Text>
           <Text style={globalStyles.text}>Benefits App</Text>
           <Text style={phoneNumberStyles.topic}>Login to your account</Text>
@@ -243,7 +244,7 @@ export const PhoneNumberScreen = () => {
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-      </View>
+      </SafeAreaView>
 
       <StatusBar barStyle="default" />
     </ScrollView>

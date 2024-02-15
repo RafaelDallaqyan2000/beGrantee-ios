@@ -13,7 +13,7 @@ export const searchInputStyle = StyleSheet.create({
     shadowRadius: 3,
   },
   containerStyle: {
-    width: window.width - 76, //314
+    width: window.width - 60,
     overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
