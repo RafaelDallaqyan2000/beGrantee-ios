@@ -2,12 +2,12 @@ import React, {useCallback, useContext, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
-  RefreshControl,
+  RefreshControl, SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {uploadImageProfileStyle} from './uploadImageProfileStyle';
 import {CameraIcon} from '../../../../icons';
@@ -88,15 +88,7 @@ function UploadImageProfileComponent({
   }
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={loadingInfo}
-          onRefresh={reloadProfileInfo}
-          progressBackgroundColor={'white'}
-          colors={['#3875F6', '']}
-        />
-      }>
+    <SafeAreaView>
       <View style={uploadImageProfileStyle.uploadImageContainer}>
         <TouchableOpacity
           onPress={handleImageLibrary}
@@ -125,7 +117,7 @@ function UploadImageProfileComponent({
           {profileInfo?.userName}
         </Text>
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 }
 

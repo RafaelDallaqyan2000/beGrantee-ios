@@ -7,7 +7,7 @@ export function PrivacyPolicyScreen() {
   return (
     <>
       <View style={{position: 'relative'}}>
-        <ScrollView style={{backgroundColor: '#FFF'}}>
+        <ScrollView style={{backgroundColor: '#FFF', paddingHorizontal: 30}}>
           {/*@ts-ignore*/}
           <ConvertHtmlCode
             data={fixedData.privacyPolicyData}

@@ -10,8 +10,6 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const window = Dimensions.get('window');
-
 export function UserProfileScreen() {
   const {setToken} = useContext(AuthContext);
   const {navigate} = useNavigation();
