@@ -1,4 +1,4 @@
-import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import {Dimensions, RefreshControl, ScrollView, Text, View} from 'react-native';
 import {transactionHistoryStyle} from './transactionHistoryStyle';
 import {
   HistoryDataProps,
@@ -15,6 +15,7 @@ import {NotifyIcon} from '../../icons';
 import {LoadingTransactionsScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {window} from '../index.ts';
 
 export function TransactionHistory() {
   const {token}: any = useContext(AuthContext);
@@ -72,9 +73,10 @@ export function TransactionHistory() {
 
   if (showEmptyScreen) {
     return (
-      <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
+      <SafeAreaView style={{backgroundColor: '#FFF'}}>
+        <Text style={notificationStyles.ifNotNotification}>Transaction</Text>
         <ScrollView
-          style={{backgroundColor: '#F8F8F9'}}
+          style={{height: 900, backgroundColor: '#F8F8F9'}}
           refreshControl={
             <RefreshControl
               refreshing={loadingTransactions}
@@ -83,8 +85,12 @@ export function TransactionHistory() {
               colors={['#3875F6', '']}
             />
           }>
-          <View style={{alignItems: 'center'}}>
-            <Text style={notificationStyles.ifNotNotification}>Transaction</Text>
+          <View
+            style={{
+              alignItems: 'center',
+              height: window.height - 250,
+              justifyContent: 'center',
+            }}>
             <NotifyIcon />
             <Text style={notificationStyles.emptyNotificationText}>
               OOOPS! It’s Empty

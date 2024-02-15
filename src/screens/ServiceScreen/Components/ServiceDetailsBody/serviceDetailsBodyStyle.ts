@@ -18,7 +18,7 @@ export const serviceDetailsBodyStyle = StyleSheet.create({
   },
 
   emptyInfoContainer: {
-    height: window.height / 2,
+    height: window.height / 3,
     justifyContent: 'center',
     alignItems: 'center',
   },

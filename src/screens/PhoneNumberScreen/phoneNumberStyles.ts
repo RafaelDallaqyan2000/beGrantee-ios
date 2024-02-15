@@ -77,7 +77,7 @@ const phoneNumberStyles = StyleSheet.create({
 
   footer: {
     height: 300,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },

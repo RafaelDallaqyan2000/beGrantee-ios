@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Dimensions, Text, View} from 'react-native';
+import { Dimensions, ScrollView, Text, View } from "react-native";
 import {AuthContext} from '../../../App';
 import SecureStorage from 'react-native-encrypted-storage';
 import globalStyles from '../../styles/globalStyles';
@@ -40,18 +40,22 @@ export function UserProfileScreen() {
           My Profile
         </Text>
       )}
-      <View style={{backgroundColor: '#FFF'}}>
-        <UploadImageProfile />
-      </View>
-      <View style={userProfileScreenStyle.body}>
-        <ProfileSettings
-          handleCompaniesPress={handleCompaniesPress}
-          handlePackagesPress={handlePackagesPress}
-          handleLanguagePress={handleLanguagePress}
-          handlePrivacyPolicyPress={handlePrivacyPolicyPress}
-          callbackSwitchNotification={handleNotificationSwitch}
-          logOutClick={handleLogOutBtnClick}
-        />
+      <View
+        style={{backgroundColor: '#F8F8F9', height: 1000}}
+      >
+        <View style={{backgroundColor: '#FFF'}}>
+          <UploadImageProfile />
+        </View>
+        <View style={userProfileScreenStyle.body}>
+          <ProfileSettings
+            handleCompaniesPress={handleCompaniesPress}
+            handlePackagesPress={handlePackagesPress}
+            handleLanguagePress={handleLanguagePress}
+            handlePrivacyPolicyPress={handlePrivacyPolicyPress}
+            callbackSwitchNotification={handleNotificationSwitch}
+            logOutClick={handleLogOutBtnClick}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

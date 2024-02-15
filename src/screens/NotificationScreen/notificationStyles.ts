@@ -13,7 +13,6 @@ export const notificationStyles = StyleSheet.create({
     color: '#000000CC',
     backgroundColor: '#FFF',
     textAlign: 'center',
-    // paddingTop: 30,
   },
 
   ifNotNotification: {
@@ -27,7 +26,6 @@ export const notificationStyles = StyleSheet.create({
     backgroundColor: '#FFF',
     width: window.width,
     textAlign: 'center',
-    marginBottom: 69,
   },
 
   emptyNotificationText: {

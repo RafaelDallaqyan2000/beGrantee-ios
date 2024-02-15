@@ -126,7 +126,7 @@ export function VerificationScreen() {
 
   // @ts-ignore
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
       <ScrollView style={styles.container}>
         <WelcomeScreen visible={openWelcomePopUp} />
         <View style={[globalStyles.screenContainer, {flex: 1}]}>
@@ -198,7 +198,7 @@ export function VerificationScreen() {
               </View>
               <KeyboardAvoidingView
                 behavior="padding"
-                keyboardVerticalOffset={window.height / 2 - 60}>
+                keyboardVerticalOffset={window.height / 2 - 40}>
                 <Text
                   style={[globalStyles.text, verificationScreenStyle.subtitle]}>
                   Didn’t receive any code?

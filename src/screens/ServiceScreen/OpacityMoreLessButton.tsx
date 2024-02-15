@@ -5,9 +5,9 @@ import React from 'react';
 export function OpacityMoreLessButton(): any {
   let customOpacityViews = [];
   let bottom = 0;
-  let opacity = 0.9;
+  let opacity = 1;
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i <= 10; i++) {
     bottom += 5;
     opacity -= 0.1;
     customOpacityViews.push(

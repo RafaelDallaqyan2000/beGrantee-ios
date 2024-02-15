@@ -71,20 +71,24 @@ export const serviceScreenStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  companyLogoAlt: {
-    color: '#FFF',
-    borderColor: '#FFF',
-    borderWidth: 1,
+  companyLogoAltContainer: {
     height: 46,
     width: 46,
-    lineHeight: 40,
-    textAlign: 'center',
+    justifyContent: 'center',
     position: 'absolute',
+    alignItems: 'center',
+    backgroundColor: '#7C819E',
+    borderColor: '#FFF',
+    borderWidth: 1,
     margin: 30,
-    borderRadius: 50,
+    borderRadius: 23,
+  },
+
+  companyLogoAlt: {
+    color: '#FFF',
+    // lineHeight: 40,
     fontSize: 24,
     fontFamily: 'NotoSansArmenian-Regular',
-    backgroundColor: '#7C819E',
   },
 
   opacityContainer: {

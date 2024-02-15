@@ -1,4 +1,4 @@
-import {Animated, Modal, Text, View} from 'react-native';
+import { Animated, Modal, SafeAreaView, Text, View } from "react-native";
 import React, {useEffect, useRef} from 'react';
 import globalStyles from '../../../styles/globalStyles';
 import {welcomePopUpStyle} from './welcomePopUpStyle';
@@ -31,16 +31,18 @@ export function WelcomeScreen({visible}: WelcomeType) {
   return (
     <Modal visible={visible}>
       <Animated.View style={{opacity: fadeAnim}}>
-        <View style={welcomePopUpStyle.container}>
+        <SafeAreaView style={welcomePopUpStyle.container}>
           <View style={welcomePopUpStyle.header}>
             <Text style={globalStyles.screenTitle}>BeGrantee</Text>
             <Text style={welcomePopUpStyle.subTitle}>
               All your benefits in one place
             </Text>
           </View>
-          <Text style={welcomePopUpStyle.text}>Welcome!</Text>
-          <WelcomeScreenImage />
-        </View>
+          <View style={welcomePopUpStyle.imageContainer}>
+            <Text style={welcomePopUpStyle.text}>Welcome!</Text>
+            <WelcomeScreenImage />
+          </View>
+        </SafeAreaView>
       </Animated.View>
     </Modal>
   );

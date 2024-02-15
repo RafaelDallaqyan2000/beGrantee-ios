@@ -14,14 +14,20 @@ export function NavigationBar(data: any) {
         const selected = state === el.id;
         const color = selected ? '#3875F6' : '#7B7B7B';
         return (
-          <Pressable key={el.id} onPress={() => handleClick(el.id)}>
+          <Pressable
+            key={el.id}
+            onPress={() => handleClick(el.id)}
+            style={{
+              marginRight: 28,
+              borderBottomColor: color,
+              borderBottomWidth: selected ? 2 : 0,
+              borderStyle: 'solid',
+            }}>
             <Text
               style={[
                 navigationBarStyle.title,
                 {
                   color,
-                  borderBottomColor: color,
-                  borderBottomWidth: selected ? 2 : 0,
                   fontFamily: selected
                     ? 'NotoSansArmenian-SemiBold'
                     : 'NotoSansArmenian-Regular',

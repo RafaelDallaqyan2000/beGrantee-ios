@@ -1,6 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
 
 const packageCardStyle = StyleSheet.create({
   container: {

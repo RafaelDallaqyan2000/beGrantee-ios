@@ -76,7 +76,7 @@ const verificationScreenStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   footer: {
-    height: window.height - window.height / 2.93,
+    height: window.height - window.height / 2.3,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 40,

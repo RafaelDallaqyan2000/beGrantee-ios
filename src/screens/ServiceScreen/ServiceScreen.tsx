@@ -10,11 +10,12 @@ import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
 import {
   Dimensions,
   Image,
-  RefreshControl, SafeAreaView,
+  RefreshControl,
+  SafeAreaView,
   ScrollView,
   Text,
-  View
-} from "react-native";
+  View,
+} from 'react-native';
 import {ServiceDetailsBody} from './Components';
 import {serviceScreenStyle} from './serviceScreenStyle';
 import {HOST, getServiceDetailsByCompanyId} from '../../services';
@@ -59,11 +60,11 @@ function ServiceScreenContainer({
   const [element, setElement] = useState(1);
   const [loadingScreen, setLoadingScreen] = useState(false);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<any>(null);
   const route = useRoute<RouteProps>();
   const {token} = useContext(AuthContext);
 
-  const service = route.params.service;
+  const service = route.params?.service;
   const {companyId} = service;
 
   const {
@@ -160,10 +161,12 @@ function ServiceScreenContainer({
             }}
           />
         ) : (
-          <Text style={serviceScreenStyle.companyLogoAlt}>
-            {serviceDetailsData?.serviceName &&
-              serviceDetailsData?.serviceName[0]}
-          </Text>
+          <View style={serviceScreenStyle.companyLogoAltContainer}>
+            <Text style={serviceScreenStyle.companyLogoAlt}>
+              {serviceDetailsData?.serviceName &&
+                serviceDetailsData?.serviceName[0]}
+            </Text>
+          </View>
         )}
       </ScrollView>
 
@@ -171,7 +174,13 @@ function ServiceScreenContainer({
         style={[
           serviceScreenStyle.container,
           {
-            height: window.height + (showMoreInServiceScreen ? -122 : 60),
+            height:
+              window.height +
+              (showMoreInServiceScreen
+                ? window.height > 750
+                  ? -200
+                  : -122
+                : 0),
           },
         ]}>
         <View style={serviceScreenStyle.titleContainer}>
