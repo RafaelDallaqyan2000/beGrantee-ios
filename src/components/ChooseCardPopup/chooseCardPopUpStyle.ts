@@ -59,6 +59,10 @@ export const chooseCardPopUpStyle = StyleSheet.create({
     color: '#000000',
   },
 
+  button: {
+    width: window.width - 60,
+  },
+
   btnText: {
     fontFamily: 'NotoSansArmenian-Medium',
     fontSize: 14,
