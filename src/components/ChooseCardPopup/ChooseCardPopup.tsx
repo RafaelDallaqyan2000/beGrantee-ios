@@ -194,7 +194,7 @@ function ChooseCardPopupContainer({
                 onPress={handleSubmit}
                 style={[
                   globalStyles.button,
-                  chooseCardPopUpStyle.button
+                  chooseCardPopUpStyle.button,
                   {
                     backgroundColor: total > 0 ? '#3875F6' : '#F5F5F5',
                     borderColor: total > 0 ? '#3875F6' : '#D0D5DD',
