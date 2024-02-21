@@ -54,7 +54,7 @@ export const chooseCardPackageItemStyle = StyleSheet.create({
   inputGeneralStyle: {
     width: 92,
     paddingHorizontal: 3,
-    paddingVertical: 0,
+    paddingVertical: 3,
     color: '#000',
     borderWidth: 1,
     borderStyle: 'solid',
