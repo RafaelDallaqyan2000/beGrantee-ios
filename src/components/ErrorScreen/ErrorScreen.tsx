@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import ErrorImage from '../../images/ErrorImage';
 import React from 'react';
-import {window} from "../../screens";
+import {window } from "../../screens";
 
 type ErrorScreenType = {
   loadingScreen?: any;

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window} from "../../screens";
+import {window} from '../../index.ts';
 
 export const welcomePopUpStyle = StyleSheet.create({
   container: {
