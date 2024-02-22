@@ -1,6 +1,6 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
-const window = Dimensions.get('window');
 
 export const serviceScreenStyle = StyleSheet.create({
   screen: {

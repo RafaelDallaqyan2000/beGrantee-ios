@@ -1,6 +1,5 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
 export const serviceDetailsBodyStyle = StyleSheet.create({
   bodyContainer: {

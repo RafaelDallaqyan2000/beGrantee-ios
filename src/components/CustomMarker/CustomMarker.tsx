@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {marker} from '../../screens/QRCodeScannerScreen/marker';
 import {customMarkerStyles} from './customMarkerStyles';
+import {window} from "../../screens";
 
-const window = Dimensions.get('window');
 
 export const makeSlideOutTranslation = (
   translationType: string,

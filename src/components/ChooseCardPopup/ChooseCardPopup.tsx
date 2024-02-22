@@ -20,6 +20,8 @@ import {successOrErrorPupUpStyle} from '../SuccessOrErrorPopUp/successOrErrorPup
 import {getTransactionData} from '../../services';
 import {AuthContext} from '../../../App';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {window} from '../../screens';
+import {useKeyboard} from '../../hooks/useKeyboard.tsx';
 
 interface ChooseCardPopupProps {
   data?: PackageModel[];
@@ -57,6 +59,8 @@ function ChooseCardPopupContainer({
       ),
     [selectedPackages, openPopUp, openTransactionMessagePopUp],
   );
+
+  const keyboardHeight = useKeyboard();
 
   const handleSubmit = async () => {
     if (total > 0) {
@@ -149,7 +153,11 @@ function ChooseCardPopupContainer({
           />
         ) : null}
 
-        <View style={chooseCardPopUpStyle.container}>
+        <View
+          style={[
+            chooseCardPopUpStyle.container,
+            {height: window.height - keyboardHeight},
+          ]}>
           <View style={chooseCardPopUpStyle.header}>
             <View style={chooseCardPopUpStyle.closeBtn}>
               <BackIcon onPress={onClose} />

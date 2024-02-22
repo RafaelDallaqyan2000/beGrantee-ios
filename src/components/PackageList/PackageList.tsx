@@ -1,7 +1,8 @@
 import React, {Ref, useEffect, useState} from 'react';
 import {PackageModel} from '../../models/packages';
-import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {PackageCard} from '../PackageCard';
+import {window} from "../../screens";
 //@ts-ignore
 import Carousel from 'react-native-snap-carousel';
 import {useSelector} from 'react-redux';
@@ -11,8 +12,6 @@ interface PackageListProps {
   onSelectPackage: (selectedPackage: PackageModel) => void;
   carouselRef: Ref<number | null>;
 }
-
-const window = Dimensions.get('window');
 
 export function PackageList({
   data = [],

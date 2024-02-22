@@ -1,4 +1,4 @@
-import {Dimensions, RefreshControl, ScrollView, Text, View} from 'react-native';
+import {RefreshControl, ScrollView, Text, View} from 'react-native';
 import {PackageItem} from './PackageItem';
 import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
@@ -10,6 +10,7 @@ import {AuthContext} from '../../../App';
 import {LoadingPackagesScreen} from '../../LoadingScreens';
 import {useFocusEffect} from '@react-navigation/native';
 import {ErrorScreen} from '../../components';
+import {window} from "../../screens";
 
 export function PackagesScreen() {
   const {token}: any = useContext(AuthContext);
@@ -51,7 +52,6 @@ export function PackagesScreen() {
   if (showLoadingScreen) {
     return <LoadingPackagesScreen />;
   }
-  const window = Dimensions.get('window');
 
   if (showErrorScreen) {
     return (

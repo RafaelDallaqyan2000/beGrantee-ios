@@ -1,4 +1,4 @@
-import {Dimensions, RefreshControl, ScrollView, Text, View} from 'react-native';
+import {RefreshControl, ScrollView, Text, View} from 'react-native';
 import {CompaniesItem} from './CompaniesItem';
 import {useQuery} from '@tanstack/react-query';
 import {QueryRoute} from '../../react-query/query-routes';
@@ -9,6 +9,8 @@ import {notificationStyles} from '../NotificationScreen/notificationStyles';
 import {NotifyIcon} from '../../icons';
 import {LoadingCompaniesScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
+import {window} from "../../screens";
+
 
 export function CompaniesScreen() {
   const {token}: any = useContext(AuthContext);
@@ -41,7 +43,6 @@ export function CompaniesScreen() {
     },
   });
 
-  const window = Dimensions.get('window');
 
   if (loadingCompanyScreen) {
     return (
