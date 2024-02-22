@@ -13,7 +13,6 @@ import {useNavigation} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
-const window = Dimensions.get('window');
 export function ProfileStack() {
   const {navigate} = useNavigation();
   const navigateToPreviousScreen = () => navigate('Profile' as never);

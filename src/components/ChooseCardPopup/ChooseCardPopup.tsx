@@ -15,11 +15,13 @@ import BackIcon from '../../icons/BackIcon';
 import globalStyles from '../../styles/globalStyles';
 import {connect} from 'react-redux';
 import {handleChange} from '../../store';
-// import EmptyPackageImage from '../../images/EmptyPackageImage';
+import EmptyPackageImage from '../../images/EmptyPackageImage';
 import {successOrErrorPupUpStyle} from '../SuccessOrErrorPopUp/successOrErrorPupUpStyle';
 import {getTransactionData} from '../../services';
 import {AuthContext} from '../../../App';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {window} from '../../screens';
+import {useKeyboard} from '../../hooks/useKeyboard.tsx';
 
 interface ChooseCardPopupProps {
   data?: PackageModel[];
@@ -57,6 +59,8 @@ function ChooseCardPopupContainer({
       ),
     [selectedPackages, openPopUp, openTransactionMessagePopUp],
   );
+
+  const keyboardHeight = useKeyboard();
 
   const handleSubmit = async () => {
     if (total > 0) {
@@ -125,7 +129,7 @@ function ChooseCardPopupContainer({
           <Text style={chooseCardPopUpStyle.title}>No such benefit</Text>
         </View>
         <View style={chooseCardPopUpStyle.emptyPackageImage}>
-          {/*<EmptyPackageImage />*/}
+          <EmptyPackageImage />
           <Text style={successOrErrorPupUpStyle.message}>
             QR is not available
           </Text>
@@ -149,7 +153,11 @@ function ChooseCardPopupContainer({
           />
         ) : null}
 
-        <View style={chooseCardPopUpStyle.container}>
+        <View
+          style={[
+            chooseCardPopUpStyle.container,
+            {height: window.height - keyboardHeight},
+          ]}>
           <View style={chooseCardPopUpStyle.header}>
             <View style={chooseCardPopUpStyle.closeBtn}>
               <BackIcon onPress={onClose} />
@@ -179,8 +187,8 @@ function ChooseCardPopupContainer({
             ]}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={chooseCardPopUpStyle.totalText}>Total</Text>
-              <Text style={chooseCardPopUpStyle.totalText}>{total} AMD</Text>
+              <Text style={chooseCardPopUpStyle.totalText}>Total (AMD)</Text>
+              <Text style={chooseCardPopUpStyle.totalText}>{total}</Text>
             </View>
 
             <View style={{alignItems: 'center', marginTop: 42}}>
@@ -194,6 +202,7 @@ function ChooseCardPopupContainer({
                 onPress={handleSubmit}
                 style={[
                   globalStyles.button,
+                  chooseCardPopUpStyle.button,
                   {
                     backgroundColor: total > 0 ? '#3875F6' : '#F5F5F5',
                     borderColor: total > 0 ? '#3875F6' : '#D0D5DD',

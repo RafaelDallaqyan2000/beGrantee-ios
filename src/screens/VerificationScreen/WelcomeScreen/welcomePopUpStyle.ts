@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
 export const welcomePopUpStyle = StyleSheet.create({
   container: {
@@ -19,8 +20,14 @@ export const welcomePopUpStyle = StyleSheet.create({
     fontStyle: 'normal',
   },
 
+  imageContainer: {
+    height: window.height / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   text: {
-    color: '#7C819E',
+    color: '#344054',
     fontFamily: 'NotoSansArmenian-Medium',
     fontSize: 18,
     fontWeight: '500',
@@ -30,6 +37,3 @@ export const welcomePopUpStyle = StyleSheet.create({
     marginBottom: 55,
   },
 });
-
-
-

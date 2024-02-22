@@ -1,6 +1,5 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
 export const notificationStyles = StyleSheet.create({
   notificationTitle: {
@@ -13,7 +12,6 @@ export const notificationStyles = StyleSheet.create({
     color: '#000000CC',
     backgroundColor: '#FFF',
     textAlign: 'center',
-    // paddingTop: 30,
   },
 
   ifNotNotification: {
@@ -27,7 +25,6 @@ export const notificationStyles = StyleSheet.create({
     backgroundColor: '#FFF',
     width: window.width,
     textAlign: 'center',
-    marginBottom: 69,
   },
 
   emptyNotificationText: {

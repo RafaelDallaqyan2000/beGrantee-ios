@@ -1,6 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {window} from "../../screens";
 
 export const chooseCardPackageItemStyle = StyleSheet.create({
   container: {
@@ -9,7 +8,7 @@ export const chooseCardPackageItemStyle = StyleSheet.create({
     borderbottom: 1,
     borderStyle: 'solid',
     borderColor: '#F3F3F3',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
 
   companyIcon: {
@@ -54,12 +53,12 @@ export const chooseCardPackageItemStyle = StyleSheet.create({
   inputGeneralStyle: {
     width: 92,
     paddingHorizontal: 3,
-    paddingVertical: 0,
+    paddingVertical: 3,
     color: '#000',
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: '#DDE0E3',
     borderRadius: 4,
-    textAlign: 'right'
+    textAlign: 'right',
   },
 });

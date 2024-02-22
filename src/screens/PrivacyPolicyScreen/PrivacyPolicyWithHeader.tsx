@@ -1,11 +1,12 @@
 import React from 'react';
 import {
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 import BackIcon from '../../icons/BackIcon';
 import {useNavigation} from '@react-navigation/native';
 import {ConvertHtmlCode} from '../../components';
@@ -13,7 +14,7 @@ import {fixedData} from '../../data';
 
 const styles = StyleSheet.create({
   header: {
-    marginTop: 30,
+    // marginTop: 30,
     height: 46,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -40,7 +41,7 @@ export function PrivacyPolicyWithHeader() {
   const navigation = useNavigation();
   return (
     <>
-      <View style={{position: 'relative', backgroundColor: '#FFF'}}>
+      <SafeAreaView style={{position: 'relative', backgroundColor: '#FFF'}}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.backIcon}
@@ -53,7 +54,7 @@ export function PrivacyPolicyWithHeader() {
           {/*@ts-ignore*/}
           <ConvertHtmlCode data={fixedData.privacyPolicyData} mb={120} />
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </>
   );
 }

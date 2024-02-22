@@ -1,6 +1,5 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
 const serviceTypeListStyle = StyleSheet.create({
   category: {
@@ -23,8 +22,7 @@ const serviceTypeListStyle = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 3,
-    marginLeft: 5,
+    marginRight: 8,
     marginVertical: 5,
     paddingHorizontal: 12,
     paddingVertical: 8,

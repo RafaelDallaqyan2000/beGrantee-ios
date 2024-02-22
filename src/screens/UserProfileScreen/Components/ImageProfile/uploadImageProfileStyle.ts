@@ -1,6 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {window} from "../../../index.ts";
 
 export const uploadImageProfileStyle = StyleSheet.create({
   uploadImageContainer: {

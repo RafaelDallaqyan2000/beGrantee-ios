@@ -1,6 +1,7 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
-const window = Dimensions.get('window');
+
 export const chooseCardPopUpStyle = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
@@ -57,6 +58,10 @@ export const chooseCardPopUpStyle = StyleSheet.create({
     fontSize: 18,
     lineHeight: 28,
     color: '#000000',
+  },
+
+  button: {
+    width: window.width - 60,
   },
 
   btnText: {

@@ -1,6 +1,6 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
-const window = Dimensions.get('window');
 
 export const searchInputStyle = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ export const searchInputStyle = StyleSheet.create({
     shadowRadius: 3,
   },
   containerStyle: {
-    width: window.width - 76, //314
+    width: window.width - 60,
     overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -7,6 +6,7 @@ import {
 } from 'react-native';
 import ErrorImage from '../../images/ErrorImage';
 import React from 'react';
+import {window} from "../../screens";
 
 type ErrorScreenType = {
   loadingScreen?: any;
@@ -36,7 +36,6 @@ export function ErrorMainScreen({
   );
 }
 
-const window = Dimensions.get('window');
 
 const errorStyle = StyleSheet.create({
   errorScreen: {

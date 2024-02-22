@@ -5,7 +5,6 @@ import {
   Text,
   TextInput,
   ScrollView,
-  Dimensions,
   KeyboardAvoidingView,
   SafeAreaView,
 } from 'react-native';
@@ -21,6 +20,7 @@ import globalStyles from '../../styles/globalStyles';
 import {WelcomeScreen} from './WelcomeScreen/WelcomeScreen';
 import SecureStorage from 'react-native-encrypted-storage';
 import {SmsVerification} from '../../components';
+import {window} from "../../screens";
 
 type RouteProps = RouteProp<StackNavigatorParamList, 'Verification'>;
 
@@ -35,7 +35,6 @@ export function VerificationScreen() {
   const {phoneNumber, phoneCodeId, getResendCode} = route.params;
 
   const verifyCodeRef = useRef<TextInput>();
-  const window = Dimensions.get('window');
 
   const verifyCodeQuery = useMutation({
     mutationFn: verifyCode,
@@ -126,7 +125,7 @@ export function VerificationScreen() {
 
   // @ts-ignore
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
       <ScrollView style={styles.container}>
         <WelcomeScreen visible={openWelcomePopUp} />
         <View style={[globalStyles.screenContainer, {flex: 1}]}>
@@ -198,7 +197,7 @@ export function VerificationScreen() {
               </View>
               <KeyboardAvoidingView
                 behavior="padding"
-                keyboardVerticalOffset={window.height / 2 - 60}>
+                keyboardVerticalOffset={window.height / 2 - 40}>
                 <Text
                   style={[globalStyles.text, verificationScreenStyle.subtitle]}>
                   Didn’t receive any code?

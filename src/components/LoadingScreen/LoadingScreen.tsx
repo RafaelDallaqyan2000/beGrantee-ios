@@ -1,4 +1,4 @@
-import {ActivityIndicator, Dimensions, Modal, Text, View} from 'react-native';
+import {ActivityIndicator, Modal, Text, View} from 'react-native';
 import {chooseCardPopUpStyle} from '../ChooseCardPopup/chooseCardPopUpStyle';
 import React, {useEffect, useState} from 'react';
 import globalStyles from '../../styles/globalStyles';
@@ -11,8 +11,8 @@ import {signal} from '../../SignalR/SignalR';
 import {HubConnectionState} from '@microsoft/signalr';
 import {cancelTransaction} from '../../services/getTransactionData';
 import {PackageAmountModel} from '../../models/packages';
+import {window} from "../../screens";
 
-const window = Dimensions.get('window');
 type LoadingScreenType = {
   title?: string;
   isLoading?: boolean;

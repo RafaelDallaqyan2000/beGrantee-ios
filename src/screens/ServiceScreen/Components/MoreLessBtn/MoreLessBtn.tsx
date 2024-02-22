@@ -19,6 +19,7 @@ function MoreLessBtnComponent({
       style={{
         position: 'absolute',
         bottom: 0,
+        zIndex: 1000,
       }}>
       {showMoreInServiceScreen ? <OpacityMoreLessButton /> : null}
       <View style={serviceScreenStyle.showMoreContainer} />
@@ -41,7 +42,7 @@ function MoreLessBtnComponent({
 
 const mapStateToProps = (state: any) => {
   return {
-    showMoreInServiceScreen: state.reducer?.showMoreInServiceScreen,
+    showMoreInServiceScreen: state.reducer?.showMoreInServiceScreen ?? false,
   };
 };
 export const MoreLessBtn = connect(mapStateToProps, null)(MoreLessBtnComponent);

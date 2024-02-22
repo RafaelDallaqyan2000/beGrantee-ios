@@ -1,15 +1,15 @@
-import {Dimensions, Keyboard, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
 const phoneNumberStyles = StyleSheet.create({
   topic: {
     fontFamily: 'NotoSansArmenian-Medium',
     fontSize: 18,
     fontWeight: '500',
-    lineHeight: 28,
+    // lineHeight: 28,
     color: '#344054',
     textAlign: 'center',
+    marginTop: window.height > 800 ? 38 : 0,
   },
 
   imageContainer: {
@@ -69,10 +69,6 @@ const phoneNumberStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  header: {
-    marginTop: 40,
-  },
-
   body: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
@@ -80,7 +76,7 @@ const phoneNumberStyles = StyleSheet.create({
 
   footer: {
     height: 300,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },

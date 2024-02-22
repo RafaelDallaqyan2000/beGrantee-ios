@@ -1,6 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
-const window = Dimensions.get('window');
 export const transactionHistoryStyle = StyleSheet.create({
   screen: {
     backgroundColor: '#F8F8F9',

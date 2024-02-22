@@ -1,6 +1,5 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const window = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+import {window} from "../../screens";
 
 export const serviceDetailsBodyStyle = StyleSheet.create({
   bodyContainer: {
@@ -18,7 +17,7 @@ export const serviceDetailsBodyStyle = StyleSheet.create({
   },
 
   emptyInfoContainer: {
-    height: window.height / 2,
+    height: window.height / 3,
     justifyContent: 'center',
     alignItems: 'center',
   },

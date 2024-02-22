@@ -1,7 +1,8 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {CheckBox} from '../index';
 import {useNavigation} from '@react-navigation/native';
+import {window} from "../../screens";
 
 interface TmsAndCdsAndPPType {
   checked: boolean;
@@ -36,7 +37,6 @@ export function PrivacyPolicyAndTerms({
   );
 }
 
-const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
   text: {
     color: '#000000',
-    maxWidth: window.width - 100,
+    maxWidth: window.width - 130,
     fontFamily: 'NotoSansArmenian-Regular',
     fontSize: 14,
     fontStyle: 'normal',
