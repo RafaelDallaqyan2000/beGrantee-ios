@@ -1,5 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {window} from "../../screens";
+import {window } from "../../screens";
 
 export const chooseCardPackageItemStyle = StyleSheet.create({
   container: {

@@ -11,7 +11,7 @@ import {signal} from '../../SignalR/SignalR';
 import {HubConnectionState} from '@microsoft/signalr';
 import {cancelTransaction} from '../../services/getTransactionData';
 import {PackageAmountModel} from '../../models/packages';
-import {window} from "../../screens";
+import {window } from "../../screens";
 
 type LoadingScreenType = {
   title?: string;

@@ -26,8 +26,6 @@ const serviceCardStyle = StyleSheet.create({
     height: 35,
     borderRadius: 8,
     marginLeft: 4,
-    borderWidth: 1,
-    borderStyle: 'solid',
   },
 
   defaultIconContainer: {

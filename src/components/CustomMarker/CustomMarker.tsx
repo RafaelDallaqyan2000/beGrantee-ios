@@ -3,7 +3,7 @@ import * as Animatable from 'react-native-animatable';
 import {StyleSheet, View} from 'react-native';
 import {marker} from '../../screens/QRCodeScannerScreen/marker';
 import {customMarkerStyles} from './customMarkerStyles';
-import {window} from "../../screens";
+import {window } from "../../screens";
 
 
 export const makeSlideOutTranslation = (

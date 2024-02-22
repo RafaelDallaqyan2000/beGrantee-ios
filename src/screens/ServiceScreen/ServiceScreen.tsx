@@ -15,7 +15,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {window} from "../../screens";
+import {window} from '../../screens';
 import {ServiceDetailsBody} from './Components';
 import {serviceScreenStyle} from './serviceScreenStyle';
 import {HOST, getServiceDetailsByCompanyId} from '../../services';
@@ -43,7 +43,6 @@ export interface ServiceDetails {
   refetch: any;
   isLoading: boolean;
 }
-
 
 interface ServiceTypes {
   handleChange: (showMoreInServiceScreen2: string, b: any) => boolean;

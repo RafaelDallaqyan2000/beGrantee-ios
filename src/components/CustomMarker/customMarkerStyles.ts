@@ -1,4 +1,4 @@
-import {window} from "../../screens";
+import {window } from "../../screens";
 
 const scanBarWidth = window.width * 0.47; // this is equivalent to 180 from a 393 device width
 const scanBarHeight = window.height * 0.003; //this is equivalent to 1 from a 393 device width

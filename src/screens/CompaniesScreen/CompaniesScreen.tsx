@@ -9,7 +9,7 @@ import {notificationStyles} from '../NotificationScreen/notificationStyles';
 import {NotifyIcon} from '../../icons';
 import {LoadingCompaniesScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
-import {window} from "../../screens";
+import {window } from "../index.ts";
 
 
 export function CompaniesScreen() {

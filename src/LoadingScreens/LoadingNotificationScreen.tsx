@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentLoader, {Rect} from 'react-content-loader/native';
-import {window} from "../screens";
+import {window } from "../screens";
 
 export const LoadingNotificationScreen = (props: any) => (
   <ContentLoader

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window} from "../../screens";
+import {window } from "../../screens";
 
 export const successOrErrorPupUpStyle = StyleSheet.create({
   bgContainer: {

@@ -34,8 +34,7 @@ export const serviceScreenStyle = StyleSheet.create({
 
   companyLogo: {
     position: 'absolute',
-    marginLeft: 30,
-    marginTop: 20,
+    margin: 30,
     borderRadius: 50,
   },
 
