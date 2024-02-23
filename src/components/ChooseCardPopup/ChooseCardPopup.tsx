@@ -4,7 +4,7 @@ import {
   PackageCardModel,
   PackageModel,
 } from '../../models/packages';
-import { Modal, Pressable, ScrollView, Text, View } from "react-native";
+import {Modal, Pressable, ScrollView, Text, View} from 'react-native';
 import {chooseCardPopUpStyle} from './chooseCardPopUpStyle';
 import {ChooseCardPackageItem} from '../ChooseCardPackageItem';
 import AppButton from '../AppButton/AppButton';
@@ -123,11 +123,8 @@ function ChooseCardPopupContainer({
     return (
       <SafeAreaView style={chooseCardPopUpStyle.emptyPackageContainer}>
         <View style={chooseCardPopUpStyle.header}>
-          <Pressable
-            onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
-            <BackIcon
-              style={{padding: 10}}
-            />
+          <Pressable onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
+            <BackIcon style={{padding: 10}} />
           </Pressable>
           <Text style={chooseCardPopUpStyle.title}>No such benefit</Text>
         </View>
