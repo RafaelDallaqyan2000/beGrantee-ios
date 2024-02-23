@@ -33,7 +33,6 @@ export const uploadImageProfileStyle = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 50,
     backgroundColor: '#7C819E',
-    shadowColor: 'red',
     elevation: 2,
   },
 

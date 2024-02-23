@@ -4,7 +4,7 @@ import {
   PackageCardModel,
   PackageModel,
 } from '../../models/packages';
-import {Modal, ScrollView, Text, View} from 'react-native';
+import { Modal, Pressable, ScrollView, Text, View } from "react-native";
 import {chooseCardPopUpStyle} from './chooseCardPopUpStyle';
 import {ChooseCardPackageItem} from '../ChooseCardPackageItem';
 import AppButton from '../AppButton/AppButton';
@@ -121,11 +121,14 @@ function ChooseCardPopupContainer({
 
   if (data?.length <= 0 && isOpen) {
     return (
-      <View style={chooseCardPopUpStyle.emptyPackageContainer}>
+      <SafeAreaView style={chooseCardPopUpStyle.emptyPackageContainer}>
         <View style={chooseCardPopUpStyle.header}>
-          <View style={chooseCardPopUpStyle.closeBtn}>
-            <BackIcon onPress={onClose} />
-          </View>
+          <Pressable
+            onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
+            <BackIcon
+              style={{padding: 10}}
+            />
+          </Pressable>
           <Text style={chooseCardPopUpStyle.title}>No such benefit</Text>
         </View>
         <View style={chooseCardPopUpStyle.emptyPackageImage}>
@@ -137,7 +140,7 @@ function ChooseCardPopupContainer({
             You have no active benefit package that includes this service.
           </Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 

@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
   cameraStyle: {
     width: 200,
     height: 200,
-    backgroundColor: 'red',
   },
 });

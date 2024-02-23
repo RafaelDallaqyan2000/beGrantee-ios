@@ -17,8 +17,10 @@ export const chooseCardPopUpStyle = StyleSheet.create({
 
   closeBtn: {
     alignItems: 'flex-end',
-    width: 24,
-    height: 24,
+    maxWidth: 30,
+    maxHeight: 30,
+    paddingLeft: 10,
+    paddingRight: 10,
     top: 4,
   },
 
@@ -84,8 +86,9 @@ export const chooseCardPopUpStyle = StyleSheet.create({
 
   emptyPackageContainer: {
     height: window.height,
-    padding: 30,
     backgroundColor: '#FFF',
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 
   emptyPackageImage: {
