@@ -18,3 +18,4 @@ export {CheckBox} from './CheckBox/CheckBox';
 export {ErrorScreen} from './ErrorScreen';
 export {SmsVerification} from './SmsVerification';
 export {PrivacyPolicyAndTerms} from './PrivacyPolicyAndTerms/PrivacyPolicyAndTerms';
+export {LiveChat} from './LiveChat/LiveChat.tsx';

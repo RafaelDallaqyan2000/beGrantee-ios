@@ -1,12 +1,13 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import {profileSettingsStyle} from './profileSettingsStyle';
 import {
+  LiveChatIcon,
   SecurityIcon,
   SettingsCompanyIcon,
   SurpriseCaseIcon,
   LogOutIcon,
-  RightPointerIcon,
 } from '../../../../icons';
+// import {RightPointerIcon} from '../../../../icons/RightPointerIcon';
 import React from 'react';
 
 //Todo: will be use
@@ -28,6 +29,7 @@ type ProfileSettingsType = {
   handlePackagesPress: () => any;
   handleLanguagePress: () => any;
   handlePrivacyPolicyPress: () => any;
+  handleLiveChatPress: () => any;
 };
 
 export function ProfileSettings({
@@ -37,6 +39,7 @@ export function ProfileSettings({
   handlePackagesPress = () => {},
   // handleLanguagePress = () => {},
   handlePrivacyPolicyPress = () => {},
+  handleLiveChatPress = () => {},
 }: ProfileSettingsType) {
   // Todo: Turn on/off push notifications
   // const [switchNotification, setSwitchNotification] = useState(false);
@@ -51,10 +54,7 @@ export function ProfileSettings({
         onPress={handleCompaniesPress}
         style={profileSettingsStyle.settingContainer}>
         <SettingsCompanyIcon />
-        <View style={profileSettingsStyle.titleContainer}>
-          <Text style={profileSettingsStyle.settingsName}>Companies</Text>
-          <RightPointerIcon />
-        </View>
+        <Text style={profileSettingsStyle.settingsName}>Companies</Text>
       </TouchableOpacity>
       <View style={profileSettingsStyle.line} />
 
@@ -62,10 +62,7 @@ export function ProfileSettings({
         onPress={handlePackagesPress}
         style={profileSettingsStyle.settingContainer}>
         <SurpriseCaseIcon />
-        <View style={profileSettingsStyle.titleContainer}>
-          <Text style={profileSettingsStyle.settingsName}>Packages</Text>
-          <RightPointerIcon />
-        </View>
+        <Text style={profileSettingsStyle.settingsName}>Packages</Text>
       </TouchableOpacity>
       <View style={profileSettingsStyle.line} />
 
@@ -117,10 +114,15 @@ export function ProfileSettings({
         onPress={handlePrivacyPolicyPress}
         style={profileSettingsStyle.settingContainer}>
         <SecurityIcon />
-        <View style={profileSettingsStyle.titleContainer}>
-          <Text style={profileSettingsStyle.settingsName}>Privacy policy</Text>
-          <RightPointerIcon />
-        </View>
+        <Text style={profileSettingsStyle.settingsName}>Privacy policy</Text>
+      </TouchableOpacity>
+      <View style={profileSettingsStyle.line} />
+
+      <TouchableOpacity
+        onPress={handleLiveChatPress}
+        style={profileSettingsStyle.settingContainer}>
+        <LiveChatIcon />
+        <Text style={profileSettingsStyle.settingsName}>Live Chat</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={logOutClick} style={{marginTop: 81}}>

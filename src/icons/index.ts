@@ -23,3 +23,4 @@ export {
 } from './ProfileScreen';
 export {LogOutIcon} from './LogOutIcon.tsx';
 export {RightPointerIcon} from './RightPointerIcon.tsx';
+export {LiveChatIcon} from './LiveChatIcon.tsx';

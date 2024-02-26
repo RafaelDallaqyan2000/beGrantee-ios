@@ -2,14 +2,16 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   UserProfileScreen,
-  PrivacyPolicyScreen,
+  CompaniesScreen,
+  PackagesScreen,
   LanguageScreen,
+  PrivacyPolicyScreen,
+  window,
 } from '../screens';
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
-import {CompaniesScreen} from '../screens/CompaniesScreen/CompaniesScreen';
-import {PackagesScreen} from '../screens/PackagesScreen/PackagesScreen';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import BackIcon from '../icons/BackIcon';
 import {useNavigation} from '@react-navigation/native';
+import {LiveChat} from '../components';
 
 const Stack = createStackNavigator();
 
@@ -41,18 +43,14 @@ export function ProfileStack() {
       <Stack.Screen
         options={{
           headerLeft: BackComponent,
-          headerLeftContainerStyle: {
-            position: 'absolute',
-            bottom: 0,
-            left: 20,
-          },
+          headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
           headerTitle: 'Companies',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
-            alignItems: 'center',
-            left: 70,
-            bottom: 2,
+            bottom: 0,
+            left: window.width / 2 - 150,
+            justifyContent: 'flex-end',
           },
           headerTitleStyle: style.titleStyle,
         }}
@@ -68,8 +66,7 @@ export function ProfileStack() {
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
-            alignItems: 'center',
-            left: 70,
+            left: window.width / 2 - 150,
           },
           headerTitleStyle: style.titleStyle,
         }}
@@ -81,10 +78,12 @@ export function ProfileStack() {
         options={{
           headerLeft: BackComponent,
           headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerStatusBarHeight: 5,
           headerTitle: 'Language',
           headerStyle: {elevation: 0},
-          headerTitleContainerStyle: {width: '100%', paddingLeft: 30},
+          headerTitleContainerStyle: {
+            width: '100%',
+            left: window.width / 2 - 150,
+          },
           headerTitleStyle: style.titleStyle,
         }}
         name="Language"
@@ -94,18 +93,38 @@ export function ProfileStack() {
       <Stack.Screen
         options={{
           headerLeft: BackComponent,
-          headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
+          headerLeftContainerStyle: {
+            position: 'absolute',
+            bottom: 10,
+            left: 20,
+          },
           headerTitle: 'Privacy Policy',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
-            alignItems: 'center',
-            left: 70,
+            paddingLeft: 30,
+            left: window.width / 2 - 150,
           },
           headerTitleStyle: style.titleStyle,
         }}
         name="PrivacyPolicy"
         component={PrivacyPolicyScreen}
+      />
+
+      <Stack.Screen
+        options={{
+          headerLeft: BackComponent,
+          headerLeftContainerStyle: {position: 'absolute', bottom: 0},
+          headerTitle: 'Live chat',
+          headerStyle: {elevation: 0},
+          headerTitleContainerStyle: {
+            width: '100%',
+            left: window.width / 2 - 150,
+          },
+          headerTitleStyle: style.titleStyle,
+        }}
+        name="LiveChat"
+        component={LiveChat}
       />
     </Stack.Navigator>
   );
@@ -114,9 +133,11 @@ export function ProfileStack() {
 const style = StyleSheet.create({
   titleStyle: {
     color: '#333333',
-    fontFamily: 'NotoSansArmenian-SemiBold',
+    fontFamily: 'NotoSansArmneian-SemiBold',
     fontWeight: '600',
     fontSize: 24,
-    paddingTop: 15,
+    lineHeight: 28,
+    // paddingTop: 15,
+    textAlign: 'center',
   },
 });
