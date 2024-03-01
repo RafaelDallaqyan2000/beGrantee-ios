@@ -13,9 +13,11 @@ import {useKeyboard} from '../../hooks/useKeyboard';
 export function LiveChat() {
   const [isLoading, setIsLoading] = useState(false);
   const keyboardHeight = useKeyboard();
+  const isLittleScreen = window.height < 800;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
+    <SafeAreaView
+      style={{flex: 1, height: window.height, backgroundColor: '#FFF'}}>
       {isLoading && (
         <View style={liveChatStyle.loading}>
           <ActivityIndicator
@@ -30,7 +32,12 @@ export function LiveChat() {
           liveChatStyle.openedContainer,
           {
             height:
-              window.height - (keyboardHeight === 0 ? 170 : keyboardHeight),
+              window.height -
+              (keyboardHeight === 0
+                ? isLittleScreen
+                  ? 130
+                  : 170
+                : keyboardHeight + (isLittleScreen ? 60 : 90)),
           },
         ]}>
         <WebView
@@ -56,12 +63,12 @@ export function LiveChat() {
 const liveChatStyle = StyleSheet.create({
   openedContainer: {
     width: window.width,
+    backgroundColor: '#FFF',
     // position: 'absolute',
     // bottom: 0,
   },
 
   liveChatOpened: {
-    // flex: 1,
     backgroundColor: 'transparent',
   },
 
