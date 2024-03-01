@@ -1,4 +1,10 @@
-import { ActivityIndicator, Alert, SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import WebView from 'react-native-webview';
 import {useState} from 'react';
 import {window} from '../../screens';
@@ -6,11 +12,10 @@ import {useKeyboard} from '../../hooks/useKeyboard';
 
 export function LiveChat() {
   const [isLoading, setIsLoading] = useState(false);
-
   const keyboardHeight = useKeyboard();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
       {isLoading && (
         <View style={liveChatStyle.loading}>
           <ActivityIndicator
@@ -23,7 +28,10 @@ export function LiveChat() {
       <View
         style={[
           liveChatStyle.openedContainer,
-          {height: window.height - keyboardHeight - 180},
+          {
+            height:
+              window.height - (keyboardHeight === 0 ? 170 : keyboardHeight),
+          },
         ]}>
         <WebView
           source={{
@@ -48,8 +56,8 @@ export function LiveChat() {
 const liveChatStyle = StyleSheet.create({
   openedContainer: {
     width: window.width,
-    position: 'absolute',
-    bottom: 0,
+    // position: 'absolute',
+    // bottom: 0,
   },
 
   liveChatOpened: {

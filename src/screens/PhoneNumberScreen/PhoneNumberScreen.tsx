@@ -23,7 +23,7 @@ import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
 import WrongIcon from '../../icons/WrongIcon';
 import {PrivacyPolicyAndTerms} from '../../components';
 import CustomInput from '../../components/CustomInput/CustomInput.tsx';
-import {getNativePropsForTNode} from 'react-native-render-html';
+// import {getNativePropsForTNode} from 'react-native-render-html';
 
 export const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
