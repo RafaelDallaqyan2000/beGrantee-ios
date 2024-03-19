@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window} from "../../screens";
+import {window} from '../../screens';
 
 export const transactionHistoryItemStyle = StyleSheet.create({
   container: {
@@ -91,9 +91,14 @@ export const transactionHistoryItemStyle = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 4,
-    elevation: 2,
-    shadowColor: 'rgba(171, 190, 209, 0.60)',
+    shadowColor: 'rgba(171, 190, 209, 1)',
     backgroundColor: '#FFF',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 2,
+  },
+
+  companyImage: {
+    borderRadius: 4,
   },
 
   itemTitle: {

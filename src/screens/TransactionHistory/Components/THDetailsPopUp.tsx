@@ -27,7 +27,11 @@ export function THDetailsPopUp({data, show, setShow}: THDetailsType) {
                 style={[
                   transactionHistoryItemStyle.lineBottomChild,
                   {
-                    height: data.transactions.length === 1 ? 0 : 1,
+                    height:
+                      data.transactions[data.transactions.length - 1].id ===
+                      el.id
+                        ? 0
+                        : 1,
                     marginBottom: data.transactions.length === 1 ? 0 : 12,
                   },
                 ]}

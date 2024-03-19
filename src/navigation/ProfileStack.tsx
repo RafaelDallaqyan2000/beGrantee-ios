@@ -43,12 +43,12 @@ export function ProfileStack() {
       <Stack.Screen
         options={{
           headerLeft: BackComponent,
-          headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
+          headerLeftContainerStyle: {position: 'absolute', bottom: 3, left: 20},
           headerTitle: 'Companies',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
-            bottom: 0,
+            bottom: 5,
             left: window.width / 2 - 150,
             justifyContent: 'flex-end',
           },
@@ -61,12 +61,13 @@ export function ProfileStack() {
       <Stack.Screen
         options={{
           headerLeft: BackComponent,
-          headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
+          headerLeftContainerStyle: {position: 'absolute', bottom: 3, left: 20},
           headerTitle: 'Packages',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
             left: window.width / 2 - 150,
+            bottom: -2,
           },
           headerTitleStyle: style.titleStyle,
         }}
@@ -95,7 +96,7 @@ export function ProfileStack() {
           headerLeft: BackComponent,
           headerLeftContainerStyle: {
             position: 'absolute',
-            bottom: 10,
+            bottom: 3,
             left: 20,
           },
           headerTitle: 'Privacy Policy',
@@ -103,6 +104,7 @@ export function ProfileStack() {
           headerTitleContainerStyle: {
             width: '100%',
             paddingLeft: 30,
+            bottom: -2,
             left: window.width / 2 - 150,
           },
           headerTitleStyle: style.titleStyle,
@@ -114,12 +116,13 @@ export function ProfileStack() {
       <Stack.Screen
         options={{
           headerLeft: BackComponent,
-          headerLeftContainerStyle: {position: 'absolute', bottom: 0},
+          headerLeftContainerStyle: {position: 'absolute', bottom: 3, left: 20},
           headerTitle: 'Live chat',
           headerStyle: {elevation: 0},
           headerTitleContainerStyle: {
             width: '100%',
             left: window.width / 2 - 150,
+            bottom: -2,
           },
           headerTitleStyle: style.titleStyle,
         }}
@@ -136,7 +139,7 @@ const style = StyleSheet.create({
     fontFamily: 'NotoSansArmneian-SemiBold',
     fontWeight: '600',
     fontSize: 24,
-    lineHeight: 28,
+    // lineHeight: 28,
     // paddingTop: 15,
     textAlign: 'center',
   },

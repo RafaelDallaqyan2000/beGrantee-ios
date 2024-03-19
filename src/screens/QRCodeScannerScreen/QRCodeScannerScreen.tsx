@@ -15,8 +15,6 @@ import {signal} from '../../SignalR/SignalR';
 import {useNavigation} from '@react-navigation/native';
 import {handleChange} from '../../store';
 import {useDispatch} from 'react-redux';
-import {ActivityIndicator, SafeAreaView} from 'react-native';
-import {chooseCardPopUpStyle} from '../../components/ChooseCardPopup/chooseCardPopUpStyle';
 
 export function QRCodeScannerScreen() {
   const [openPackageListPopUp, setOpenPackageListPopUp] = useState(false);

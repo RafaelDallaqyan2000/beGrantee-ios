@@ -21,6 +21,7 @@ export function TransactionDetails({card}: TransactionType) {
         {card?.companyLogo ? (
           <View style={transactionHistoryItemStyle.companyLogo}>
             <Image
+              style={transactionHistoryItemStyle.companyImage}
               source={{uri: HOST + card?.companyLogo, width: 32, height: 32}}
             />
           </View>

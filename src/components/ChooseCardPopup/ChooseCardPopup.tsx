@@ -139,7 +139,7 @@ function ChooseCardPopupContainer({
 
   if (data?.length <= 0) {
     return (
-      <View style={chooseCardPopUpStyle.emptyPackageContainer}>
+      <SafeAreaView style={chooseCardPopUpStyle.emptyPackageContainer}>
         <View style={chooseCardPopUpStyle.header}>
           <View style={chooseCardPopUpStyle.closeBtn}>
             <BackIcon onPress={onClose} />
@@ -155,7 +155,7 @@ function ChooseCardPopupContainer({
             You have no active benefit package that includes this service.
           </Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 

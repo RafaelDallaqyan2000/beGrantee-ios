@@ -16,6 +16,7 @@ import {getNotifications, getOnReadNotification} from '../../services';
 import {AuthContext} from '../../../App';
 import {LoadingNotificationScreen} from '../../LoadingScreens';
 import {NotificationItemType} from '../../components/NotificationItem';
+import {window} from '../index.ts';
 
 export function NotificationScreen() {
   const [loadingNotificationScreen, setLoadingNotificationScreen] =
@@ -95,10 +96,17 @@ export function NotificationScreen() {
             <Text style={notificationStyles.ifNotNotification}>
               Notification
             </Text>
-            <NotifyIcon />
-            <Text style={notificationStyles.emptyNotificationText}>
-              OOOPS! It’s Empty
-            </Text>
+            <View
+              style={{
+                alignItems: 'center',
+                height: window.height - 250,
+                justifyContent: 'center',
+              }}>
+              <NotifyIcon />
+              <Text style={notificationStyles.emptyNotificationText}>
+                OOOPS! It’s Empty
+              </Text>
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>
