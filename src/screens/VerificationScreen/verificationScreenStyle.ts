@@ -11,7 +11,7 @@ const verificationScreenStyle = StyleSheet.create({
     marginBottom: 18,
   },
   backIcon: {
-    width: 25,
+    width: 35,
     position: 'absolute',
     left: 14,
     top: 20,

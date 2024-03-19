@@ -92,7 +92,7 @@ export const loadingScreenStyle = StyleSheet.create({
     borderColor: '#D0D5DD',
     borderRadius: 8,
     padding: 0,
-    width: 60,
+    width: 70,
   },
 
   btnText: {

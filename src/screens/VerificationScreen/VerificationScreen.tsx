@@ -7,6 +7,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   SafeAreaView,
+  Pressable,
 } from 'react-native';
 import styles from '../../styles/globalStyles';
 import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
@@ -20,7 +21,7 @@ import globalStyles from '../../styles/globalStyles';
 import {WelcomeScreen} from './WelcomeScreen/WelcomeScreen';
 import SecureStorage from 'react-native-encrypted-storage';
 import {SmsVerification} from '../../components';
-import {window} from "../../screens";
+import {window} from '../../screens';
 
 type RouteProps = RouteProp<StackNavigatorParamList, 'Verification'>;
 
@@ -130,9 +131,11 @@ export function VerificationScreen() {
         <WelcomeScreen visible={openWelcomePopUp} />
         <View style={[globalStyles.screenContainer, {flex: 1}]}>
           <View style={verificationScreenStyle.header}>
-            <View style={verificationScreenStyle.backIcon}>
-              <BackIcon onPress={() => navigation.goBack()} />
-            </View>
+            <Pressable
+              onPress={() => navigation.goBack()}
+              style={verificationScreenStyle.backIcon}>
+              <BackIcon />
+            </Pressable>
 
             <Text style={verificationScreenStyle.topicOTP}>
               OTP Verification

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window } from "../../screens";
+import {window} from '../../screens';
 
 export const successOrErrorPupUpStyle = StyleSheet.create({
   bgContainer: {
@@ -14,20 +14,22 @@ export const successOrErrorPupUpStyle = StyleSheet.create({
 
   container: {
     backgroundColor: '#FFF',
-    zIndex: 10,
+    zIndex: 100,
     position: 'absolute',
     bottom: 0,
     width: window.width,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 87,
-    borderTopStyle: 'solid',
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
     shadowColor: '#000',
     elevation: 10,
     paddingVertical: 60,
     paddingHorizontal: 24,
+    shadowOffset: {width: 0, height: -2},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 
   message: {

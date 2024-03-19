@@ -25,28 +25,20 @@ const popUpData = {
 };
 
 type MessageType = {
-  isOpen: boolean;
   onContinue: () => void;
   onTryAgain: () => void;
   success: boolean;
 };
 
 export function SuccessOrErrorPopUp({
-  isOpen = false,
   onContinue = () => {},
   onTryAgain = () => {},
   success = false,
 }: MessageType) {
-  if (!isOpen) {
-    return;
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const cancelled = useSelector(
     (store: any) => store.reducer?.canceledTransaction,
   );
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     setTimeout(() => {
       if (success) {

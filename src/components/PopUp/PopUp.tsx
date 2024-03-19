@@ -23,13 +23,12 @@ export function PopUp({
       transparent={true}
       visible={open}
       onRequestClose={close}>
-      <View style={popUpStyle.centeredView}>
-        <View style={[popUpStyle.modalView, containerStyle]}>
-          <Pressable style={[popUpStyle.closeIcon, closeStyle]} onPress={close}>
-            <CloseIcon onPress={close} />
-          </Pressable>
-          {children}
-        </View>
+      <Pressable onPress={close} style={popUpStyle.centeredView} />
+      <View style={[popUpStyle.modalView, containerStyle]}>
+        <Pressable style={[popUpStyle.closeIcon, closeStyle]} onPress={close}>
+          <CloseIcon onPress={close} />
+        </Pressable>
+        {children}
       </View>
     </Modal>
   );

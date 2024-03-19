@@ -5,11 +5,19 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useCallback, useState} from 'react';
 import {THDetailsPopUp} from '../TransactionHistory/Components/THDetailsPopUp';
 
+type ColorType = {
+  Rejected: string;
+  Accepted: string;
+  Cancelled: string;
+  Pending: string;
+  Default: string;
+};
+
 export interface HistoryDataProps {
   insertedDate: string;
   partnerName: string;
   total: string | number;
-  status: string | boolean;
+  status: keyof ColorType;
   transactions: any;
   serviceName?: string;
   createdUtcDate: string;
@@ -19,7 +27,7 @@ interface HistoryItemsProps {
   data: HistoryDataProps;
 }
 
-const colorWithStatus = {
+const colorWithStatus: ColorType = {
   Rejected: '#FF6565',
   Accepted: '#7ACD91',
   Cancelled: '#FFC37E',
@@ -53,7 +61,7 @@ export function ServiceHistoryItem({data}: HistoryItemsProps) {
         <Text
           style={[
             transactionHistoryItemStyle.status,
-            {color: colorWithStatus[data?.status ?? 'Default']},
+            {color: colorWithStatus[data?.status] || colorWithStatus.Default},
           ]}>
           {data?.status}
         </Text>

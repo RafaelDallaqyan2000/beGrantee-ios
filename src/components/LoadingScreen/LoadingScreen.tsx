@@ -32,7 +32,7 @@ export function LoadingScreen({
 
   const dispatch: any = useDispatch();
 
-  let s = 10 - Math.floor((new Date().getTime() - date) / 1000);
+  let s = 5 - Math.floor((new Date().getTime() - date) / 1000);
   const [update, setUpdate] = useState(false);
   const forceUpdate = () => setUpdate(prev => !prev);
 
@@ -110,7 +110,7 @@ export function LoadingScreen({
           </View>
 
           <View style={loadingScreenStyle.loadingContainer}>
-            <ActivityIndicator size={64} color="#3875F6" />
+            <ActivityIndicator size={'large'} color="#3875F6" />
             <Text style={chooseCardPopUpStyle.loadingText}>{title}</Text>
           </View>
           <AppButton

@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window } from "../../screens";
-
+import {window} from '../../screens';
 
 export const chooseCardPopUpStyle = StyleSheet.create({
   container: {
@@ -17,18 +16,18 @@ export const chooseCardPopUpStyle = StyleSheet.create({
 
   closeBtn: {
     alignItems: 'flex-end',
-    maxWidth: 30,
+    width: 45,
     maxHeight: 30,
-    paddingLeft: 10,
-    paddingRight: 10,
-    top: 4,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    top: 0,
   },
 
   title: {
     fontFamily: 'NotoSansArmenian-SemiBold',
     fontSize: 24,
     fontWeight: '600',
-    width: window.width - 84,
+    width: window.width - 104,
     lineHeight: 32,
     letterSpacing: 0.48,
     textAlign: 'center',
@@ -95,5 +94,12 @@ export const chooseCardPopUpStyle = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 85,
     height: window.height,
+  },
+
+  loadingPackages: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
   },
 });

@@ -2,12 +2,12 @@ import React, {useCallback, useContext, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
-  RefreshControl, SafeAreaView,
+  SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
-  View
-} from "react-native";
+  View,
+} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {uploadImageProfileStyle} from './uploadImageProfileStyle';
 import {CameraIcon} from '../../../../icons';
@@ -32,11 +32,7 @@ function UploadImageProfileComponent({
   const [imageUrl, setImageUrl] = useState('');
   const [loadingImage, setLoadingImage] = useState(false);
 
-  const {
-    data: profileInfo,
-    refetch: reloadProfileInfo,
-    isLoading: loadingInfo,
-  } = useQuery({
+  const {data: profileInfo, refetch: reloadProfileInfo} = useQuery({
     queryKey: [QueryRoute.userAllPackages],
     initialData: [],
     queryFn: () => getProfileInfo({token}),
@@ -53,18 +49,22 @@ function UploadImageProfileComponent({
   const handleImagePick = (result: any) => {
     setLoadingImage(true);
 
-    editProfileImage({token, image: result?.assets[0]})
+    editProfileImage({token, image: result})
       .then(path => {
         setLoadingImage(false);
         setImageUrl(path);
+        console.log(path, 'kkkkk');
       })
       .catch(() => setLoadingImage(false));
   };
 
   const handleImageLibrary = async () => {
-    const result = await launchImageLibrary({mediaType: 'photo'});
-    if (result.assets) {
-      handleImagePick(result);
+    const result = await launchImageLibrary({
+      mediaType: 'photo',
+      maxHeight: 3000,
+    });
+    if (result.assets?.length) {
+      handleImagePick(result.assets[0]);
     }
   };
 

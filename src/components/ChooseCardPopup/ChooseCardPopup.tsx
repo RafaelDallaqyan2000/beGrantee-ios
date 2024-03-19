@@ -1,27 +1,34 @@
+import {chooseCardPopUpStyle} from './chooseCardPopUpStyle';
+import globalStyles from '../../styles/globalStyles';
 import React, {useContext, useMemo, useState} from 'react';
 import {
   PackageAmountModel,
   PackageCardModel,
   PackageModel,
 } from '../../models/packages';
-import {Modal, Pressable, ScrollView, Text, View} from 'react-native';
-import {chooseCardPopUpStyle} from './chooseCardPopUpStyle';
+import {
+  ActivityIndicator,
+  Modal,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {ChooseCardPackageItem} from '../ChooseCardPackageItem';
 import AppButton from '../AppButton/AppButton';
 import {SuccessOrErrorPopUp} from '../SuccessOrErrorPopUp/SuccessOrErrorPopUp';
 import {useNavigation} from '@react-navigation/native';
 import {LoadingScreen} from '../LoadingScreen/LoadingScreen';
 import BackIcon from '../../icons/BackIcon';
-import globalStyles from '../../styles/globalStyles';
 import {connect} from 'react-redux';
 import {handleChange} from '../../store';
 import EmptyPackageImage from '../../images/EmptyPackageImage';
 import {successOrErrorPupUpStyle} from '../SuccessOrErrorPopUp/successOrErrorPupUpStyle';
 import {getTransactionData} from '../../services';
 import {AuthContext} from '../../../App';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {useKeyboard} from '../../hooks/useKeyboard';
 import {window} from '../../screens';
-import {useKeyboard} from '../../hooks/useKeyboard.tsx';
 
 interface ChooseCardPopupProps {
   data?: PackageModel[];
@@ -31,6 +38,7 @@ interface ChooseCardPopupProps {
   loadingSocket: boolean;
   handleChange: any;
   openTransactionMessagePopUp?: boolean;
+  isLoadingData?: boolean;
 }
 
 function ChooseCardPopupContainer({
@@ -41,6 +49,7 @@ function ChooseCardPopupContainer({
   loadingSocket,
   handleChange,
   openTransactionMessagePopUp,
+  isLoadingData,
 }: ChooseCardPopupProps) {
   let {token}: any = useContext(AuthContext);
 
@@ -51,6 +60,7 @@ function ChooseCardPopupContainer({
   );
   const [success] = useState(true);
   const navigation = useNavigation();
+
   const total = useMemo(
     () =>
       Array.from(selectedPackages.values()).reduce(
@@ -59,8 +69,6 @@ function ChooseCardPopupContainer({
       ),
     [selectedPackages, openPopUp, openTransactionMessagePopUp],
   );
-
-  const keyboardHeight = useKeyboard();
 
   const handleSubmit = async () => {
     if (total > 0) {
@@ -80,6 +88,8 @@ function ChooseCardPopupContainer({
       });
     }
   };
+
+  const keyboardHeight = useKeyboard();
 
   const handleAmountChange = (p: PackageCardModel, newAmount: number) => {
     setSelectedPackages(prev => {
@@ -119,13 +129,21 @@ function ChooseCardPopupContainer({
     );
   }
 
-  if (data?.length <= 0 && isOpen) {
+  if (isLoadingData) {
     return (
-      <SafeAreaView style={chooseCardPopUpStyle.emptyPackageContainer}>
+      <SafeAreaView style={chooseCardPopUpStyle.loadingPackages}>
+        <ActivityIndicator size={'large'} color="#3875F6" />
+      </SafeAreaView>
+    );
+  }
+
+  if (data?.length <= 0) {
+    return (
+      <View style={chooseCardPopUpStyle.emptyPackageContainer}>
         <View style={chooseCardPopUpStyle.header}>
-          <Pressable onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
-            <BackIcon style={{padding: 10}} />
-          </Pressable>
+          <View style={chooseCardPopUpStyle.closeBtn}>
+            <BackIcon onPress={onClose} />
+          </View>
           <Text style={chooseCardPopUpStyle.title}>No such benefit</Text>
         </View>
         <View style={chooseCardPopUpStyle.emptyPackageImage}>
@@ -137,83 +155,79 @@ function ChooseCardPopupContainer({
             You have no active benefit package that includes this service.
           </Text>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 
   return (
-    <SafeAreaView>
-      <Modal style={{position: 'relative'}} visible={isOpen}>
-        {isOpen ? (
-          <SuccessOrErrorPopUp
-            success={success}
-            isOpen={!!openTransactionMessagePopUp}
-            onContinue={handleContinue}
-            onTryAgain={handleTryAgain}
-          />
-        ) : null}
+    <Modal style={{position: 'relative'}} visible={isOpen}>
+      {openTransactionMessagePopUp ? (
+        <SuccessOrErrorPopUp
+          success={success}
+          onContinue={handleContinue}
+          onTryAgain={handleTryAgain}
+        />
+      ) : null}
+
+      <View
+        style={[
+          chooseCardPopUpStyle.container,
+          {height: window.height - keyboardHeight},
+        ]}>
+        <View style={chooseCardPopUpStyle.header}>
+          <Pressable onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
+            <BackIcon />
+          </Pressable>
+
+          <Text style={chooseCardPopUpStyle.title}>Choose package</Text>
+        </View>
+
+        <Text style={chooseCardPopUpStyle.topic}>Payment</Text>
+
+        <ScrollView style={{flex: 1, marginTop: 16, marginBottom: 8}}>
+          {data?.map(pkg => (
+            <View key={pkg?.id}>
+              <ChooseCardPackageItem
+                data={pkg}
+                key={pkg?.id}
+                onAmountChange={handleAmountChange}
+              />
+            </View>
+          ))}
+        </ScrollView>
 
         <View
           style={[
-            chooseCardPopUpStyle.container,
-            {height: window.height - keyboardHeight},
+            chooseCardPopUpStyle.footerContainer,
+            {width: '100%', marginBottom: 4},
           ]}>
-          <View style={chooseCardPopUpStyle.header}>
-            <View style={chooseCardPopUpStyle.closeBtn}>
-              <BackIcon onPress={onClose} />
-            </View>
-
-            <Text style={chooseCardPopUpStyle.title}>Choose package</Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={chooseCardPopUpStyle.totalText}>Total (AMD)</Text>
+            <Text style={chooseCardPopUpStyle.totalText}>{total}</Text>
           </View>
 
-          <Text style={chooseCardPopUpStyle.topic}>Payment</Text>
-
-          <ScrollView style={{marginTop: 16, marginBottom: 8}}>
-            {data?.map(pkg => (
-              <View key={pkg?.id}>
-                <ChooseCardPackageItem
-                  data={pkg}
-                  key={pkg?.id}
-                  onAmountChange={handleAmountChange}
-                />
-              </View>
-            ))}
-          </ScrollView>
-
-          <View
-            style={[
-              chooseCardPopUpStyle.footerContainer,
-              {width: '100%', marginBottom: 4},
-            ]}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={chooseCardPopUpStyle.totalText}>Total (AMD)</Text>
-              <Text style={chooseCardPopUpStyle.totalText}>{total}</Text>
-            </View>
-
-            <View style={{alignItems: 'center', marginTop: 42}}>
-              <AppButton
-                disabled={total === 0}
-                title="Checkout"
-                textStyle={[
-                  chooseCardPopUpStyle.btnText,
-                  {color: total > 0 ? '#FFF' : '#7B7B7B'},
-                ]}
-                onPress={handleSubmit}
-                style={[
-                  globalStyles.button,
-                  chooseCardPopUpStyle.button,
-                  {
-                    backgroundColor: total > 0 ? '#3875F6' : '#F5F5F5',
-                    borderColor: total > 0 ? '#3875F6' : '#D0D5DD',
-                  },
-                ]}
-              />
-            </View>
+          <View style={{alignItems: 'center', marginTop: 42}}>
+            <AppButton
+              disabled={total === 0}
+              title="Checkout"
+              textStyle={[
+                chooseCardPopUpStyle.btnText,
+                {color: total > 0 ? '#FFF' : '#7B7B7B'},
+              ]}
+              onPress={handleSubmit}
+              style={[
+                globalStyles.button,
+                chooseCardPopUpStyle.button,
+                {
+                  backgroundColor: total > 0 ? '#3875F6' : '#F5F5F5',
+                  borderColor: total > 0 ? '#3875F6' : '#D0D5DD',
+                },
+              ]}
+            />
           </View>
         </View>
-      </Modal>
-    </SafeAreaView>
+      </View>
+    </Modal>
   );
 }
 

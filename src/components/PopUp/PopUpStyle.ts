@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window} from "../../screens";
-
+import {window} from '../../screens';
 
 export const popUpStyle = StyleSheet.create({
   centeredView: {
@@ -14,7 +13,7 @@ export const popUpStyle = StyleSheet.create({
     borderTopLeftRadius: 40,
     paddingVertical: 41,
     paddingHorizontal: 30,
-    shadowColor: '#000',
+    shadowColor: '#c70707',
     width: window.width,
     shadowOffset: {
       width: 0,
@@ -23,6 +22,8 @@ export const popUpStyle = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    position: 'absolute',
+    bottom: 0,
   },
   closeIcon: {
     position: 'absolute',
