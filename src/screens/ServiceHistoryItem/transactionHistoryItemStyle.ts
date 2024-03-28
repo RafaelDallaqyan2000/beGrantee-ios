@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {window} from '../../screens';
+import {window} from '../index.ts';
 
 export const transactionHistoryItemStyle = StyleSheet.create({
   container: {
@@ -55,7 +55,7 @@ export const transactionHistoryItemStyle = StyleSheet.create({
     color: '#000000CC',
     fontFamily: 'NotoSansArmenian-SemiBold',
     fontStyle: 'normal',
-    fontWeight: '700',
+    fontWeight: '600',
     fontSize: 14,
     lineHeight: 18,
   },
@@ -64,14 +64,18 @@ export const transactionHistoryItemStyle = StyleSheet.create({
     alignItems: 'flex-end',
   },
 
+  detailsTouchableContainer: {
+    borderBottomWidth: 1.5,
+    borderBottomColor: '#3875F6',
+    borderStyle: 'solid',
+  },
+
   details: {
     fontFamily: 'NotoSansArmenian-SemiBold',
     fontStyle: 'normal',
-    fontWeight: '700',
+    fontWeight: '600',
     fontSize: 14,
-    lineHeight: 18,
     color: '#3875F6',
-    textDecorationLine: 'underline',
   },
 
   lineBottomChild: {
@@ -81,7 +85,6 @@ export const transactionHistoryItemStyle = StyleSheet.create({
   },
 
   itemContainer: {
-    // backgroundColor: 'red',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
@@ -102,7 +105,7 @@ export const transactionHistoryItemStyle = StyleSheet.create({
   },
 
   itemTitle: {
-    width: (window.width - 60) / 1.4, //250
+    width: (window.width - 60) / 1.4,
   },
 
   itemTotalContainer: {

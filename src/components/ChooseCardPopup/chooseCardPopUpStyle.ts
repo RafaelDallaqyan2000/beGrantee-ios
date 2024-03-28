@@ -19,6 +19,7 @@ export const chooseCardPopUpStyle = StyleSheet.create({
     width: 45,
     maxHeight: 30,
     paddingHorizontal: 10,
+    marginLeft: 10,
     paddingVertical: 4,
     top: 0,
   },

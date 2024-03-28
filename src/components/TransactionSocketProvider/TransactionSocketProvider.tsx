@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+// import {Text, View} from 'react-native';
 import {signal} from '../../SignalR/SignalR';
 import {HubConnectionState} from '@microsoft/signalr';
 

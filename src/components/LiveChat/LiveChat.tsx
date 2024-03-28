@@ -64,8 +64,6 @@ const liveChatStyle = StyleSheet.create({
   openedContainer: {
     width: window.width,
     backgroundColor: '#FFF',
-    // position: 'absolute',
-    // bottom: 0,
   },
 
   liveChatOpened: {

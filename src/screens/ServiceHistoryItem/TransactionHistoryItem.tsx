@@ -81,7 +81,9 @@ export function ServiceHistoryItem({data}: HistoryItemsProps) {
         <Text style={transactionHistoryItemStyle.total}>{data?.total}</Text>
       </View>
       <View style={transactionHistoryItemStyle.detailsContainer}>
-        <TouchableOpacity onPress={handlePressDetails}>
+        <TouchableOpacity
+          onPress={handlePressDetails}
+          style={transactionHistoryItemStyle.detailsTouchableContainer}>
           <Text style={transactionHistoryItemStyle.details}>Details</Text>
         </TouchableOpacity>
       </View>

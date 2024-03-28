@@ -12,9 +12,9 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  Text,
-  View,
-} from 'react-native';
+  Text, Touchable, TouchableOpacity,
+  View
+} from "react-native";
 import {ChooseCardPackageItem} from '../ChooseCardPackageItem';
 import AppButton from '../AppButton/AppButton';
 import {SuccessOrErrorPopUp} from '../SuccessOrErrorPopUp/SuccessOrErrorPopUp';
@@ -141,9 +141,9 @@ function ChooseCardPopupContainer({
     return (
       <SafeAreaView style={chooseCardPopUpStyle.emptyPackageContainer}>
         <View style={chooseCardPopUpStyle.header}>
-          <View style={chooseCardPopUpStyle.closeBtn}>
-            <BackIcon onPress={onClose} />
-          </View>
+          <TouchableOpacity onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
+            <BackIcon  />
+          </TouchableOpacity>
           <Text style={chooseCardPopUpStyle.title}>No such benefit</Text>
         </View>
         <View style={chooseCardPopUpStyle.emptyPackageImage}>
