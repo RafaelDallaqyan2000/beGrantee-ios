@@ -3,10 +3,12 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SecureStorage from 'react-native-encrypted-storage';
 import {Text} from 'react-native';
 import globalStyles from './src/styles/globalStyles';
-// import messaging, {firebase} from '@react-native-firebase/messaging';
 import {Provider} from 'react-redux';
 import store from './src/store';
 import {NavigationScreens} from './src/navigation';
+import { getFcmToken, registerListenerWithFCM } from './src/utils/fcmHelper';
+import messaging from '@react-native-firebase/messaging';
+
 
 interface AuthContextValue {
   token?: string | null;
@@ -30,6 +32,14 @@ function App(): JSX.Element {
         setToken(value);
       })
       .finally(() => setCheckingToken(false));
+
+      getFcmToken();
+
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = registerListenerWithFCM();
+    return unsubscribe;
   }, []);
 
   // const getOrSetFCMToken = useCallback(async () => {
