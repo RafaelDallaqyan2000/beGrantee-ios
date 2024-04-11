@@ -55,7 +55,7 @@ export const PhoneNumberScreen = () => {
       setError('failed to login');
     },
     onSuccess: (data, loginParams) => {
-      if (data.success) {
+      if (data?.success) {
         setError('');
         navigation.navigate(
           'Verification' as never,

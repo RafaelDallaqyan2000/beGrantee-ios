@@ -6,6 +6,8 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
+    console.log(error);
+    
     if (error?.response?.status === 401) {
       SecureStorage.removeItem('token').then(() => {
         //Todo: need to restart app

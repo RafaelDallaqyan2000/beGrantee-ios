@@ -33,7 +33,7 @@ function App(): JSX.Element {
       })
       .finally(() => setCheckingToken(false));
 
-      getFcmToken();
+      // getFcmToken();
 
   }, []);
 
