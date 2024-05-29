@@ -76,7 +76,7 @@ function ChooseCardPopupContainer({
         {
           date: new Date(),
           phone: data[0].phoneNumber,
-          serviceId: +qrCode,
+          guid: qrCode,
           total,
           connectionId: 'idk',
           companyAmounts: Array.from(selectedPackages.values()),

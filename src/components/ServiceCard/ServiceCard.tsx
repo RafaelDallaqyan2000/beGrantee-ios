@@ -49,11 +49,14 @@ export function ServiceCard({data, onPress}: ServiceCardProps) {
         <Text style={serviceCardStyle.categoryIcon}>{data.productName}</Text>
       </View>
 
-      {data?.subject && (
+      {data?.subject ? (
         <View style={{marginLeft: 4}}>
           <Text style={serviceCardStyle.topicText}>{data.subject}</Text>
         </View>
-      )}
+      ) : (
+        <View style={serviceCardStyle.defaultPreviewStyle} />
+      )
+    }
     </TouchableOpacity>
   );
 }

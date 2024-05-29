@@ -5,7 +5,7 @@ import {PackageAmountModel} from '../models/packages';
 interface TransactionType {
   date: Date;
   phone: number;
-  serviceId: number | string;
+  guid: number | string;
   total: number | string;
   connectionId: string;
   companyAmounts: PackageAmountModel[];

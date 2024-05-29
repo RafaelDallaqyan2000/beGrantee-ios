@@ -1,13 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {window} from "../../screens";
-
+import {window} from '../index';
 
 export const serviceScreenStyle = StyleSheet.create({
   screen: {
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     flex: 1,
-    height: window.height,
   },
 
   topScreen: {
@@ -15,21 +13,23 @@ export const serviceScreenStyle = StyleSheet.create({
     overflow: 'hidden',
     width: window.width,
     flexGrow: 0,
+    zIndex: 10,
     flexShrink: 1,
   },
 
-  container: {
+  mainContainer: {
+    position: 'relative',
     marginBottom: -200,
-    marginTop: -68,
+    marginTop: -50,
+    zIndex: 100,
+    borderRadius: 48,
+  },
+
+  container: {
     backgroundColor: '#FFF',
     borderRadius: 48,
-    zIndex: 1000,
     paddingTop: 14,
-    position: 'relative',
-    shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+    zIndex: 1000,
   },
 
   companyLogo: {
@@ -71,21 +71,22 @@ export const serviceScreenStyle = StyleSheet.create({
   },
 
   companyLogoAltContainer: {
+    borderColor: '#FFF',
+    borderWidth: 1,
     height: 46,
     width: 46,
     justifyContent: 'center',
-    position: 'absolute',
     alignItems: 'center',
-    backgroundColor: '#7C819E',
-    borderColor: '#FFF',
-    borderWidth: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
     margin: 30,
-    borderRadius: 23,
+    borderRadius: 50,
+    backgroundColor: '#7C819E',
   },
 
   companyLogoAlt: {
     color: '#FFF',
-    // lineHeight: 40,
     fontSize: 24,
     fontFamily: 'NotoSansArmenian-Regular',
   },
@@ -124,5 +125,37 @@ export const serviceScreenStyle = StyleSheet.create({
     fontWeight: '600',
     fontSize: 12,
     fontFamily: 'NotoSansArmenian-Medium', // ?
+  },
+
+  defaultBackgroundContainer: {
+    position: 'absolute',
+    top: -100,
+    width: window.width,
+    alignItems: 'center',
+  },
+
+  defaultBackground: {
+    position: 'absolute',
+    bottom: 0,
+  },
+
+  defaultBackgroundImage: {
+    position: 'absolute',
+    width: window.width,
+    height: 300,
+    top: 0,
+    left: 0,
+    zIndex: -1,
+    resizeMode: 'cover',
+  },
+
+  defaultBackgroundImageAlt: {
+    position: 'absolute',
+    width: window.width,
+    height: 300,
+    top: 0,
+    left: 0,
+    zIndex: -1,
+    resizeMode: 'cover',
   },
 });

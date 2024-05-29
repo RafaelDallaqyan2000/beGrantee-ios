@@ -7,9 +7,9 @@ const serviceCardStyle = StyleSheet.create({
   },
 
   defaultBgImageContainer: {
-    height: 96,
+    height: 20,
     borderRadius: 8,
-    backgroundColor: '#7C819E',
+    backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -48,6 +48,10 @@ const serviceCardStyle = StyleSheet.create({
     fontSize: 24,
     fontStyle: 'normal',
     color: '#FFF',
+  },
+
+  defaultPreviewStyle: {
+    height: 13
   },
 
   title: {

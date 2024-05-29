@@ -153,7 +153,7 @@ export function VerificationScreen() {
                 We just sent you a 4-digit verification code to +374******
                 {phoneNumber.slice(phoneNumber.length - 2)}
               </Text>
-            </View>
+              </View>
 
             <View style={[{marginTop: 72}, verificationScreenStyle.footer]}>
               <View>
