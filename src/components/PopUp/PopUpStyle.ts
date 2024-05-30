@@ -30,5 +30,6 @@ export const popUpStyle = StyleSheet.create({
     right: 21,
     top: 3,
     padding: 10,
+    zIndex:100
   },
 });

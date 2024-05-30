@@ -8,7 +8,7 @@ const initialState = {
   detailsInfo: '',
   pricingIngo: '',
   searchText: '',
-
+  selectedLanguage: 'en',
   loadingUserProfileScreen: true,
 };
 

@@ -16,7 +16,6 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {handleChange} from '../../store';
 import {useDispatch} from 'react-redux';
 import { PERMISSIONS, RESULTS, request } from 'react-native-permissions';
-import { Alert, Linking } from 'react-native';
 import { CameraDontAllowScreen } from '../CameraDontAllowScreen/CameraDontAllowScreen';
 
 export function QRCodeScannerScreen() {
@@ -73,9 +72,8 @@ export function QRCodeScannerScreen() {
   })
 
   if(!isAccessCamera) {
-    return <CameraDontAllowScreen />
+    return <CameraDontAllowScreen />;
   }
-
 
   return openPackageListPopUp ? (
     <TransactionSocketProvider>

@@ -6,9 +6,11 @@ import {
   SettingsCompanyIcon,
   SurpriseCaseIcon,
   LogOutIcon,
+  LanguageIcon,
 } from '../../../../icons';
 // import {RightPointerIcon} from '../../../../icons/RightPointerIcon';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 //Todo: will be use
 // const switchCustomStyle = {
@@ -24,7 +26,7 @@ import React from 'react';
 
 type ProfileSettingsType = {
   logOutClick: () => any;
-  callbackSwitchNotification: () => any;
+  callbackSwitchNotification?: () => any;
   handleCompaniesPress: () => any;
   handlePackagesPress: () => any;
   handleLanguagePress: () => any;
@@ -32,12 +34,18 @@ type ProfileSettingsType = {
   handleLiveChatPress: () => any;
 };
 
+const languages: any = {
+  en: 'English',
+  hy: 'Հայերեն',
+  ru: 'Русский'
+}
+
 export function ProfileSettings({
   logOutClick,
   // callbackSwitchNotification = () => {},
   handleCompaniesPress = () => {},
   handlePackagesPress = () => {},
-  // handleLanguagePress = () => {},
+  handleLanguagePress = () => {},
   handlePrivacyPolicyPress = () => {},
   handleLiveChatPress = () => {},
 }: ProfileSettingsType) {
@@ -48,6 +56,8 @@ export function ProfileSettings({
   //   callbackSwitchNotification();
   // };
 
+  const selectedLanguage = useSelector((state: any) => state.reducer.selectedLanguage);
+  
   return (
     <>
       <TouchableOpacity
@@ -66,19 +76,19 @@ export function ProfileSettings({
       </TouchableOpacity>
       <View style={profileSettingsStyle.line} />
 
-      {/*Todo: we'll add  in the feature (Change language)*/}
-      {/*<TouchableOpacity*/}
-      {/*  onPress={handleLanguagePress}*/}
-      {/*  style={profileSettingsStyle.settingContainer}>*/}
-      {/*  <LanguageIcon />*/}
-      {/*  <View style={profileSettingsStyle.titleContainer}>*/}
-      {/*    <Text style={profileSettingsStyle.settingsName}>Language</Text>*/}
-      {/*    <Text style={[profileSettingsStyle.settingsName, {color: '#3875F6'}]}>*/}
-      {/*      English*/}
-      {/*    </Text>*/}
-      {/*  </View>*/}
-      {/*</TouchableOpacity>*/}
-      {/*<View style={profileSettingsStyle.line} />*/}
+      {/* Todo: we'll add  in the feature (Change language)*/}
+      <TouchableOpacity
+       onPress={handleLanguagePress}
+       style={profileSettingsStyle.settingContainer}>
+       <LanguageIcon />
+       <View style={profileSettingsStyle.titleContainer}>
+         <Text style={profileSettingsStyle.settingsName}>Language</Text>
+         <Text style={[profileSettingsStyle.settingsName, {color: '#3875F6'}]}>
+           {languages[selectedLanguage]}
+         </Text>
+       </View>
+      </TouchableOpacity>
+      <View style={profileSettingsStyle.line} />
 
       {/*Todo: we'll add  in the feature (button which turn on/off push notification)*/}
       {/*<TouchableOpacity*/}

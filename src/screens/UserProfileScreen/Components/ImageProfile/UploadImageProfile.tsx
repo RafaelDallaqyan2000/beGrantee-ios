@@ -53,7 +53,6 @@ function UploadImageProfileComponent({
       .then(path => {
         setLoadingImage(false);
         setImageUrl(path);
-        console.log(path, 'kkkkk');
       })
       .catch(() => setLoadingImage(false));
   };

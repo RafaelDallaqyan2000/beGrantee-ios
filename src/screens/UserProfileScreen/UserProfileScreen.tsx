@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import {AuthContext} from '../../../App';
 import SecureStorage from 'react-native-encrypted-storage';
@@ -9,10 +9,12 @@ import {ProfileSettings} from './Components/ProfileSettings.tsx/ProfileSettings'
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {window} from '../index';
+import { ChooseLanguagePopUp } from '../../components/ChooseLanguagePopUp/ChooseLanguagePopUp';
 
 export function UserProfileScreen() {
   const {setToken} = useContext(AuthContext);
   const {navigate} = useNavigation();
+  const [openLanguagePopUp, setOpenLanguagePopUp] = useState(false);
 
   const loadingScreen = useSelector(
     (store: any) => store.reducer?.loadingUserProfileScreen,
@@ -23,11 +25,11 @@ export function UserProfileScreen() {
     setToken(null);
   };
 
-  const handleNotificationSwitch = () => {};
+  // const handleNotificationSwitch = () => {};
 
   const handleCompaniesPress = () => navigate('Companies' as never);
   const handlePackagesPress = () => navigate('Packages' as never);
-  const handleLanguagePress = () => navigate('Language' as never);
+  const handleLanguagePress = () => {setOpenLanguagePopUp(true)};
   const handlePrivacyPolicyPress = () => navigate('PrivacyPolicy' as never);
   const handleLiveChatPress = () => navigate('LiveChat' as never);
 
@@ -53,10 +55,15 @@ export function UserProfileScreen() {
             handleLanguagePress={handleLanguagePress}
             handlePrivacyPolicyPress={handlePrivacyPolicyPress}
             handleLiveChatPress={handleLiveChatPress}
-            callbackSwitchNotification={handleNotificationSwitch}
             logOutClick={handleLogOutBtnClick}
+            // callbackSwitchNotiçfication={handleNotificationSwitch}
           />
         </View>
+        <ChooseLanguagePopUp
+          openPopUp={openLanguagePopUp}
+          closePopUp={() => setOpenLanguagePopUp(false)}
+          handleSelectLanguage={() => {}} 
+        />
       </View>
     </SafeAreaView>
   );

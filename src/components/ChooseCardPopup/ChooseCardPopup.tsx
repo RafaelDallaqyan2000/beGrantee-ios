@@ -12,7 +12,8 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  Text, Touchable, TouchableOpacity,
+  Text, 
+  TouchableOpacity,
   View
 } from "react-native";
 import {ChooseCardPackageItem} from '../ChooseCardPackageItem';
@@ -51,7 +52,8 @@ function ChooseCardPopupContainer({
   openTransactionMessagePopUp,
   isLoadingData,
 }: ChooseCardPopupProps) {
-  let {token}: any = useContext(AuthContext);
+
+  const {token}: any = useContext(AuthContext);
 
   const [openPopUp, setOpenPopUp] = useState(false);
   const [transactionIds, setTransactionIds] = useState([]);
@@ -76,9 +78,9 @@ function ChooseCardPopupContainer({
         {
           date: new Date(),
           phone: data[0].phoneNumber,
-          guid: qrCode,
+          transactionIds: [],
+          serviceGUID: qrCode,
           total,
-          connectionId: 'idk',
           companyAmounts: Array.from(selectedPackages.values()),
         },
         token,

@@ -4,7 +4,6 @@ import {
   UserProfileScreen,
   CompaniesScreen,
   PackagesScreen,
-  LanguageScreen,
   PrivacyPolicyScreen,
   window,
 } from '../screens';
@@ -73,22 +72,6 @@ export function ProfileStack() {
         }}
         name="Packages"
         component={PackagesScreen}
-      />
-
-      <Stack.Screen
-        options={{
-          headerLeft: BackComponent,
-          headerLeftContainerStyle: {position: 'absolute', bottom: 0, left: 20},
-          headerTitle: 'Language',
-          headerStyle: {elevation: 0},
-          headerTitleContainerStyle: {
-            width: '100%',
-            left: window.width / 2 - 150,
-          },
-          headerTitleStyle: style.titleStyle,
-        }}
-        name="Language"
-        component={LanguageScreen}
       />
 
       <Stack.Screen

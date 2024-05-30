@@ -8,6 +8,7 @@ type PupUpType = {
   close: () => void;
   containerStyle?: StyleProp<ViewStyle>;
   closeStyle?: StyleProp<ViewStyle>;
+  backgroundStyle?: StyleProp<ViewStyle>;
 };
 
 export function PopUp({
@@ -16,6 +17,7 @@ export function PopUp({
   children,
   containerStyle,
   closeStyle,
+  backgroundStyle,
 }: PupUpType) {
   return (
     <Modal
@@ -23,7 +25,7 @@ export function PopUp({
       transparent={true}
       visible={open}
       onRequestClose={close}>
-      <Pressable onPress={close} style={popUpStyle.centeredView} />
+      <Pressable onPress={close} style={[popUpStyle.centeredView, backgroundStyle]} />
       <View style={[popUpStyle.modalView, containerStyle]}>
         <Pressable style={[popUpStyle.closeIcon, closeStyle]} onPress={close}>
           <CloseIcon onPress={close} />
