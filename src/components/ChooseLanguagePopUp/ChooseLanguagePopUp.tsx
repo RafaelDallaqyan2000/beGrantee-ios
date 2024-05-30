@@ -4,6 +4,7 @@ import { StyleSheet, Text } from "react-native";
 import { PopUp } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChange } from "../../store";
+import { useTranslation } from "react-i18next";
 
 type ChooseLanguageType = {
     handleSelectLanguage: (language: string) => any;
@@ -19,12 +20,14 @@ export function ChooseLanguagePopUp({
 
     const selectedLanguage = useSelector((state: any) => state.reducer.selectedLanguage)
     const dispatch = useDispatch();
+    const {i18n} = useTranslation();
 
     const handlePressLanguage:any = (language:string) => {
         handleSelectLanguage(language);
         dispatch(handleChange('selectedLanguage', language));
+        i18n.changeLanguage(language);
         closePopUp();
-    }
+    };
 
     return (
         <PopUp 

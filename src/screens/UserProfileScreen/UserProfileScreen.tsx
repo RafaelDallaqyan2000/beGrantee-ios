@@ -10,11 +10,13 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {window} from '../index';
 import { ChooseLanguagePopUp } from '../../components/ChooseLanguagePopUp/ChooseLanguagePopUp';
+import { useTranslation } from 'react-i18next';
 
 export function UserProfileScreen() {
   const {setToken} = useContext(AuthContext);
   const {navigate} = useNavigation();
   const [openLanguagePopUp, setOpenLanguagePopUp] = useState(false);
+  const {t} = useTranslation();
 
   const loadingScreen = useSelector(
     (store: any) => store.reducer?.loadingUserProfileScreen,
@@ -42,7 +44,7 @@ export function UserProfileScreen() {
               globalStyles.screenTitle,
               userProfileScreenStyle.pageTitle,
             ]}>
-            My Profile
+            {t("My Profile")}
           </Text>
         )}
         <View style={{backgroundColor: '#FFF'}}>

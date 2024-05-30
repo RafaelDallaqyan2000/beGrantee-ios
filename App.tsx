@@ -6,8 +6,8 @@ import globalStyles from './src/styles/globalStyles';
 import {Provider} from 'react-redux';
 import store from './src/store';
 import {NavigationScreens} from './src/navigation';
-import { getFcmToken, registerListenerWithFCM } from './src/utils/fcmHelper';
-import messaging from '@react-native-firebase/messaging';
+import {registerListenerWithFCM } from './src/utils/fcmHelper';
+import './src/localization/i18n';
 
 
 interface AuthContextValue {

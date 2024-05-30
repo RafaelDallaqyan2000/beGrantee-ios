@@ -16,12 +16,14 @@ import {LoadingTransactionsScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {window} from '../index.ts';
+import { useTranslation } from 'react-i18next';
 
 export function TransactionHistory() {
   const {token}: any = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [errorScreen, setShowErrorScreen] = useState(false);
+  const {t} = useTranslation();
 
   const {
     data: transactions,
@@ -93,7 +95,7 @@ export function TransactionHistory() {
             }}>
             <NotifyIcon />
             <Text style={notificationStyles.emptyNotificationText}>
-              OOOPS! It’s Empty
+              {t("OOOPS! It’s Empty")}
             </Text>
           </View>
         </ScrollView>

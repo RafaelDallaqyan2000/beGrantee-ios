@@ -8,6 +8,7 @@ import {
 import ErrorImage from '../../images/ErrorImage';
 import React from 'react';
 import {window } from "../../screens";
+import { useTranslation } from 'react-i18next';
 
 type ErrorScreenType = {
   loadingScreen?: any;
@@ -19,6 +20,9 @@ export function ErrorScreen({
   refresh,
   marginTop = 105,
 }: ErrorScreenType) {
+
+  const {t} = useTranslation();
+  
   return (
     <ScrollView
       style={errorStyle.errorScreen}
@@ -33,7 +37,7 @@ export function ErrorScreen({
       <View style={[errorStyle.errorContainer, {marginTop}]}>
         <ErrorImage />
         <Text style={errorStyle.errorText}>
-          An error occurred, {'\n'} please try again
+          {t("An error occurred")},{'\n'} {t("please try again")}
         </Text>
       </View>
     </ScrollView>
