@@ -8,6 +8,7 @@ import {ContactInfo} from '../ContactInfo';
 import {useDispatch, useSelector} from 'react-redux';
 import EmptyServiceScreenInfo from '../../../../images/EmptyServiceScreenInfo';
 import {handleChange} from '../../../../store';
+import { useTranslation } from 'react-i18next';
 
 enum NavItemType {
   PricingId = 1,
@@ -25,11 +26,7 @@ interface ServiceDetailsType {
   containerRef?: any;
 }
 
-const navBarItems = [
-  {id: 1, text: 'Pricing'},
-  {id: 2, text: 'Details'},
-  {id: 3, text: 'How it works'},
-];
+
 
 export function ServiceDetailsBody({
   subpage,
@@ -40,6 +37,13 @@ export function ServiceDetailsBody({
   const [info, setInfo] = useState<string>('');
   const detailsInfo = useSelector((store: any) => store.reducer?.detailsInfo);
   const pricingInfo = useSelector((store: any) => store.reducer?.pricingInfo);
+  const {t} = useTranslation();
+
+  const navBarItems = [
+    {id: 1, text: t('Pricing')},
+    {id: 2, text: t('Details')},
+    {id: 3, text: t('How it works')},
+  ];
 
   const showMore = useSelector(
     (store: any) => store.reducer?.showMoreInServiceScreen,
@@ -92,7 +96,7 @@ export function ServiceDetailsBody({
     <View style={serviceDetailsBodyStyle.emptyInfoContainer}>
       <EmptyServiceScreenInfo />
       <Text style={serviceDetailsBodyStyle.emptyInfoText}>
-        OOOPS! It’s Empty
+        {t("OOOPS! It's Empty")}
       </Text>
     </View>
   );

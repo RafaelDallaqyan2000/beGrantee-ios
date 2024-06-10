@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React, {useContext} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
+  ChooseLanguageScreen,
   PhoneNumberScreen,
   PrivacyPolicyWithHeader,
   TermsAndConditionsScreen,
@@ -35,6 +36,7 @@ export type StackNavigatorParamList = {
   TeamsAndConditions: never;
   PrivacyPolicyWithHeader: never;
   TermsAndConditions: never;
+  ChooseLanguage: never;
 };
 
 const Stack = createStackNavigator<StackNavigatorParamList>();
@@ -48,6 +50,7 @@ export function NavigationScreens() {
         <Stack.Navigator>
           {!token ? (
             <Stack.Group screenOptions={{headerShown: false}}>
+              <Stack.Screen name="ChooseLanguage" component={ChooseLanguageScreen} />
               <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen} />
 
               <Stack.Screen
@@ -98,15 +101,3 @@ export function NavigationScreens() {
     </SafeAreaProvider>
   );
 }
-
-const style = StyleSheet.create({
-  titleStyle: {
-    color: '#333333',
-    fontFamily: 'NotoSansArmneian-SemiBold',
-    fontWeight: '600',
-    fontSize: 24,
-    lineHeight: 32,
-    paddingTop: 15,
-    textAlign: 'center',
-  },
-});

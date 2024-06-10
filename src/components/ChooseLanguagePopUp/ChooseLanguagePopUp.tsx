@@ -18,13 +18,10 @@ export function ChooseLanguagePopUp({
     openPopUp,
 }: ChooseLanguageType) {
 
-    const selectedLanguage = useSelector((state: any) => state.reducer.selectedLanguage)
-    const dispatch = useDispatch();
     const {i18n} = useTranslation();
 
     const handlePressLanguage:any = (language:string) => {
         handleSelectLanguage(language);
-        dispatch(handleChange('selectedLanguage', language));
         i18n.changeLanguage(language);
         closePopUp();
     };
@@ -46,7 +43,7 @@ export function ChooseLanguagePopUp({
             >
                 <Text style={[
                     styles.text,
-                     {color: selectedLanguage === 'en' ? '#3875F6' : '#333333'}
+                     {color: i18n.language === 'en' ? '#3875F6' : '#333333'}
                 ]}>
                     English(US)
                 </Text>
@@ -57,7 +54,7 @@ export function ChooseLanguagePopUp({
             >
                 <Text style={[
                     styles.text,
-                     {color: selectedLanguage === 'hy' ? '#3875F6' : '#333333'}
+                     {color: i18n.language === 'hy' ? '#3875F6' : '#333333'}
                 ]}>
                     Հայերեն
                 </Text>
@@ -68,7 +65,7 @@ export function ChooseLanguagePopUp({
             >
                 <Text style={[
                     styles.text,
-                     {color: selectedLanguage === 'ru' ? '#3875F6' : '#333333'}
+                     {color: i18n.language === 'ru' ? '#3875F6' : '#333333'}
                 ]}>
                     Русский
                 </Text>

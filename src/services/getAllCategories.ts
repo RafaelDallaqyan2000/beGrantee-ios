@@ -11,6 +11,7 @@ export function getAllCategories({token, searchText}: GetAllCategoriesType) {
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`, // notice the Bearer before your token
+        
       },
     })
     .then(res => res.data.data);

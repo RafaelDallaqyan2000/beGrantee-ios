@@ -6,9 +6,12 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import BackIcon from '../../icons/BackIcon';
 import {useNavigation} from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 
 export function CameraDontAllowScreen() {
   const navigation = useNavigation();
+  const {t} = useTranslation();
+
   const handleClickOpenSettings = () => {
     Linking.openSettings();
   };
@@ -25,20 +28,20 @@ export function CameraDontAllowScreen() {
           style={dontAllowCameraStyles.backContainer}>
           <BackIcon />
         </TouchableOpacity>
-        <Text style={dontAllowCameraStyles.pageTitle}>Camera</Text>
+        <Text style={dontAllowCameraStyles.pageTitle}>{t('Camera')}</Text>
       </View>
       <View style={dontAllowCameraStyles.textContainer}>
         <BlueCamera />
         <Text style={dontAllowCameraStyles.title}>
-          Allow to access your camera
+          {t('Allow to access your camera')}
         </Text>
         <Text style={dontAllowCameraStyles.description}>
-          This lets you share photos preview effects.
+          {t('This lets you share photos preview effects.')}
         </Text>
         <TouchableOpacity
           style={dontAllowCameraStyles.settingsContainer}
           onPress={handleClickOpenSettings}>
-          <Text style={dontAllowCameraStyles.settings}>Open Settings</Text>
+          <Text style={dontAllowCameraStyles.settings}>{t('Open Settings')}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

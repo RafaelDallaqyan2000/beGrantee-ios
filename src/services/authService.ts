@@ -7,6 +7,7 @@ type LoginParams = {
   phoneCodeId?: never | number;
   phone?: string;
   codeId?: number;
+  hashCode?: string
 };
 
 export function loginByPhone(params: LoginParams): Promise<ResponseModel> {

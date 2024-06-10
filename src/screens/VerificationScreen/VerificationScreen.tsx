@@ -22,6 +22,7 @@ import {WelcomeScreen} from './WelcomeScreen/WelcomeScreen';
 import SecureStorage from 'react-native-encrypted-storage';
 import {SmsVerification} from '../../components';
 import {window} from '../../screens';
+import { useTranslation } from 'react-i18next';
 
 type RouteProps = RouteProp<StackNavigatorParamList, 'Verification'>;
 
@@ -34,6 +35,7 @@ export function VerificationScreen() {
   const [date, setDate] = useState(new Date().getTime());
   const [openWelcomePopUp, setOpenWelcomePopUp] = useState(false);
   const {phoneNumber, phoneCodeId, getResendCode} = route.params;
+  const {t} = useTranslation();
 
   const verifyCodeRef = useRef<TextInput>();
 
@@ -138,19 +140,19 @@ export function VerificationScreen() {
             </Pressable>
 
             <Text style={verificationScreenStyle.topicOTP}>
-              OTP Verification
+              {t('OTP Verification')}
             </Text>
           </View>
 
           <View style={verificationScreenStyle.mainContainer}>
             <View style={verificationScreenStyle.body}>
               <Text style={[globalStyles.screenTitle, {marginBottom: 0}]}>
-                Enter the code
+                {t('Enter the code')}
               </Text>
 
               <Text
                 style={[globalStyles.text, verificationScreenStyle.subtitle]}>
-                We just sent you a 4-digit verification code to +374******
+                {t('We just sent you a 4-digit verification code to')} +374******
                 {phoneNumber.slice(phoneNumber.length - 2)}
               </Text>
               </View>
@@ -194,7 +196,7 @@ export function VerificationScreen() {
                   </Text>
                 ) : s <= 0 ? (
                   <Text style={[verificationScreenStyle.incorrectCode]}>
-                    Empty OTP
+                    {t('Empty OTP')}
                   </Text>
                 ) : null}
               </View>
@@ -203,7 +205,7 @@ export function VerificationScreen() {
                 keyboardVerticalOffset={window.height / 2 - 40}>
                 <Text
                   style={[globalStyles.text, verificationScreenStyle.subtitle]}>
-                  Didn’t receive any code?
+                  {t("Didn't receive any code?")}
                 </Text>
                 <View
                   style={{
@@ -221,7 +223,7 @@ export function VerificationScreen() {
                         textDecorationLine: 'underline',
                       },
                     ]}>
-                    Resend OTP
+                    {t('Resend OTP')}
                   </Text>
                   {s > 0 ? (
                     <Text
@@ -229,7 +231,7 @@ export function VerificationScreen() {
                         verificationScreenStyle.resendCode,
                         {color: '#3875F6'},
                       ]}>
-                      in 00:
+                      {t('in')} 00:
                       {s.toString().length < 2 ? `0${s}` : s}
                     </Text>
                   ) : null}

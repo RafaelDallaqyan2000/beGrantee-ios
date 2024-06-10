@@ -17,13 +17,14 @@ import {AuthContext} from '../../../App';
 import {LoadingNotificationScreen} from '../../LoadingScreens';
 import {NotificationItemType} from '../../components/NotificationItem';
 import {window} from '../index.ts';
+import { useTranslation } from 'react-i18next';
 
 export function NotificationScreen() {
   const [loadingNotificationScreen, setLoadingNotificationScreen] =
     useState(true);
   const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
-
+  const {t} = useTranslation();
   const {token} = useContext(AuthContext);
 
   const {} = useQuery({
@@ -41,6 +42,8 @@ export function NotificationScreen() {
     initialData: [],
     queryFn: () => getNotifications({token}),
     onSuccess: data => {
+      console.log(data[0].createdUtcDate, '77777777777');
+      
       if (!data.length) {
         setShowEmptyScreen(true);
       } else {
@@ -94,7 +97,7 @@ export function NotificationScreen() {
           }>
           <View style={{alignItems: 'center'}}>
             <Text style={notificationStyles.ifNotNotification}>
-              Notification
+              {t('Notification')}
             </Text>
             <View
               style={{
@@ -104,7 +107,7 @@ export function NotificationScreen() {
               }}>
               <NotifyIcon />
               <Text style={notificationStyles.emptyNotificationText}>
-                OOOPS! It’s Empty
+                {t("OOOPS! It's Empty")}
               </Text>
             </View>
           </View>
@@ -116,7 +119,7 @@ export function NotificationScreen() {
   // @ts-ignore
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
-      <Text style={notificationStyles.notificationTitle}>Notification</Text>
+      <Text style={notificationStyles.notificationTitle}>{t('Notification')}</Text>
       <ScrollView
         style={{backgroundColor: '#F8F8F9'}}
         refreshControl={

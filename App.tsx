@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useCallback, useEffect, useState} from 'react';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SecureStorage from 'react-native-encrypted-storage';
 import {Text} from 'react-native';
@@ -6,7 +6,7 @@ import globalStyles from './src/styles/globalStyles';
 import {Provider} from 'react-redux';
 import store from './src/store';
 import {NavigationScreens} from './src/navigation';
-import {registerListenerWithFCM } from './src/utils/fcmHelper';
+import {getFcmToken, registerListenerWithFCM } from './src/utils/fcmHelper';
 import './src/localization/i18n';
 
 
@@ -33,12 +33,12 @@ function App(): JSX.Element {
       })
       .finally(() => setCheckingToken(false));
 
-      // getFcmToken();
+      getFcmToken();
 
   }, []);
 
   useEffect(() => {
-    const unsubscribe = registerListenerWithFCM();
+    const unsubscribe = registerListenerWithFCM();    
     return unsubscribe;
   }, []);
 
@@ -52,7 +52,9 @@ function App(): JSX.Element {
   //     // } else {
   //     //   await firebase.messaging().requestPermission();
   //     // }
-  //
+  
+  //     console.log(fcmToken, '<<<<<');
+      
   //     if (fcmToken != null) {
   //       await SecureStorage.setItem('fcmToken', 'fcmToken');
   //     }

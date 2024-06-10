@@ -1,9 +1,9 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { en, hy, ru } from "./translations";
+import {hy, ru } from "./translations";
 import SecureStorage from 'react-native-encrypted-storage';
 
-const STORE_LANGUAGE_KEY = "settings.lang";
+const STORE_LANGUAGE_KEY = "language";
 
 const languageDetectorPlugin: any = {
     type: "languageDetector",
@@ -29,14 +29,13 @@ const languageDetectorPlugin: any = {
     cacheUserLanguage: async function (language: string) {
         try {
             //save a user's language choice in Async storage
+            console.log();
+            
             await SecureStorage.setItem(STORE_LANGUAGE_KEY, language);
         } catch (error) { }
     },
 };
 const resources = {
-    en: {
-        translation: en,
-    },
     hy: {
         translation: hy,
     },

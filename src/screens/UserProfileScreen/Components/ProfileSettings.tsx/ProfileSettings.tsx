@@ -57,9 +57,7 @@ export function ProfileSettings({
   //   callbackSwitchNotification();
   // };
 
-  const {t} = useTranslation();
-
-  const selectedLanguage = useSelector((state: any) => state.reducer.selectedLanguage);
+  const {t, i18n} = useTranslation();
   
   return (
     <>
@@ -87,7 +85,7 @@ export function ProfileSettings({
        <View style={profileSettingsStyle.titleContainer}>
          <Text style={profileSettingsStyle.settingsName}>{t("Language")}</Text>
          <Text style={[profileSettingsStyle.settingsName, {color: '#3875F6'}]}>
-           {languages[selectedLanguage]}
+           {languages[i18n.language]}
          </Text>
        </View>
       </TouchableOpacity>

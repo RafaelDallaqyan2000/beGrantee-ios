@@ -11,12 +11,14 @@ import {LoadingPackagesScreen} from '../../LoadingScreens';
 import {useFocusEffect} from '@react-navigation/native';
 import {ErrorScreen} from '../../components';
 import {window} from "../../screens";
+import { useTranslation } from 'react-i18next';
 
 export function PackagesScreen() {
   const {token}: any = useContext(AuthContext);
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
   const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
+  const {t} = useTranslation();
 
   const {
     data: packages,
@@ -83,7 +85,7 @@ export function PackagesScreen() {
           }}>
           <NotifyIcon />
           <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
+            {t("OOOPS! It's Empty")}
           </Text>
         </View>
       </ScrollView>

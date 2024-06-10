@@ -78,5 +78,7 @@ const errorStyle = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 32,
     letterSpacing: 0.48,
+    textAlign: 'center',
+    paddingHorizontal: 10
   },
 });

@@ -4,6 +4,7 @@ import {chooseCardPackageItemStyle} from './chooseCardPackageItemStyle';
 import {formatDateToMMD, isValidInput} from '../../helpers';
 import {PackageCardModel} from '../../models/packages';
 import {} from '../../helpers/isValidInput';
+import { useTranslation } from 'react-i18next';
 
 interface ChooseCardPackageItemProps {
   data: PackageCardModel;
@@ -22,6 +23,7 @@ export function ChooseCardPackageItem({
 }: ChooseCardPackageItemProps) {
   const [amount, setAmount] = useState<string | undefined>('');
   const [focused, setFocused] = useState(false);
+  const {t} = useTranslation();
 
   const handleChange = (text: string) => {
     if (+text <= data.amount && isValidInput(text)) {
@@ -42,7 +44,7 @@ export function ChooseCardPackageItem({
         </Text>
         <Text
           style={[chooseCardPackageItemStyle.titleText, {marginBottom: 12}]}>
-          Expiration: {formatDateToMMD(data.endDate)}
+          {t('Expiration')}: {formatDateToMMD(data.endDate)}
         </Text>
       </View>
       <View>
@@ -52,12 +54,12 @@ export function ChooseCardPackageItem({
             {marginBottom: 9},
           ]}>
           <Text style={chooseCardPackageItemStyle.titleText}>
-            Available balance(AMD)
+            {t('Available balance(AMD)')}
           </Text>
           <Text style={chooseCardPackageItemStyle.total}>{data?.amount}</Text>
         </View>
         <View style={chooseCardPackageItemStyle.balanceContainer}>
-          <Text style={chooseCardPackageItemStyle.titleText}>Payment(AMD)</Text>
+          <Text style={chooseCardPackageItemStyle.titleText}>{t('Payment(AMD)')}</Text>
           <TextInput
             id={data.id}
             style={[

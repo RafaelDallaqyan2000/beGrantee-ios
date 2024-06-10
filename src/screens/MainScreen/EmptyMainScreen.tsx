@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {RefreshControl, ScrollView, View} from 'react-native';
+import {RefreshControl, ScrollView, Text, View} from 'react-native';
 import {PackageCard, ServiceCard, ServiceTypeList} from '../../components';
 import {ServiceModel, ServiceType} from '../../models/services';
 import {useNavigation} from '@react-navigation/native';
@@ -11,6 +11,9 @@ import {useSelector} from 'react-redux';
 import {ErrorMainScreen} from './ErrorMainScreen';
 import {LoadingMainScreen} from '../../LoadingScreens';
 import {window} from '../index';
+import { NotifyIcon } from '../../icons';
+import { notificationStyles } from '../NotificationScreen/notificationStyles';
+import { useTranslation } from 'react-i18next';
 
 type EmptyMainType = {
   refreshScreen: any;
@@ -29,6 +32,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [errorScreen, setErrorScreen] = useState(false);
   const [emptyCube, setEmptyCube] = useState(false);
+  const {t} = useTranslation();
 
   const {data: allCategories, refetch: refetchServiceTypes} = useQuery({
     queryKey: [searchText],
@@ -95,10 +99,10 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
             justifyContent: 'center',
             height: window.height - 200,
           }}>
-          {/*<NotifyIcon />*/}
-          {/*<Text style={notificationStyles.emptyNotificationText}>*/}
-          {/*  OOOPS! It’s Empty*/}
-          {/*</Text>*/}
+          <NotifyIcon />
+          <Text style={notificationStyles.emptyNotificationText}>
+           {t("OOOPS! It's Empty")}
+          </Text>
         </View>
       </ScrollView>
     );

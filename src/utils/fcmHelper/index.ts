@@ -5,6 +5,7 @@ import SecureStorage from 'react-native-encrypted-storage'
 
 //method was called to get FCM tiken for notification
 export const getFcmToken = async () => {
+  
   let token = null;
   await checkApplicationNotificationPermission();
   await registerAppWithFCM();
@@ -15,6 +16,8 @@ export const getFcmToken = async () => {
   } catch (error) {
     console.log('getFcmToken Device Token error ', error);
   }
+  console.log(token, '<<<<<');
+  
   return token;
 };
 
@@ -80,6 +83,7 @@ export const checkApplicationNotificationPermission = async () => {
 
 //method was called to listener events from firebase for notification triger
 export function registerListenerWithFCM() {
+  
   const unsubscribe = messaging().onMessage(async remoteMessage => {
     console.log('onMessage Received : ', JSON.stringify(remoteMessage));
     if (

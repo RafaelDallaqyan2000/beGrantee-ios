@@ -15,3 +15,4 @@ export {UserProfileScreen} from './UserProfileScreen';
 export {QRCodeScannerScreen} from './QRCodeScannerScreen';
 export {PackagesScreen} from './PackagesScreen/PackagesScreen.tsx';
 export {CompaniesScreen} from './CompaniesScreen/CompaniesScreen.tsx';
+export { ChooseLanguageScreen } from './ChooseLanguageScreen/ChooseLanguageScreen.tsx';

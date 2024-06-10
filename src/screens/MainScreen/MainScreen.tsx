@@ -34,6 +34,7 @@ import {ErrorMainScreen} from './ErrorMainScreen';
 import {window} from '../index';
 import {notificationStyles} from '../NotificationScreen/notificationStyles';
 import {NotifyIcon} from '../../icons';
+import { useTranslation } from 'react-i18next';
 
 export function MainScreen() {
   // #region States
@@ -54,6 +55,7 @@ export function MainScreen() {
 
   const searchText = useSelector((store: any) => store.reducer?.searchText);
   const dispatch: any = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     dispatch(handleChange('screenTitle', 'mainScreen'));
@@ -167,7 +169,7 @@ export function MainScreen() {
     }
   };
 
-  const handleServiceOpen = (service: ServiceModel) => {
+  const handleServiceOpen = (service: ServiceModel) => {    
     return navigation.navigate('Service' as never, {service} as never);
   };
 
@@ -227,7 +229,7 @@ export function MainScreen() {
           }}>
           <NotifyIcon />
           <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
+            {t("OOOPS! It's Empty")}
           </Text>
         </View>
       </ScrollView>
@@ -259,7 +261,7 @@ export function MainScreen() {
               selectedType={selectedServiceType}
             />
             {loadingServices ? (
-              <Text style={[globalStyles.title, {margin: 16}]}>Loading...</Text>
+              <Text style={[globalStyles.title, {margin: 16}]}>{t('Loading...')}</Text>
             ) : (
               services.length > 0 &&
               services?.map((s: ServiceModel) => (

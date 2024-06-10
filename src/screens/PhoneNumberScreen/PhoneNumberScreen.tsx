@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import globalStyles from '../../styles/globalStyles';
 import {
   Keyboard,
@@ -7,7 +7,6 @@ import {
   ScrollView,
   StatusBar,
   Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -19,24 +18,22 @@ import SvgPersonInLogin from '../../images/SvgSignInImage';
 import phoneNumberStyles from './phoneNumberStyles';
 import AppButton from '../../components/AppButton/AppButton';
 import {SelectIcon} from '../../icons';
-import LogoAnimation from './AnimationLogoScreen/AnimationLogo';
 import WrongIcon from '../../icons/WrongIcon';
 import {PrivacyPolicyAndTerms} from '../../components';
 import CustomInput from '../../components/CustomInput/CustomInput.tsx';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import BackIcon from '../../icons/BackIcon.tsx';
 // import {getNativePropsForTNode} from 'react-native-render-html';
 
 export const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [countryCode, setCountryCode] = useState<CountryCode>();
+  const [countryCode] = useState<CountryCode>();
   const [error, setError] = useState<string>();
-  const [showAnimation, setShowAnimation] = useState(true);
   const [focusedInput, setFocusedInput] = useState(false);
   const [checkedPrivacyPolicy, setCheckedPrivacyPolicy] = useState(false);
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    setTimeout(() => setShowAnimation(false), 6000);
-  }, []);
+  const navigation: any = useNavigation();
+  const {t} = useTranslation();
 
   // const countryCodeQuery = useQuery({
   //   queryKey: [QueryRoute.countryCodes],
@@ -90,15 +87,7 @@ export const PhoneNumberScreen = () => {
     }
   };
 
-  if (showAnimation) {
-    return (
-      <TouchableOpacity
-        style={{flex: 1}}
-        onPress={() => setShowAnimation(false)}>
-        <LogoAnimation />
-      </TouchableOpacity>
-    );
-  }
+  const handlePressBackBtn = () => navigation.navigate('ChooseLanguage')
 
   return (
     <ScrollView style={globalStyles.container}>
@@ -107,10 +96,17 @@ export const PhoneNumberScreen = () => {
           globalStyles.screenContainer,
           {justifyContent: 'space-evenly'},
         ]}>
+
+      <TouchableOpacity 
+        style={{height: 30,  width: 40}} 
+        onPress={handlePressBackBtn}
+      >
+        <BackIcon/>
+      </TouchableOpacity>
         <View>
           <Text style={globalStyles.screenTitle}>BeGrantee</Text>
-          <Text style={globalStyles.text}>Benefits App</Text>
-          <Text style={phoneNumberStyles.topic}>Login to your account</Text>
+          <Text style={globalStyles.text}>{t('Benefits App')}</Text>
+          <Text style={phoneNumberStyles.topic}>{t('Login to your account')}</Text>
         </View>
 
         {!focusedInput && (
@@ -127,7 +123,7 @@ export const PhoneNumberScreen = () => {
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={phoneNumberStyles.footer}>
               <View>
-                <Text style={phoneNumberStyles.inputLabel}>Phone number</Text>
+                <Text style={phoneNumberStyles.inputLabel}>{t('Phone number')}</Text>
 
                 <CustomInput
                   id={'textInput'}
@@ -181,7 +177,7 @@ export const PhoneNumberScreen = () => {
                               ? phoneNumberStyles.error
                               : phoneNumberStyles.codeNumber
                           }>
-                          ARM
+                          {t('ARM')}
                         </Text>
                         <SelectIcon error={error} />
                       </View>
@@ -211,7 +207,7 @@ export const PhoneNumberScreen = () => {
               </View>
 
               <AppButton
-                title="Request OTP"
+                title={t('Request OTP')}
                 isLoading={signInQuery.isLoading}
                 disabled={
                   signInQuery.isLoading || phoneNumber.length < 8 || !!error

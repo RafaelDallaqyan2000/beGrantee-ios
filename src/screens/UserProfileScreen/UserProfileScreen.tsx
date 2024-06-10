@@ -31,7 +31,7 @@ export function UserProfileScreen() {
 
   const handleCompaniesPress = () => navigate('Companies' as never);
   const handlePackagesPress = () => navigate('Packages' as never);
-  const handleLanguagePress = () => {setOpenLanguagePopUp(true)};
+  const handleLanguagePress = () => setOpenLanguagePopUp(true);
   const handlePrivacyPolicyPress = () => navigate('PrivacyPolicy' as never);
   const handleLiveChatPress = () => navigate('LiveChat' as never);
 

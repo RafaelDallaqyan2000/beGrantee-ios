@@ -5,8 +5,11 @@ import {searchInputStyle} from './searchInputStyle';
 import {CloseIcon} from '../../icons';
 import {connect} from 'react-redux';
 import {handleChange} from '../../store';
+import { useTranslation } from 'react-i18next';
 
 function SearchInputContainer({searchValue, handleMainChange}: any) {
+
+  const {t} = useTranslation();
 
   const handleChange = (e: string) => {
     handleMainChange('searchValue', e);
@@ -28,7 +31,7 @@ function SearchInputContainer({searchValue, handleMainChange}: any) {
         <TextInput
           style={searchInputStyle.searchInput}
           placeholderTextColor={'rgba(123, 123, 123, 1)'}
-          placeholder={'Search'}
+          placeholder={t('Search')}
           value={searchValue}
           onChangeText={handleChange}
           onSubmitEditing={handleSubmit}

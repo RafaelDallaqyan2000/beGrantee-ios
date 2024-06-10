@@ -12,6 +12,7 @@ import {HubConnectionState} from '@microsoft/signalr';
 import {cancelTransaction} from '../../services/getTransactionData';
 import {PackageAmountModel} from '../../models/packages';
 import {window } from "../../screens";
+import { useTranslation } from 'react-i18next';
 
 type LoadingScreenType = {
   title?: string;
@@ -23,12 +24,13 @@ type LoadingScreenType = {
 
 export function LoadingScreen({
   token,
-  title = 'Loading',
+  title,
   transactionIds,
   companyAmounts,
 }: LoadingScreenType) {
   const [openCancelledPopUp, setOpenCancelledPopUp] = useState(false);
   const [date] = useState(new Date().getTime());
+  const {t} = useTranslation();
 
   const dispatch: any = useDispatch();
 
@@ -97,24 +99,23 @@ export function LoadingScreen({
                 chooseCardPopUpStyle.totalText,
                 loadingScreenStyle.title,
               ]}>
-              The payment is being processed
+              {t('The payment is being processed')}
             </Text>
             <Text
               style={[
                 chooseCardPackageItemStyle.total,
                 loadingScreenStyle.subTitle,
               ]}>
-              The process is currently underway. It will be automatically
-              confirmed after {s} seconds.
+              {`${t('The process is currently underway. It will be automatically confirmed after')} ${s} ${t(' second')}`}
             </Text>
           </View>
 
           <View style={loadingScreenStyle.loadingContainer}>
             <ActivityIndicator size={'large'} color="#3875F6" />
-            <Text style={chooseCardPopUpStyle.loadingText}>{title}</Text>
+            <Text style={chooseCardPopUpStyle.loadingText}>{t("Loading...")}</Text>
           </View>
           <AppButton
-            title="Cancel"
+            title={t('Cancel')}
             textStyle={[chooseCardPopUpStyle.btnText, {color: '#FFF'}]}
             onPress={handleCancelPress}
             style={[
@@ -128,14 +129,14 @@ export function LoadingScreen({
           {openCancelledPopUp && (
             <>
               <View style={loadingScreenStyle.popUp}>
-                <Text style={loadingScreenStyle.cancelled}>Cancelled?</Text>
+                <Text style={loadingScreenStyle.cancelled}>{t('Cancelled')}?</Text>
                 <Text style={loadingScreenStyle.cancelledInfo}>
-                  Are you sure want to cancel the request?
+                  {t('Are you sure want to cancel the request?')}
                 </Text>
               </View>
               <View style={loadingScreenStyle.btnsContainer}>
                 <AppButton
-                  title="Yes"
+                  title={t('Yes')}
                   textStyle={loadingScreenStyle.btnText}
                   onPress={handleCanceledTransaction}
                   style={[
@@ -148,7 +149,7 @@ export function LoadingScreen({
                   secondViewStyle={{padding: 0, alignItems: 'center'}}
                 />
                 <AppButton
-                  title="No"
+                  title={t('No')}
                   textStyle={[loadingScreenStyle.btnText, {color: '#344054'}]}
                   onPress={() => setOpenCancelledPopUp(false)}
                   style={[loadingScreenStyle.btn, {}]}

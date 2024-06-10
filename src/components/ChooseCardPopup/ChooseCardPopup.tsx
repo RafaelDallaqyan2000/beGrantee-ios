@@ -30,6 +30,7 @@ import {getTransactionData} from '../../services';
 import {AuthContext} from '../../../App';
 import {useKeyboard} from '../../hooks/useKeyboard';
 import {window} from '../../screens';
+import { useTranslation } from 'react-i18next';
 
 interface ChooseCardPopupProps {
   data?: PackageModel[];
@@ -62,6 +63,7 @@ function ChooseCardPopupContainer({
   );
   const [success] = useState(true);
   const navigation = useNavigation();
+  const {t} = useTranslation();
 
   const total = useMemo(
     () =>
@@ -146,15 +148,15 @@ function ChooseCardPopupContainer({
           <TouchableOpacity onPress={onClose} style={chooseCardPopUpStyle.closeBtn}>
             <BackIcon  />
           </TouchableOpacity>
-          <Text style={chooseCardPopUpStyle.title}>No such benefit</Text>
+          <Text style={chooseCardPopUpStyle.title}>{t('No such benefit')}</Text>
         </View>
         <View style={chooseCardPopUpStyle.emptyPackageImage}>
           <EmptyPackageImage />
           <Text style={successOrErrorPupUpStyle.message}>
-            QR is not available
+            {t('QR is not available')}
           </Text>
           <Text style={successOrErrorPupUpStyle.info}>
-            You have no active benefit package that includes this service.
+            {t('You have no active benefit package that includes this service.')}
           </Text>
         </View>
       </SafeAreaView>
@@ -181,10 +183,10 @@ function ChooseCardPopupContainer({
             <BackIcon />
           </Pressable>
 
-          <Text style={chooseCardPopUpStyle.title}>Choose package</Text>
+          <Text style={chooseCardPopUpStyle.title}>{t('Choose package')}</Text>
         </View>
 
-        <Text style={chooseCardPopUpStyle.topic}>Payment</Text>
+        <Text style={chooseCardPopUpStyle.topic}>{t('Payment')}</Text>
 
         <ScrollView style={{flex: 1, marginTop: 16, marginBottom: 8}}>
           {data?.map(pkg => (
@@ -204,14 +206,14 @@ function ChooseCardPopupContainer({
             {width: '100%', marginBottom: 4},
           ]}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={chooseCardPopUpStyle.totalText}>Total (AMD)</Text>
+            <Text style={chooseCardPopUpStyle.totalText}>{t('Total')} ({t('AMD')})</Text>
             <Text style={chooseCardPopUpStyle.totalText}>{total}</Text>
           </View>
 
           <View style={{alignItems: 'center', marginTop: 42}}>
             <AppButton
               disabled={total === 0}
-              title="Checkout"
+              title={t('Checkout')}
               textStyle={[
                 chooseCardPopUpStyle.btnText,
                 {color: total > 0 ? '#FFF' : '#7B7B7B'},

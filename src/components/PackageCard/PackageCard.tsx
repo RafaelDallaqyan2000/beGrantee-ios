@@ -5,6 +5,7 @@ import globalStyles from '../../styles/globalStyles';
 import packageCardStyle from './packageCardStyle';
 import {formatDateToMMD} from '../../helpers';
 import {HOST} from '../../services';
+import { useTranslation } from 'react-i18next';
 
 interface PackageCardProps {
   data: PackageModel;
@@ -12,29 +13,29 @@ interface PackageCardProps {
 }
 
 export function PackageCard({data, isEmpty = false}: PackageCardProps) {
-  if (isEmpty) {
-    return (
+
+  const {t} = useTranslation();
+
+  return (
+    isEmpty ? (
       <View style={[packageCardStyle.container, {backgroundColor: '#8EAEFD'}]}>
         <View style={[packageCardStyle.body, {justifyContent: 'center'}]}>
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"
             style={packageCardStyle.companyInfo}>
-            No active benefits
+            {t('No active benefits')}
           </Text>
         </View>
         <View
           style={[globalStyles.flexRowBetween, packageCardStyle.dateContainer]}>
-          <Text style={packageCardStyle.amd}>AMD -</Text>
+          <Text style={packageCardStyle.amd}>{t('AMD')} -</Text>
           <Text style={[packageCardStyle.date, {textAlign: 'right'}]}>
-            Expiration: --/--
+            {t('Expiration')}: --/--
           </Text>
         </View>
       </View>
-    );
-  }
-
-  return (
+    ) : (
     <View style={packageCardStyle.container}>
       <View style={packageCardStyle.body}>
         {data.companyLogo ? (
@@ -62,12 +63,13 @@ export function PackageCard({data, isEmpty = false}: PackageCardProps) {
           numberOfLines={1}
           ellipsizeMode="tail"
           style={packageCardStyle.amd}>
-          AMD {data.amount}
+          {t('AMD')} {data.amount}
         </Text>
         <Text style={packageCardStyle.date}>
-          {data.endDate ? `Expiration: ${formatDateToMMD(data.endDate)}` : null}
+          {data.endDate ? `${t('Expiration')}: ${formatDateToMMD(data.endDate)}` : null}
         </Text>
       </View>
     </View>
+    )
   );
 }

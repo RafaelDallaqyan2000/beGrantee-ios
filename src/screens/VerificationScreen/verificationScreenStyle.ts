@@ -36,7 +36,7 @@ const verificationScreenStyle = StyleSheet.create({
   },
   subtitle: {
     color: '#7B7B7B',
-    width: window.width / 2,
+    // width: window.width / 2,
   },
   incorrectCode: {
     color: '#F05F5766',

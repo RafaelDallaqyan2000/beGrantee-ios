@@ -3,6 +3,7 @@ import {ServiceType} from '../../models/services';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import serviceTypeListStyle from './serviseTypeListStyle';
+import { useTranslation } from 'react-i18next';
 
 interface ServiceTypeListProps {
   data?: ServiceType[];
@@ -17,12 +18,15 @@ export function ServiceTypeList({
   selectedType,
   handleStyle = {},
 }: ServiceTypeListProps) {
+
+  const {t} = useTranslation();
+
   const handlePress = (serviceType: ServiceType | null) => {
     onTypeSelect(serviceType);
   };
   return (
     <View>
-      <Text style={serviceTypeListStyle.category}>Category</Text>
+      <Text style={serviceTypeListStyle.category}>{t('Category')}</Text>
       <ScrollView
         style={[handleStyle, serviceTypeListStyle.navItemScrollContainer]}
         horizontal={true}>
@@ -46,7 +50,7 @@ export function ServiceTypeList({
                   selectedType && selectedType.id === 0 ? '#FFF' : '#2F2F2F',
               },
             ]}>
-            All
+            {t('All')}
           </Text>
         </TouchableOpacity>
 
