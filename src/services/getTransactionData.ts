@@ -6,6 +6,7 @@ interface TransactionType {
   date: Date;
   phone: number;
   serviceGUID: number | string;
+  branchId: number | string;
   total: number | string;
   companyAmounts: PackageAmountModel[];
   transactionIds: Array<any>

@@ -19,6 +19,7 @@ export interface HistoryDataProps {
   partnerName: string;
   total: string | number;
   status: keyof ColorType;
+  statusColor: string;
   transactions: any;
   serviceName?: string;
   createdUtcDate: string;
@@ -27,14 +28,6 @@ export interface HistoryDataProps {
 interface HistoryItemsProps {
   data: HistoryDataProps;
 }
-
-const colorWithStatus: ColorType = {
-  Rejected: '#FF6565',
-  Accepted: '#7ACD91',
-  Cancelled: '#FFC37E',
-  Pending: '#ED9F44',
-  Default: '#ED9F44',
-};
 
 export function ServiceHistoryItem({data}: HistoryItemsProps) {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
@@ -63,7 +56,7 @@ export function ServiceHistoryItem({data}: HistoryItemsProps) {
         <Text
           style={[
             transactionHistoryItemStyle.status,
-            {color: colorWithStatus[data?.status] || colorWithStatus.Default},
+            {color: data.statusColor ?? "orange"},
           ]}>
           {data?.status}
         </Text>

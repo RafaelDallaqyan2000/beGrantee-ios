@@ -41,9 +41,7 @@ export function NotificationScreen() {
     queryKey: [QueryRoute.notifications],
     initialData: [],
     queryFn: () => getNotifications({token}),
-    onSuccess: data => {
-      console.log(data[0].createdUtcDate, '77777777777');
-      
+    onSuccess: data => {      
       if (!data.length) {
         setShowEmptyScreen(true);
       } else {

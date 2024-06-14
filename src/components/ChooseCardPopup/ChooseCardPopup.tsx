@@ -36,7 +36,10 @@ interface ChooseCardPopupProps {
   data?: PackageModel[];
   isOpen: boolean;
   onClose: () => void;
-  qrCode: number | string;
+  qrCode: {
+    serviceGuid: string;
+    branchId: string;
+  };
   loadingSocket: boolean;
   handleChange: any;
   openTransactionMessagePopUp?: boolean;
@@ -62,7 +65,7 @@ function ChooseCardPopupContainer({
     new Map<number, PackageAmountModel>(),
   );
   const [success] = useState(true);
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   const {t} = useTranslation();
 
   const total = useMemo(
@@ -81,7 +84,8 @@ function ChooseCardPopupContainer({
           date: new Date(),
           phone: data[0].phoneNumber,
           transactionIds: [],
-          serviceGUID: qrCode,
+          serviceGUID: qrCode.serviceGuid,
+          branchId: qrCode.branchId,
           total,
           companyAmounts: Array.from(selectedPackages.values()),
         },

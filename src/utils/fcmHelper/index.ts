@@ -1,7 +1,7 @@
 import notifee, {EventType} from '@notifee/react-native';
 import messaging from '@react-native-firebase/messaging';
 import {PERMISSIONS, request} from 'react-native-permissions';
-import SecureStorage from 'react-native-encrypted-storage'
+import SecureStorage from 'react-native-encrypted-storage';
 
 //method was called to get FCM tiken for notification
 export const getFcmToken = async () => {

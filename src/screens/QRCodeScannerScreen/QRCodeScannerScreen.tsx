@@ -20,7 +20,7 @@ import { CameraDontAllowScreen } from '../CameraDontAllowScreen/CameraDontAllowS
 
 export function QRCodeScannerScreen() {
   const [openPackageListPopUp, setOpenPackageListPopUp] = useState(false);
-  const [serviceId, setServiceId] = useState<number | string>(0);
+  const [QrCode, setQrCode] = useState({serviceGuid: '', branchId: ''});
   const [isAccessCamera, setIsAccessCamera] = useState(false);
   const [isLoadingTransactionData, setIsLoadingTransactionData] =
     useState(false);
@@ -30,17 +30,20 @@ export function QRCodeScannerScreen() {
   const {token} = useContext(AuthContext);
 
   const {data: packages} = useQuery({
-    enabled: serviceId !== 0,
-    queryKey: [QueryRoute.services, serviceId, openPackageListPopUp],
-    queryFn: () => getPackagesByServiceId(token, serviceId),
+    queryKey: [QueryRoute.services, QrCode.serviceGuid, openPackageListPopUp],
+    queryFn: () => getPackagesByServiceId(token, QrCode.serviceGuid),
     onSuccess: () => setIsLoadingTransactionData(false),
     onError: () => setIsLoadingTransactionData(false),
   });
 
+  
   const onQRSuccess = (e: BarCodeReadEvent) => {
+    const qr = JSON.parse(e.data);
+    console.log(e.data, '<<<<');
+    
     setOpenPackageListPopUp(true);
     dispatch(handleChange('canceledTransaction', false));
-    setServiceId(e?.data);
+    setQrCode(qr);
     setIsLoadingTransactionData(true);
   };
 
@@ -81,7 +84,7 @@ export function QRCodeScannerScreen() {
         isOpen={openPackageListPopUp}
         onClose={closeCardPopup}
         data={packages?.data}
-        qrCode={serviceId}
+        qrCode={QrCode}
         isLoadingData={isLoadingTransactionData}
       />
     </TransactionSocketProvider>
