@@ -16,7 +16,7 @@ export const getFcmToken = async () => {
   } catch (error) {
     console.log('getFcmToken Device Token error ', error);
   }
-  console.log(token, '<<<<<');
+  console.log(token, '<<<<<Token');
   
   return token;
 };

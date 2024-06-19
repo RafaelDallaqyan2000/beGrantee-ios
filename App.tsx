@@ -6,9 +6,9 @@ import globalStyles from './src/styles/globalStyles';
 import {Provider} from 'react-redux';
 import store from './src/store';
 import {NavigationScreens} from './src/navigation';
-import {registerListenerWithFCM } from './src/utils/fcmHelper';
+import {getFcmToken, registerListenerWithFCM } from './src/utils/fcmHelper';
 import './src/localization/i18n';
-import { firebase } from '@react-native-firebase/messaging';
+import messaging, { firebase } from '@react-native-firebase/messaging';
 
 
 interface AuthContextValue {
@@ -34,8 +34,7 @@ function App(): JSX.Element {
       })
       .finally(() => setCheckingToken(false));
 
-      // getFcmToken();
-      getOrSetFCMToken()
+      getFcmToken();
 
   }, []);
 
@@ -44,26 +43,6 @@ function App(): JSX.Element {
     return unsubscribe;
   }, []);
 
-  const getOrSetFCMToken = useCallback(async () => {
-    try {
-      let fcmToken = await SecureStorage.getItem('fcmToken');
-      const enabled = await firebase.messaging().hasPermission();
-      if (enabled) {
-        // if not generate one on firebase and set on database and local storage
-        fcmToken = await firebase.messaging().getToken();
-      } else {
-        await firebase.messaging().requestPermission();
-      }
-  
-      console.log(fcmToken, '<<<<<');
-      
-      if (fcmToken != null) {
-        await SecureStorage.setItem('fcmToken', 'fcmToken');
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, [token]);
 
   if (checkingToken) {
     return <Text style={globalStyles.title}>Loading...</Text>;

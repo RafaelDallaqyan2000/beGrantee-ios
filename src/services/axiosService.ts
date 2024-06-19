@@ -13,7 +13,7 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    console.log(error, "<<<<<");
+    console.log(error, "<<<<Error");
     
     if (error?.response?.status === 401) {
       SecureStorage.removeItem('token').then(() => {

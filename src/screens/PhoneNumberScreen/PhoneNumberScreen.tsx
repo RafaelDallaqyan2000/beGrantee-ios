@@ -33,6 +33,7 @@ export const PhoneNumberScreen = () => {
   const [focusedInput, setFocusedInput] = useState(false);
   const [checkedPrivacyPolicy, setCheckedPrivacyPolicy] = useState(false);
   const navigation: any = useNavigation();
+  const [hashCode, setHashCode] = useState('');
   const {t} = useTranslation();
 
   // const countryCodeQuery = useQuery({
@@ -81,7 +82,7 @@ export const PhoneNumberScreen = () => {
     if (phoneNumber.length >= 8 && checkedPrivacyPolicy) {
       signInQuery.mutate({
         phoneCodeId: countryCode?.id ?? 1,
-        phoneNumber: phoneNumber,
+        phoneNumber,
         hashCode: 'string',
       });
     }
