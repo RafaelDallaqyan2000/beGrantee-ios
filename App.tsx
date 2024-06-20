@@ -8,7 +8,6 @@ import store from './src/store';
 import {NavigationScreens} from './src/navigation';
 import {getFcmToken, registerListenerWithFCM } from './src/utils/fcmHelper';
 import './src/localization/i18n';
-import messaging, { firebase } from '@react-native-firebase/messaging';
 
 
 interface AuthContextValue {

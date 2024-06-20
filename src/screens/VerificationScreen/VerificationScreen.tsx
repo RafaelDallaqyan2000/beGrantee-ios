@@ -63,13 +63,15 @@ export function VerificationScreen() {
     }
   };
 
-  const handleVerifyCode = () => {
+  const handleVerifyCode = async() => {
+    const deviceToken = await SecureStorage.getItem('fcmToken') ?? '';
+    
     if (code.length === 4) {
       return verifyCodeQuery?.mutate({
         verificationCode: code,
         phoneCodeId,
         phoneNumber,
-        deviceToken: 'fixed in front',
+        deviceToken,
       });
     }
   };

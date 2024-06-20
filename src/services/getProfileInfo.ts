@@ -18,7 +18,6 @@ export function editProfileImage(props: any) {
   const data = new FormData();
 
   // image.height = 2000;
-  console.log(image, 1111);
   data.append('file', {
     uri: image.uri,
     type: image.type,

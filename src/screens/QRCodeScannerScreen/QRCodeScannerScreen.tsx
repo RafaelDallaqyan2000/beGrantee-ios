@@ -39,7 +39,6 @@ export function QRCodeScannerScreen() {
   
   const onQRSuccess = (e: BarCodeReadEvent) => {
     const qr = JSON.parse(e.data);
-    console.log(e.data, '<<<<');
     
     setOpenPackageListPopUp(true);
     dispatch(handleChange('canceledTransaction', false));

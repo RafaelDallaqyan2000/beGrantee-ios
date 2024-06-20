@@ -28,9 +28,7 @@ const languageDetectorPlugin: any = {
     },
     cacheUserLanguage: async function (language: string) {
         try {
-            //save a user's language choice in Async storage
-            console.log();
-            
+            //save a user's language choice in Async storage            
             await SecureStorage.setItem(STORE_LANGUAGE_KEY, language);
         } catch (error) { }
     },

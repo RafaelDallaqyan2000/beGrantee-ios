@@ -33,7 +33,6 @@ export const PhoneNumberScreen = () => {
   const [focusedInput, setFocusedInput] = useState(false);
   const [checkedPrivacyPolicy, setCheckedPrivacyPolicy] = useState(false);
   const navigation: any = useNavigation();
-  const [hashCode, setHashCode] = useState('');
   const {t} = useTranslation();
 
   // const countryCodeQuery = useQuery({
