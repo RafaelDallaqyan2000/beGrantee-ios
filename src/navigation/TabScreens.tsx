@@ -1,25 +1,38 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {MainStack} from './MainStack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { AuthContext } from '../../App';
+import {
+  HomeIcon,
+  NewNotification,
+  NotificationIcon,
+  PersonIcon,
+  ScanIcon,
+  TransactionIcon,
+} from '../icons';
 import {
   NotificationScreen,
   QRCodeScannerScreen,
   ServiceScreen,
   TransactionHistory,
 } from '../screens';
-import {StyleSheet, View} from 'react-native';
-import {
-  HomeIcon,
-  NotificationIcon,
-  PersonIcon,
-  ScanIcon,
-  TransactionIcon,
-} from '../icons';
-import {ProfileStack} from './ProfileStack';
+import { checkNewNotification } from '../services';
+import { MainStack } from './MainStack';
+import { ProfileStack } from './ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
 export function TabScreens() {
+  const {token} = useContext(AuthContext);
+
+    const {
+      data
+    } = useQuery({
+      initialData: [],
+      queryFn: () => checkNewNotification({token: token ?? ''}),
+    });    
+  
   return (
     <Tab.Navigator
       screenOptions={{
@@ -59,10 +72,19 @@ export function TabScreens() {
           tabBarLabelStyle: {display: 'none'},
           tabBarIcon: icon => (
             <View style={tabBarStyle.iconContainer}>
-              <NotificationIcon
-                inFocus={icon.focused}
-                style={tabBarStyle.everyIcon}
-              />
+              {
+                data ? (
+                  <NewNotification 
+                   inFocus={icon.focused}
+                   style={tabBarStyle.everyIcon}
+                  />
+                ) : (
+                  <NotificationIcon
+                    inFocus={icon.focused}
+                    style={tabBarStyle.everyIcon}
+                  />
+                )
+              }
             </View>
           ),
         }}

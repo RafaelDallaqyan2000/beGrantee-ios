@@ -13,7 +13,18 @@ export function getProfileInfo({token}: {token: string}) {
     .catch(error => error);
 }
 
-export function editProfileImage(props: any) {
+
+type ProfileImageType = {
+  token: string; 
+  image: {
+    uri: string; 
+    type: string; 
+    fileName: string;
+
+  }
+};
+
+export function editProfileImage(props: ProfileImageType ) {
   const {token, image} = props;
   const data = new FormData();
 

@@ -19,6 +19,7 @@ import {TabScreens} from './TabScreens.tsx';
 export interface VerificationScreenParams {
   phoneNumber: string;
   phoneCodeId: number;
+  getResendCode: any;
 }
 // export interface ServiceScreenParams {
 //   service: ServiceModel;

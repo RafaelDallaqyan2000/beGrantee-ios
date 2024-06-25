@@ -1,30 +1,27 @@
-import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  Pressable,
-} from 'react-native';
-import styles from '../../styles/globalStyles';
-import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
-import {RouteProp} from '@react-navigation/native';
-import {AuthContext} from '../../../App';
-import {useMutation} from '@tanstack/react-query';
-import {verifyCode} from '../../services';
-import verificationScreenStyle from './verificationScreenStyle';
-import BackIcon from '../../icons/BackIcon';
-import globalStyles from '../../styles/globalStyles';
-import {WelcomeScreen} from './WelcomeScreen/WelcomeScreen';
-import SecureStorage from 'react-native-encrypted-storage';
-import {SmsVerification} from '../../components';
-import {window} from '../../screens';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { useMutation } from '@tanstack/react-query';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  KeyboardAvoidingView,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
+import SecureStorage from 'react-native-encrypted-storage';
+import { AuthContext } from '../../../App';
+import { SmsVerification } from '../../components';
+import BackIcon from '../../icons/BackIcon';
+import { StackNavigatorParamList } from '../../navigation/NavigationScreens';
+import { window } from '../../screens';
+import { verifyCode } from '../../services';
+import { default as globalStyles, default as styles } from '../../styles/globalStyles';
+import { WelcomeScreen } from './WelcomeScreen/WelcomeScreen';
+import verificationScreenStyle from './verificationScreenStyle';
 
-type RouteProps = RouteProp<StackNavigatorParamList, 'Verification'>;
+type RouteProps = RouteProp<StackNavigatorParamList>;
 
 export function VerificationScreen() {
   const {setToken} = useContext(AuthContext);
@@ -37,7 +34,7 @@ export function VerificationScreen() {
   const {phoneNumber, phoneCodeId, getResendCode} = route.params;
   const {t} = useTranslation();
 
-  const verifyCodeRef = useRef<TextInput>();
+  const verifyCodeRef = useRef<any>();
 
   const verifyCodeQuery = useMutation({
     mutationFn: verifyCode,

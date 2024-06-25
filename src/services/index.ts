@@ -12,7 +12,7 @@ export {
   getServiceTypesByPackageAndCategoryId,
   getServiceDetailsByCompanyId,
 } from './serviceService.ts';
-export {getNotifications, getOnReadNotification} from './getNotifications.ts';
+export {getNotifications, getOnReadNotification, checkNewNotification} from './getNotifications.ts';
 export {getTransactionData, cancelTransaction} from './getTransactionData.ts';
 export {getTransactionHistory} from './getTransactionHistory.ts';
 export {getPackagesByServiceId, getPackages} from './packageService.ts';

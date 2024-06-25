@@ -24,7 +24,6 @@ type LoadingScreenType = {
 
 export function LoadingScreen({
   token,
-  title,
   transactionIds,
   companyAmounts,
 }: LoadingScreenType) {

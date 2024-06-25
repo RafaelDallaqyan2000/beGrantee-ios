@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
-import globalStyles from '../../styles/globalStyles';
+import { useNavigation } from '@react-navigation/native';
+import { useMutation } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -10,20 +12,18 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {CountryCode} from '../../models/common';
-import {useMutation} from '@tanstack/react-query';
-import {loginByPhone} from '../../services';
-import SvgPersonInLogin from '../../images/SvgSignInImage';
-import phoneNumberStyles from './phoneNumberStyles';
-import AppButton from '../../components/AppButton/AppButton';
-import {SelectIcon} from '../../icons';
-import WrongIcon from '../../icons/WrongIcon';
-import {PrivacyPolicyAndTerms} from '../../components';
-import CustomInput from '../../components/CustomInput/CustomInput.tsx';
-import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { PrivacyPolicyAndTerms } from '../../components';
+import AppButton from '../../components/AppButton/AppButton';
+import CustomInput from '../../components/CustomInput/CustomInput.tsx';
+import { SelectIcon } from '../../icons';
 import BackIcon from '../../icons/BackIcon.tsx';
+import WrongIcon from '../../icons/WrongIcon';
+import SvgPersonInLogin from '../../images/SvgSignInImage';
+import { CountryCode } from '../../models/common';
+import { loginByPhone } from '../../services';
+import globalStyles from '../../styles/globalStyles';
+import phoneNumberStyles from './phoneNumberStyles';
 // import {getNativePropsForTNode} from 'react-native-render-html';
 
 export const PhoneNumberScreen = () => {

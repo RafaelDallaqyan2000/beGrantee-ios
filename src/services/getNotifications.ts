@@ -34,3 +34,14 @@ export function getOnReadNotification({
       return err;
     });
 }
+
+export function checkNewNotification({token}: {token: string}) {
+  return axios.get(`${HOST}/api/notification/check`, {
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then(data => data.data.data)
+  .catch(err => {throw err})
+}

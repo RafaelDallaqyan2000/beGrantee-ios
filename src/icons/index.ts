@@ -1,6 +1,5 @@
 export {
   HomeIcon,
-  NotificationIcon,
   PersonIcon,
   TransactionIcon,
   ScanIcon,
@@ -9,7 +8,8 @@ export {
 } from './MainScreen';
 export {CloseIcon, LoadIcon} from './QRcodeScreen';
 // export {LoadingIcon} from './LoadingIcon';
-export {NotifyIcon} from './NotificationScreen';
+export {NotifyIcon, NewNotification,   NotificationIcon,
+} from './NotificationScreen';
 export {SelectIcon} from './LogInScreen';
 
 export {LocationIcon, TelephoneIcon, PlanetIcon} from './ServiceDetails';
