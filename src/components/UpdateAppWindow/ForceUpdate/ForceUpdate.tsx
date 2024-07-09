@@ -15,7 +15,7 @@ export function ForceUpdate({handlePressUpdate}: ForceUpdateType) {
             </View>
             <View style={styles.textContainer}>
                 <Text style={styles.title}>New update is ready</Text>
-                <Text>We've just released a new update. In order to proceed further please update the app now.</Text>
+                <Text style={styles.description}>We've just released a new update. In order to proceed further please update the app now.</Text>
             </View>
             <View>
                 <TouchableOpacity onPress={handlePressUpdate} style={styles.updateButtonContainer}>
@@ -41,10 +41,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: '500',
+        color: '#000',
     },
     description: {
         fontSize: 14,
         fontWeight: '400',
+        color: '#000',
     },
     updateButtonContainer: {
         backgroundColor: '#3875F6',
