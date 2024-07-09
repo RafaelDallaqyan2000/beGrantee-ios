@@ -1,4 +1,4 @@
-export const HOST: string = 'https://mobile-api.begrantee.com';
+export const HOST: string = 'http://45.133.104.210:50013';
 //https://staging-mobile.begrantee.com
 
 export {getAllCategories} from './getAllCategories.ts';
@@ -16,3 +16,4 @@ export {getNotifications, getOnReadNotification, checkNewNotification} from './g
 export {getTransactionData, cancelTransaction} from './getTransactionData.ts';
 export {getTransactionHistory} from './getTransactionHistory.ts';
 export {getPackagesByServiceId, getPackages} from './packageService.ts';
+export { checkUpdateApp } from './checkUpdateApp.ts';

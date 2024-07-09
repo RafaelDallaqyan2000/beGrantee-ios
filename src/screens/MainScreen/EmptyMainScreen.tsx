@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {RefreshControl, ScrollView, Text, View} from 'react-native';
-import {PackageCard, ServiceCard, ServiceTypeList} from '../../components';
+import {PackageCard, ServiceCard, ServiceTypeList, UpdateAppWindow} from '../../components';
 import {ServiceModel, ServiceType} from '../../models/services';
 import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
@@ -25,7 +25,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
   const [selectedServiceType, setSelectedServiceType] =
     useState<ServiceType | null>({id: 0});
 
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   //#endregion
   let {token}: any = useContext(AuthContext);
   const searchText = useSelector((store: any) => store.reducer?.searchText);
@@ -82,7 +82,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
   };
 
   const handleServiceOpen = (service: ServiceModel) => {
-    return navigation.navigate('Service' as never, {service} as never);
+    return navigation.navigate('Service' as never, {service});
   };
   //#endregion
 
@@ -104,6 +104,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
            {t("OOOPS! It's Empty")}
           </Text>
         </View>
+        <UpdateAppWindow />
       </ScrollView>
     );
   }
@@ -134,6 +135,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
             <ServiceCard key={s?.id} onPress={handleServiceOpen} data={s} />
           ))}
       </View>
+      <UpdateAppWindow />
     </ScrollView>
   );
 }

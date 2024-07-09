@@ -9,6 +9,7 @@ const initialState = {
   pricingIngo: '',
   searchText: '',
   loadingUserProfileScreen: true,
+  isNewVersion: {}
 };
 
 const reducer = (state = initialState, action: any) => {

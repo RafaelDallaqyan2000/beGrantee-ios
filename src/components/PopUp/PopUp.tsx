@@ -5,7 +5,8 @@ import {CloseIcon} from '../../icons';
 type PupUpType = {
   open: boolean;
   children: any;
-  close: () => void;
+  close?: () => void;
+  showCloseBtn?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
   closeStyle?: StyleProp<ViewStyle>;
   backgroundStyle?: StyleProp<ViewStyle>;
@@ -18,6 +19,7 @@ export function PopUp({
   containerStyle,
   closeStyle,
   backgroundStyle,
+  showCloseBtn = true,
 }: PupUpType) {
   return (
     <Modal
@@ -27,9 +29,13 @@ export function PopUp({
       onRequestClose={close}>
       <Pressable onPress={close} style={[popUpStyle.centeredView, backgroundStyle]} />
       <View style={[popUpStyle.modalView, containerStyle]}>
-        <Pressable style={[popUpStyle.closeIcon, closeStyle]} onPress={close}>
-          <CloseIcon onPress={close} />
-        </Pressable>
+        {
+          showCloseBtn && (
+            <Pressable style={[popUpStyle.closeIcon, closeStyle]} onPress={close}>
+              <CloseIcon />
+            </Pressable>
+          )
+        }
         {children}
       </View>
     </Modal>
