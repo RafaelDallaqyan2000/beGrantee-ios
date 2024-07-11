@@ -1,3 +1,4 @@
+import store, { handleChange } from '../store';
 import axios from './axiosService';
 import {HOST} from './index';
 
@@ -42,6 +43,9 @@ export function checkNewNotification({token}: {token: string}) {
       Authorization: `Bearer ${token}`,
     },
   })
-  .then(data => data.data.data)
+  .then(data => {
+    store.dispatch(handleChange('isNewNotification', data.data.data));
+    return data.data.data;
+  })
   .catch(err => {throw err})
 }

@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AuthContext } from '../../App';
@@ -20,19 +19,16 @@ import {
 import { checkNewNotification } from '../services';
 import { MainStack } from './MainStack';
 import { ProfileStack } from './ProfileStack';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 export function TabScreens() {
   const {token} = useContext(AuthContext);
+  const isNewNotification = useSelector((state: any) => state.reducer.isNewNotification) ?? false;  
 
-    const {
-      data
-    } = useQuery({
-      initialData: [],
-      queryFn: () => checkNewNotification({token: token ?? ''}),
-    });    
-  
+  checkNewNotification({token: token ?? ''});
+    
   return (
     <Tab.Navigator
       screenOptions={{
@@ -73,7 +69,7 @@ export function TabScreens() {
           tabBarIcon: icon => (
             <View style={tabBarStyle.iconContainer}>
               {
-                data ? (
+                isNewNotification ? (
                   <NewNotification 
                    inFocus={icon.focused}
                    style={tabBarStyle.everyIcon}

@@ -2,6 +2,7 @@ import notifee, {EventType} from '@notifee/react-native';
 import messaging from '@react-native-firebase/messaging';
 import {PERMISSIONS, request} from 'react-native-permissions';
 import SecureStorage from 'react-native-encrypted-storage';
+import { navigationRef } from '../../navigation/NavigationScreens';
 
 //method was called to get FCM tiken for notification
 export const getFcmToken = async () => {
@@ -103,11 +104,9 @@ export function registerListenerWithFCM() {
         break;
       case EventType.PRESS:
         console.log('User pressed notification', detail.notification);
-        // if (detail?.notification?.data?.clickAction) {
-        //   onNotificationClickActionHandling(
-        //     detail.notification.data.clickAction
-        //   );
-        // }
+        navigationRef.current.navigate('Notification', {
+          data: detail.notification,
+        })
         break;
     }
   });

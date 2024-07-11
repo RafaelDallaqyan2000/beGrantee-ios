@@ -15,7 +15,7 @@ export function UpdateAppWindow() {
     let {token}: any = useContext(AuthContext);
     const myAppVersion = VersionCheck.getCurrentVersion();
 
-    const isNewVersion = useSelector((state: any) => state.reducer.isNewVersion);
+    const isNewVersion = useSelector((state: any) => state.reducer.isNewVersion) ?? {};
 
     useEffect(() => {
         checkUpdateApp({token, myAppVersion})
@@ -25,7 +25,7 @@ export function UpdateAppWindow() {
         Linking.openURL('itms-apps://apps.apple.com/app/id6478381838')
     };
       
-    return isNewVersion ? (
+    return Object.keys(isNewVersion).length ? (
         <PopUp open={showUpdateWindow} showCloseBtn={false}>
             {isNewVersion.isForce ? (
                 <ForceUpdate handlePressUpdate={handlePressUpdateBtn} />

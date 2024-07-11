@@ -22,8 +22,9 @@ import {LoadingServiceScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
 import {window} from '../index';
 import {HeaderBoxImage} from '../../images/HeaderBoxImage';
-import { SafeAreaView } from 'react-native-safe-area-context';
-interface RouteProps extends RouteProp<StackNavigatorParamList, 'Service'> {}
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+interface RouteProps extends RouteProp<StackNavigatorParamList, 'Service'> {};
 
 export interface ServiceDetails {
   data: {
@@ -48,6 +49,7 @@ function ServiceScreenContainer({
   showMoreInServiceScreen,
   serviceHTMLContainerHeight,
 }: ServiceTypes) {
+
   const [element, setElement] = useState(1);
   const [loadingScreen, setLoadingScreen] = useState(false);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
@@ -56,6 +58,7 @@ function ServiceScreenContainer({
   const {token} = useContext(AuthContext);
   const service = route.params.service;
   const {companyId} = service;
+
   const {
     data: serviceDetailsData,
     refetch: refetchServiceDetails,
@@ -79,6 +82,7 @@ function ServiceScreenContainer({
       setLoadingScreen(false);
     },
   });
+
   const checkShowMoreBtn: any = {
     '1':
       serviceDetailsData.pricing &&
@@ -88,6 +92,7 @@ function ServiceScreenContainer({
       window.height - 500 < serviceHTMLContainerHeight,
   };
   const showMoreButton = checkShowMoreBtn[element];
+
   useFocusEffect(
     useCallback(() => {
       refetchServiceDetails();
@@ -95,13 +100,16 @@ function ServiceScreenContainer({
       setElement(1);
     }, []),
   );
+
   useEffect(() => {
     handleChange('showMoreInServiceScreen', true);
   }, [companyId]);
+
   const handleClickShowMoreButton = () => {
     handleChange('showMoreInServiceScreen', !showMoreInServiceScreen);
     ref.current?.scrollTo({y: 0});
   };
+
   if (loadingScreen) {
     return (
       <ScrollView style={{backgroundColor: '#FFF'}}>
@@ -109,9 +117,13 @@ function ServiceScreenContainer({
       </ScrollView>
     );
   }
+
   if (showErrorScreen) {
     return <ErrorScreen marginTop={150} />;
   }
+  
+  console.log(serviceDetailsData, '<--');
+  
   return (
     <SafeAreaView style={serviceScreenStyle.screen}>
       <ScrollView
@@ -208,12 +220,3 @@ export const ServiceScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(ServiceScreenContainer);
-
-
-
-
-
-
-
-
-
