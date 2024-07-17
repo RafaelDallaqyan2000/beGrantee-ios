@@ -1,5 +1,5 @@
-import React, {useCallback} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ServiceModel} from '../../models/services';
 import globalStyles from '../../styles/globalStyles';
 import serviceCardStyle from './serviceCardStyle';
@@ -13,6 +13,7 @@ interface ServiceCardProps {
 
 export function ServiceCard({data, onPress}: ServiceCardProps) {
   const {companyName} = data;
+  const [loadImage, setLoadImage] = useState(false);
 
   const handlePress = useCallback(() => {
     onPress(data);
@@ -21,11 +22,21 @@ export function ServiceCard({data, onPress}: ServiceCardProps) {
 
   return (
     <TouchableOpacity onPress={handlePress} style={styles.card}>
+      {
+        
+      }
       {httpsOrNo(data?.coverPhoto) ? (
-        <Image
-          source={{uri: HOST + data?.coverPhoto}}
-          style={serviceCardStyle.backgroundImage}
-        />
+        <>
+        <View style={serviceCardStyle.backgroundImageContainer}>
+          {loadImage && <ActivityIndicator size="large" color="#888888" style={serviceCardStyle.backgroundImage}/> }
+          <Image
+            source={{uri: HOST + data?.coverPhoto}}
+            style={[serviceCardStyle.backgroundImage]}
+            onLoadStart={() => setLoadImage(true)}
+            onLoadEnd={() => setLoadImage(false)}
+          />
+        </View>
+        </>
       ) : (
         <View style={serviceCardStyle.defaultBgImageContainer} />
       )}

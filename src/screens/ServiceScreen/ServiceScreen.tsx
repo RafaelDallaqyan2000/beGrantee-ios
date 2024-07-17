@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
-import {Image, RefreshControl, ScrollView, Text, View} from 'react-native';
+import {ActivityIndicator, Image, RefreshControl, ScrollView, Text, View} from 'react-native';
 import {ServiceDetailsBody} from './Components';
 import {HOST} from '../../services';
 import {useQuery} from '@tanstack/react-query';
@@ -53,6 +53,7 @@ function ServiceScreenContainer({
   const [element, setElement] = useState(1);
   const [loadingScreen, setLoadingScreen] = useState(false);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
+  const [loadCoverPhoto, setLoadCoverPhoto] = useState(false);
   const ref = useRef(null);
   const route = useRoute<RouteProps>();
   const {token} = useContext(AuthContext);
@@ -121,11 +122,28 @@ function ServiceScreenContainer({
   if (showErrorScreen) {
     return <ErrorScreen marginTop={150} />;
   }
-  
-  console.log(serviceDetailsData, '<--');
-  
+    
   return (
     <SafeAreaView style={serviceScreenStyle.screen}>
+      <SafeAreaView style={serviceScreenStyle.companyLogoContainer}>
+      {serviceDetailsData?.logo ? (
+          <Image
+            style={serviceScreenStyle.companyLogo}
+            source={{
+              height: 46,
+              width: 46,
+              uri: HOST + serviceDetailsData?.logo,
+            }}
+            />
+        ) : (
+          <View style={serviceScreenStyle.companyLogoAltContainer}>
+            <Text style={serviceScreenStyle.companyLogoAlt}>
+              {serviceDetailsData?.serviceName &&
+                serviceDetailsData?.serviceName[0]}
+            </Text>
+          </View>
+        )}
+      </SafeAreaView>
       <ScrollView
         scrollEnabled={false}
         style={serviceScreenStyle.topScreen}
@@ -138,33 +156,22 @@ function ServiceScreenContainer({
           />
         }>
         {serviceDetailsData?.coverPhoto ? (
-          <Image
-            style={{backgroundColor: '#F3F6FE'}}
-            source={{
-              height: 300,
-              uri: HOST + serviceDetailsData?.coverPhoto,
-            }}
-          />
+          <>
+            {loadCoverPhoto && <ActivityIndicator size="large" color="#888888" style={{height: showMoreInServiceScreen ? 200 : 150}}/> }
+            <Image
+              source={{
+                height: 300,
+                uri: HOST + serviceDetailsData?.coverPhoto,
+              }}
+              style={{backgroundColor: '#F3F6FE'}}
+              onLoadStart={() => setLoadCoverPhoto(true)}
+              onLoadEnd={() => setLoadCoverPhoto(false)}
+            />
+          </>
         ) : (
           <View style={{height: 300, backgroundColor: '#F3F6FE'}} />
         )}
-        {serviceDetailsData?.logo ? (
-          <Image
-            style={serviceScreenStyle.companyLogo}
-            source={{
-              height: 46,
-              width: 46,
-              uri: HOST + serviceDetailsData?.logo,
-            }}
-          />
-        ) : (
-          <View style={serviceScreenStyle.companyLogoAltContainer}>
-            <Text style={serviceScreenStyle.companyLogoAlt}>
-              {serviceDetailsData?.serviceName &&
-                serviceDetailsData?.serviceName[0]}
-            </Text>
-          </View>
-        )}
+        
       </ScrollView>
       <View style={serviceScreenStyle.mainContainer}>
         {

@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 const serviceCardStyle = StyleSheet.create({
+  backgroundImageContainer: {
+    height: 96,
+    overflow: 'hidden',
+  },
+
   backgroundImage: {
     height: 96,
     borderRadius: 8,

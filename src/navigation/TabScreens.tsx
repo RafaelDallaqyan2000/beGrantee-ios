@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AuthContext } from '../../App';
 import {
@@ -27,7 +27,9 @@ export function TabScreens() {
   const {token} = useContext(AuthContext);
   const isNewNotification = useSelector((state: any) => state.reducer.isNewNotification) ?? false;  
 
-  checkNewNotification({token: token ?? ''});
+  useEffect(() => {
+    checkNewNotification({token: token ?? ''});
+  })
     
   return (
     <Tab.Navigator

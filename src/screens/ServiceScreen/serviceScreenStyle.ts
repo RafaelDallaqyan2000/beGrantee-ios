@@ -6,6 +6,8 @@ export const serviceScreenStyle = StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     flex: 1,
+    backgroundColor:'#FFF',
+    zIndex: 1000
   },
 
   topScreen: {
@@ -21,7 +23,7 @@ export const serviceScreenStyle = StyleSheet.create({
     position: 'relative',
     marginBottom: -200,
     marginTop: -50,
-    zIndex: 100,
+    zIndex: 10,
     borderRadius: 48,
   },
 
@@ -32,9 +34,14 @@ export const serviceScreenStyle = StyleSheet.create({
     zIndex: 1000,
   },
 
-  companyLogo: {
-    position: 'absolute',
+  companyLogoContainer: {
     margin: 30,
+    borderRadius: 50,
+    zIndex: 1000,
+    position: "absolute"
+  },
+
+  companyLogo: {
     borderRadius: 50,
   },
 
@@ -130,6 +137,7 @@ export const serviceScreenStyle = StyleSheet.create({
   defaultBackgroundContainer: {
     position: 'absolute',
     top: -100,
+    zIndex: 1,
     width: window.width,
     alignItems: 'center',
   },
