@@ -1,3 +1,4 @@
+import store, { handleChange } from '../store';
 import axios from './axiosService';
 import {HOST} from './index';
 
@@ -13,7 +14,7 @@ export function getNotifications({token}: NotificationsType) {
         Authorization: `Bearer ${token}`, // notice the Bearer before your token
       },
     })
-    .then(res => res.data.data)
+    .then(res => res.data.data);
 }
 
 export function getOnReadNotification({
@@ -25,7 +26,7 @@ export function getOnReadNotification({
     .get(`${HOST}/api/notification/read`, {
       headers: {
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`, // notice the Bearer before your token
+        Authorization: `Bearer ${token}`,
       },
     })
     .then(res => res.data)
@@ -33,4 +34,18 @@ export function getOnReadNotification({
       console.log(err, 'error from /api/notification/read');
       return err;
     });
+}
+
+export function checkNewNotification({token}: {token: string}) {
+  return axios.get(`${HOST}/api/notification/check`, {
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then(data => {
+    store.dispatch(handleChange('isNewNotification', data.data.data));
+    return data.data.data;
+  })
+  .catch(err => {throw err})
 }

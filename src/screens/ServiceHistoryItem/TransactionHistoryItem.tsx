@@ -4,6 +4,7 @@ import {formatDate} from '../../helpers/formatDate';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useCallback, useState} from 'react';
 import {THDetailsPopUp} from '../TransactionHistory/Components/THDetailsPopUp';
+import { useTranslation } from 'react-i18next';
 
 type ColorType = {
   Rejected: string;
@@ -18,6 +19,7 @@ export interface HistoryDataProps {
   partnerName: string;
   total: string | number;
   status: keyof ColorType;
+  statusColor: string;
   transactions: any;
   serviceName?: string;
   createdUtcDate: string;
@@ -27,16 +29,9 @@ interface HistoryItemsProps {
   data: HistoryDataProps;
 }
 
-const colorWithStatus: ColorType = {
-  Rejected: '#FF6565',
-  Accepted: '#7ACD91',
-  Cancelled: '#FFC37E',
-  Pending: '#ED9F44',
-  Default: '#ED9F44',
-};
-
 export function ServiceHistoryItem({data}: HistoryItemsProps) {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
+  const {t} = useTranslation();
 
   const handlePressDetails = useCallback(() => {
     setShowMoreInfo(true);
@@ -51,23 +46,23 @@ export function ServiceHistoryItem({data}: HistoryItemsProps) {
       />
 
       <View style={transactionHistoryItemStyle.flex}>
-        <Text style={transactionHistoryItemStyle.title}>Date | Time</Text>
+        <Text style={transactionHistoryItemStyle.title}>{t("Date | Time")}</Text>
         <Text style={transactionHistoryItemStyle.value}>
           {formatDate(data?.createdUtcDate)}
         </Text>
       </View>
       <View style={transactionHistoryItemStyle.flex}>
-        <Text style={transactionHistoryItemStyle.title}>Status</Text>
+        <Text style={transactionHistoryItemStyle.title}>{t("Status")}</Text>
         <Text
           style={[
             transactionHistoryItemStyle.status,
-            {color: colorWithStatus[data?.status] || colorWithStatus.Default},
+            {color: data.statusColor ?? "orange"},
           ]}>
           {data?.status}
         </Text>
       </View>
       <View style={transactionHistoryItemStyle.flex}>
-        <Text style={transactionHistoryItemStyle.title}>Service </Text>
+        <Text style={transactionHistoryItemStyle.title}>{t("Service")} </Text>
         <Text style={transactionHistoryItemStyle.value}>
           {data?.serviceName}
         </Text>
@@ -77,14 +72,14 @@ export function ServiceHistoryItem({data}: HistoryItemsProps) {
           transactionHistoryItemStyle.flex,
           transactionHistoryItemStyle.totalContainer,
         ]}>
-        <Text style={transactionHistoryItemStyle.total}>Total(AMD)</Text>
+        <Text style={transactionHistoryItemStyle.total}>{t("Total(AMD)")}</Text>
         <Text style={transactionHistoryItemStyle.total}>{data?.total}</Text>
       </View>
       <View style={transactionHistoryItemStyle.detailsContainer}>
         <TouchableOpacity
           onPress={handlePressDetails}
           style={transactionHistoryItemStyle.detailsTouchableContainer}>
-          <Text style={transactionHistoryItemStyle.details}>Details</Text>
+          <Text style={transactionHistoryItemStyle.details}>{t("Details")}</Text>
         </TouchableOpacity>
       </View>
     </View>

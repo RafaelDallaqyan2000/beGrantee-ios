@@ -1,29 +1,27 @@
-import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { useMutation } from '@tanstack/react-query';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  View,
-  Text,
-  TextInput,
-  ScrollView,
   KeyboardAvoidingView,
-  SafeAreaView,
   Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
 } from 'react-native';
-import styles from '../../styles/globalStyles';
-import {StackNavigatorParamList} from '../../navigation/NavigationScreens';
-import {RouteProp} from '@react-navigation/native';
-import {AuthContext} from '../../../App';
-import {useMutation} from '@tanstack/react-query';
-import {verifyCode} from '../../services';
-import verificationScreenStyle from './verificationScreenStyle';
-import BackIcon from '../../icons/BackIcon';
-import globalStyles from '../../styles/globalStyles';
-import {WelcomeScreen} from './WelcomeScreen/WelcomeScreen';
 import SecureStorage from 'react-native-encrypted-storage';
-import {SmsVerification} from '../../components';
-import {window} from '../../screens';
+import { AuthContext } from '../../../App';
+import { SmsVerification } from '../../components';
+import BackIcon from '../../icons/BackIcon';
+import { StackNavigatorParamList } from '../../navigation/NavigationScreens';
+import { window } from '../../screens';
+import { verifyCode } from '../../services';
+import { default as globalStyles, default as styles } from '../../styles/globalStyles';
+import { WelcomeScreen } from './WelcomeScreen/WelcomeScreen';
+import verificationScreenStyle from './verificationScreenStyle';
 
-type RouteProps = RouteProp<StackNavigatorParamList, 'Verification'>;
+type RouteProps = RouteProp<StackNavigatorParamList>;
 
 export function VerificationScreen() {
   const {setToken} = useContext(AuthContext);
@@ -34,8 +32,9 @@ export function VerificationScreen() {
   const [date, setDate] = useState(new Date().getTime());
   const [openWelcomePopUp, setOpenWelcomePopUp] = useState(false);
   const {phoneNumber, phoneCodeId, getResendCode} = route.params;
+  const {t} = useTranslation();
 
-  const verifyCodeRef = useRef<TextInput>();
+  const verifyCodeRef = useRef<any>();
 
   const verifyCodeQuery = useMutation({
     mutationFn: verifyCode,
@@ -61,13 +60,15 @@ export function VerificationScreen() {
     }
   };
 
-  const handleVerifyCode = () => {
+  const handleVerifyCode = async() => {
+    const deviceToken = await SecureStorage.getItem('fcmToken') ?? '';
+    
     if (code.length === 4) {
       return verifyCodeQuery?.mutate({
         verificationCode: code,
         phoneCodeId,
         phoneNumber,
-        deviceToken: 'fixed in front',
+        deviceToken,
       });
     }
   };
@@ -138,22 +139,22 @@ export function VerificationScreen() {
             </Pressable>
 
             <Text style={verificationScreenStyle.topicOTP}>
-              OTP Verification
+              {t('OTP Verification')}
             </Text>
           </View>
 
           <View style={verificationScreenStyle.mainContainer}>
             <View style={verificationScreenStyle.body}>
               <Text style={[globalStyles.screenTitle, {marginBottom: 0}]}>
-                Enter the code
+                {t('Enter the code')}
               </Text>
 
               <Text
                 style={[globalStyles.text, verificationScreenStyle.subtitle]}>
-                We just sent you a 4-digit verification code to +374******
+                {t('We just sent you a 4-digit verification code to')} +374******
                 {phoneNumber.slice(phoneNumber.length - 2)}
               </Text>
-            </View>
+              </View>
 
             <View style={[{marginTop: 72}, verificationScreenStyle.footer]}>
               <View>
@@ -194,7 +195,7 @@ export function VerificationScreen() {
                   </Text>
                 ) : s <= 0 ? (
                   <Text style={[verificationScreenStyle.incorrectCode]}>
-                    Empty OTP
+                    {t('Empty OTP')}
                   </Text>
                 ) : null}
               </View>
@@ -203,7 +204,7 @@ export function VerificationScreen() {
                 keyboardVerticalOffset={window.height / 2 - 40}>
                 <Text
                   style={[globalStyles.text, verificationScreenStyle.subtitle]}>
-                  Didn’t receive any code?
+                  {t("Didn't receive any code?")}
                 </Text>
                 <View
                   style={{
@@ -221,7 +222,7 @@ export function VerificationScreen() {
                         textDecorationLine: 'underline',
                       },
                     ]}>
-                    Resend OTP
+                    {t('Resend OTP')}
                   </Text>
                   {s > 0 ? (
                     <Text
@@ -229,7 +230,7 @@ export function VerificationScreen() {
                         verificationScreenStyle.resendCode,
                         {color: '#3875F6'},
                       ]}>
-                      in 00:
+                      {t('in')} 00:
                       {s.toString().length < 2 ? `0${s}` : s}
                     </Text>
                   ) : null}

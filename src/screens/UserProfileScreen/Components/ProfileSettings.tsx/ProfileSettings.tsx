@@ -6,9 +6,12 @@ import {
   SettingsCompanyIcon,
   SurpriseCaseIcon,
   LogOutIcon,
+  LanguageIcon,
 } from '../../../../icons';
 // import {RightPointerIcon} from '../../../../icons/RightPointerIcon';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 //Todo: will be use
 // const switchCustomStyle = {
@@ -24,7 +27,7 @@ import React from 'react';
 
 type ProfileSettingsType = {
   logOutClick: () => any;
-  callbackSwitchNotification: () => any;
+  callbackSwitchNotification?: () => any;
   handleCompaniesPress: () => any;
   handlePackagesPress: () => any;
   handleLanguagePress: () => any;
@@ -32,12 +35,18 @@ type ProfileSettingsType = {
   handleLiveChatPress: () => any;
 };
 
+const languages: any = {
+  en: 'English',
+  hy: 'Հայերեն',
+  ru: 'Русский'
+}
+
 export function ProfileSettings({
   logOutClick,
   // callbackSwitchNotification = () => {},
   handleCompaniesPress = () => {},
   handlePackagesPress = () => {},
-  // handleLanguagePress = () => {},
+  handleLanguagePress = () => {},
   handlePrivacyPolicyPress = () => {},
   handleLiveChatPress = () => {},
 }: ProfileSettingsType) {
@@ -48,13 +57,15 @@ export function ProfileSettings({
   //   callbackSwitchNotification();
   // };
 
+  const {t, i18n} = useTranslation();
+  
   return (
     <>
       <TouchableOpacity
         onPress={handleCompaniesPress}
         style={profileSettingsStyle.settingContainer}>
         <SettingsCompanyIcon />
-        <Text style={profileSettingsStyle.settingsName}>Companies</Text>
+        <Text style={profileSettingsStyle.settingsName}>{t("Companies")}</Text>
       </TouchableOpacity>
       <View style={profileSettingsStyle.line} />
 
@@ -62,23 +73,23 @@ export function ProfileSettings({
         onPress={handlePackagesPress}
         style={profileSettingsStyle.settingContainer}>
         <SurpriseCaseIcon />
-        <Text style={profileSettingsStyle.settingsName}>Packages</Text>
+        <Text style={profileSettingsStyle.settingsName}>{t("Packages")}</Text>
       </TouchableOpacity>
       <View style={profileSettingsStyle.line} />
 
-      {/*Todo: we'll add  in the feature (Change language)*/}
-      {/*<TouchableOpacity*/}
-      {/*  onPress={handleLanguagePress}*/}
-      {/*  style={profileSettingsStyle.settingContainer}>*/}
-      {/*  <LanguageIcon />*/}
-      {/*  <View style={profileSettingsStyle.titleContainer}>*/}
-      {/*    <Text style={profileSettingsStyle.settingsName}>Language</Text>*/}
-      {/*    <Text style={[profileSettingsStyle.settingsName, {color: '#3875F6'}]}>*/}
-      {/*      English*/}
-      {/*    </Text>*/}
-      {/*  </View>*/}
-      {/*</TouchableOpacity>*/}
-      {/*<View style={profileSettingsStyle.line} />*/}
+      {/* Todo: we'll add  in the feature (Change language)*/}
+      <TouchableOpacity
+       onPress={handleLanguagePress}
+       style={profileSettingsStyle.settingContainer}>
+       <LanguageIcon />
+       <View style={profileSettingsStyle.titleContainer}>
+         <Text style={profileSettingsStyle.settingsName}>{t("Language")}</Text>
+         <Text style={[profileSettingsStyle.settingsName, {color: '#3875F6'}]}>
+           {languages[i18n.language]}
+         </Text>
+       </View>
+      </TouchableOpacity>
+      <View style={profileSettingsStyle.line} />
 
       {/*Todo: we'll add  in the feature (button which turn on/off push notification)*/}
       {/*<TouchableOpacity*/}
@@ -114,7 +125,7 @@ export function ProfileSettings({
         onPress={handlePrivacyPolicyPress}
         style={profileSettingsStyle.settingContainer}>
         <SecurityIcon />
-        <Text style={profileSettingsStyle.settingsName}>Privacy policy</Text>
+        <Text style={profileSettingsStyle.settingsName}>{t("Privacy policy")}</Text>
       </TouchableOpacity>
       <View style={profileSettingsStyle.line} />
 
@@ -122,7 +133,7 @@ export function ProfileSettings({
         onPress={handleLiveChatPress}
         style={profileSettingsStyle.settingContainer}>
         <LiveChatIcon />
-        <Text style={profileSettingsStyle.settingsName}>Live Chat</Text>
+        <Text style={profileSettingsStyle.settingsName}>{t("Live Chat")}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={logOutClick} style={{marginTop: 81}}>
@@ -131,7 +142,7 @@ export function ProfileSettings({
         <View style={profileSettingsStyle.settingContainer}>
           <LogOutIcon />
           <Text style={[profileSettingsStyle.settingsName, {color: '#FF5F5F'}]}>
-            Log out
+            {t("Log out")}
           </Text>
         </View>
       </TouchableOpacity>

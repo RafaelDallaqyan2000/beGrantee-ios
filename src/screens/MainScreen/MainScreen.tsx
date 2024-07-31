@@ -1,3 +1,5 @@
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 import React, {
   useCallback,
   useContext,
@@ -5,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   RefreshControl,
   SafeAreaView,
@@ -12,28 +15,26 @@ import {
   Text,
   View,
 } from 'react-native';
-import {PackageList, ServiceCard, ServiceTypeList} from '../../components';
-import {PackageModel} from '../../models/packages';
-import {ServiceModel, ServiceType} from '../../models/services';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthContext } from '../../../App';
+import { LoadingMainScreen } from '../../LoadingScreens';
+import { PackageList, ServiceCard, ServiceTypeList, UpdateAppWindow } from '../../components';
+import { NotifyIcon } from '../../icons';
+import { PackageModel } from '../../models/packages';
+import { ServiceModel, ServiceType } from '../../models/services';
+import { QueryRoute } from '../../react-query/query-routes';
 import {
-  getServicesByPackageId,
-  getServiceTypesByPackageAndCategoryId,
   getPackages,
+  getServiceTypesByPackageAndCategoryId,
+  getServicesByPackageId,
 } from '../../services';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import { handleChange } from '../../store';
 import globalStyles from '../../styles/globalStyles';
-import {useQuery} from '@tanstack/react-query';
-import {QueryRoute} from '../../react-query/query-routes';
-import {mainScreenStyles} from './mainScreenStyles';
-import {AuthContext} from '../../../App';
-import {useDispatch, useSelector} from 'react-redux';
-import {handleChange} from '../../store';
-import {EmptyMainScreen} from './EmptyMainScreen';
-import {LoadingMainScreen} from '../../LoadingScreens';
-import {ErrorMainScreen} from './ErrorMainScreen';
-import {window} from '../index';
-import {notificationStyles} from '../NotificationScreen/notificationStyles';
-import {NotifyIcon} from '../../icons';
+import { notificationStyles } from '../NotificationScreen/notificationStyles';
+import { window } from '../index';
+import { EmptyMainScreen } from './EmptyMainScreen';
+import { ErrorMainScreen } from './ErrorMainScreen';
+import { mainScreenStyles } from './mainScreenStyles';
 
 export function MainScreen() {
   // #region States
@@ -43,17 +44,18 @@ export function MainScreen() {
   const [selectedServiceType, setSelectedServiceType] =
     useState<ServiceType | null>(null);
   const [loadingScreen, setLoadingScreen] = useState(true);
-  const [categories, setCategories] = useState(true);
+  const [categories, setCategories] = useState([]);
   const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [emptyBox, setEmptyBox] = useState(false);
   const [errorScreen, setErrorScreen] = useState(false);
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   const carouselRef: any = useRef();
   //#endregion
   let {token}: any = useContext(AuthContext);
 
   const searchText = useSelector((store: any) => store.reducer?.searchText);
   const dispatch: any = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     dispatch(handleChange('screenTitle', 'mainScreen'));
@@ -93,7 +95,7 @@ export function MainScreen() {
         setEmptyBox(false);
         setShowEmptyScreen(false);
       }
-      setCategories(data?.categories ?? []);
+      setCategories(data?.categories);
       setSelectedServiceType({id: 0});
       setErrorScreen(false);
     },
@@ -167,8 +169,8 @@ export function MainScreen() {
     }
   };
 
-  const handleServiceOpen = (service: ServiceModel) => {
-    return navigation.navigate('Service' as never, {service} as never);
+  const handleServiceOpen = (service: ServiceModel) => {    
+    return navigation.navigate('Service' as never, {service});
   };
 
   const refetchAll = useCallback(() => {
@@ -187,6 +189,7 @@ export function MainScreen() {
     }, []),
   );
   //#endregion
+
 
   if (loadingScreen) {
     return <LoadingMainScreen />;
@@ -227,9 +230,10 @@ export function MainScreen() {
           }}>
           <NotifyIcon />
           <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
+            {t("OOOPS! It's Empty")}
           </Text>
         </View>
+          <UpdateAppWindow />
       </ScrollView>
     );
   }
@@ -259,7 +263,7 @@ export function MainScreen() {
               selectedType={selectedServiceType}
             />
             {loadingServices ? (
-              <Text style={[globalStyles.title, {margin: 16}]}>Loading...</Text>
+              <Text style={[globalStyles.title, {margin: 16}]}>{t('Loading...')}</Text>
             ) : (
               services.length > 0 &&
               services?.map((s: ServiceModel) => (
@@ -268,6 +272,7 @@ export function MainScreen() {
             )}
           </View>
         )}
+        <UpdateAppWindow/>
       </ScrollView>
     </SafeAreaView>
   );

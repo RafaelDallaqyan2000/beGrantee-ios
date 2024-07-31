@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {RefreshControl, ScrollView, View} from 'react-native';
-import {PackageCard, ServiceCard, ServiceTypeList} from '../../components';
+import {RefreshControl, ScrollView, Text, View} from 'react-native';
+import {PackageCard, ServiceCard, ServiceTypeList, UpdateAppWindow} from '../../components';
 import {ServiceModel, ServiceType} from '../../models/services';
 import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
@@ -11,6 +11,9 @@ import {useSelector} from 'react-redux';
 import {ErrorMainScreen} from './ErrorMainScreen';
 import {LoadingMainScreen} from '../../LoadingScreens';
 import {window} from '../index';
+import { NotifyIcon } from '../../icons';
+import { notificationStyles } from '../NotificationScreen/notificationStyles';
+import { useTranslation } from 'react-i18next';
 
 type EmptyMainType = {
   refreshScreen: any;
@@ -22,13 +25,14 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
   const [selectedServiceType, setSelectedServiceType] =
     useState<ServiceType | null>({id: 0});
 
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   //#endregion
   let {token}: any = useContext(AuthContext);
   const searchText = useSelector((store: any) => store.reducer?.searchText);
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [errorScreen, setErrorScreen] = useState(false);
   const [emptyCube, setEmptyCube] = useState(false);
+  const {t} = useTranslation();
 
   const {data: allCategories, refetch: refetchServiceTypes} = useQuery({
     queryKey: [searchText],
@@ -78,7 +82,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
   };
 
   const handleServiceOpen = (service: ServiceModel) => {
-    return navigation.navigate('Service' as never, {service} as never);
+    return navigation.navigate('Service' as never, {service});
   };
   //#endregion
 
@@ -95,11 +99,12 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
             justifyContent: 'center',
             height: window.height - 200,
           }}>
-          {/*<NotifyIcon />*/}
-          {/*<Text style={notificationStyles.emptyNotificationText}>*/}
-          {/*  OOOPS! It’s Empty*/}
-          {/*</Text>*/}
+          <NotifyIcon />
+          <Text style={notificationStyles.emptyNotificationText}>
+           {t("OOOPS! It's Empty")}
+          </Text>
         </View>
+        <UpdateAppWindow />
       </ScrollView>
     );
   }
@@ -130,6 +135,7 @@ export function EmptyMainScreen({refreshScreen, isLoadingScreen}: EmptyMainType)
             <ServiceCard key={s?.id} onPress={handleServiceOpen} data={s} />
           ))}
       </View>
+      <UpdateAppWindow />
     </ScrollView>
   );
 }

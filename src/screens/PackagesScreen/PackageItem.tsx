@@ -6,6 +6,7 @@ import {packageScreenStyle} from './packageScreenStyle';
 import React from 'react';
 import {HOST} from '../../services';
 import {formatDateForPackage} from '../../helpers';
+import { useTranslation } from 'react-i18next';
 
 type PackageItemType = {
   data: {
@@ -38,6 +39,8 @@ export function PackageItem({data}: PackageItemType) {
     budgetPerUser,
   } = data;
 
+  const {t} = useTranslation();
+
   return (
     <View style={profileSettingsStyle.packageContainer}>
       <View style={profileSettingsStyle.packageHeader}>
@@ -62,7 +65,7 @@ export function PackageItem({data}: PackageItemType) {
       </View>
 
       <View style={[transactionHistoryItemStyle.flex, {marginBottom: 8}]}>
-        <Text style={transactionHistoryItemStyle.title}>Date</Text>
+        <Text style={transactionHistoryItemStyle.title}>{t('Date')}</Text>
         <Text style={transactionHistoryItemStyle.value}>
           {`${formatDateForPackage(startDate)} | ${formatDateForPackage(
             endDate,
@@ -71,7 +74,7 @@ export function PackageItem({data}: PackageItemType) {
       </View>
 
       <View style={[transactionHistoryItemStyle.flex, {marginBottom: 8}]}>
-        <Text style={transactionHistoryItemStyle.title}>Status</Text>
+        <Text style={transactionHistoryItemStyle.title}>{t('Status')}</Text>
         <Text
           style={[
             transactionHistoryItemStyle.value,
@@ -82,7 +85,7 @@ export function PackageItem({data}: PackageItemType) {
       </View>
 
       <View style={[transactionHistoryItemStyle.flex, {marginBottom: 8}]}>
-        <Text style={transactionHistoryItemStyle.title}>Repetition</Text>
+        <Text style={transactionHistoryItemStyle.title}>{t('Repetition')}</Text>
         <Text style={transactionHistoryItemStyle.value}>{repetition}</Text>
       </View>
 
@@ -90,7 +93,7 @@ export function PackageItem({data}: PackageItemType) {
 
       <View style={[transactionHistoryItemStyle.flex, {marginBottom: 8}]}>
         <Text style={transactionHistoryItemStyle.itemTotalAmount}>
-          Amount per usage
+          {t('Amount per usage')}
         </Text>
         <Text style={profileSettingsStyle.amount}>{budgetPerUser}</Text>
       </View>

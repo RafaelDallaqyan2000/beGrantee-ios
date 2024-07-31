@@ -1,5 +1,6 @@
 import axios from './axiosService';
 import {HOST} from './index';
+import SecureStorage from 'react-native-encrypted-storage'
 
 interface ServiceTypes {
   cardId?: string | number | null | undefined;
@@ -14,6 +15,8 @@ export function getServiceTypesByPackageAndCategoryId({
   searchText = '',
   token,
 }: ServiceTypes) {
+
+
   return axios
     .post(
       `${HOST}/api/card/category/services`,
@@ -21,8 +24,8 @@ export function getServiceTypesByPackageAndCategoryId({
         cardId,
         categoryId,
         searchText,
+        
       },
-
       {
         headers: {
           'Content-type': 'application/json',
@@ -64,6 +67,7 @@ export function getServiceDetailsByCompanyId({
 
 export function getServicesByPackageId(props: {packageId: any; token: string}) {
   const {packageId, token} = props;
+
 
   return axios
     .get(`${HOST}/api/card/${packageId}/categories`, {

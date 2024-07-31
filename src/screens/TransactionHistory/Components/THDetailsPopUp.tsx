@@ -2,6 +2,7 @@ import {Text, View} from 'react-native';
 import {TransactionDetails} from '../../ServiceHistoryItem/CardItem/TransactionDetails';
 import {transactionHistoryItemStyle} from '../../ServiceHistoryItem/transactionHistoryItemStyle';
 import {PopUp} from '../../../components';
+import { useTranslation } from 'react-i18next';
 
 interface THDetailsType {
   data: any;
@@ -9,6 +10,8 @@ interface THDetailsType {
   setShow: (e: boolean) => any;
 }
 export function THDetailsPopUp({data, show, setShow}: THDetailsType) {
+  const {t} = useTranslation();
+  
   return (
     <PopUp
       open={show}
@@ -41,7 +44,7 @@ export function THDetailsPopUp({data, show, setShow}: THDetailsType) {
         })}
         <View style={transactionHistoryItemStyle.itemTotalContainer}>
           <Text style={transactionHistoryItemStyle.itemTotalAmount}>
-            Total(AMD)
+            {t('Total(AMD)')}
           </Text>
           <Text style={transactionHistoryItemStyle.itemTotalAmount}>
             {data.total}

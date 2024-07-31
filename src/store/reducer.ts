@@ -8,8 +8,8 @@ const initialState = {
   detailsInfo: '',
   pricingIngo: '',
   searchText: '',
-
   loadingUserProfileScreen: true,
+  isNewVersion: {}
 };
 
 const reducer = (state = initialState, action: any) => {

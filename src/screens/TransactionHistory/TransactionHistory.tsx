@@ -16,12 +16,14 @@ import {LoadingTransactionsScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {window} from '../index.ts';
+import { useTranslation } from 'react-i18next';
 
 export function TransactionHistory() {
   const {token}: any = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [errorScreen, setShowErrorScreen] = useState(false);
+  const {t} = useTranslation();
 
   const {
     data: transactions,
@@ -47,11 +49,9 @@ export function TransactionHistory() {
     },
   });
 
-  useFocusEffect(
-    useCallback(() => {
+  useFocusEffect(() => {
       reloadTransactions();
-    }, []),
-  );
+    });
 
   if (loading) {
     return (
@@ -74,7 +74,7 @@ export function TransactionHistory() {
   if (showEmptyScreen) {
     return (
       <SafeAreaView style={{backgroundColor: '#FFF'}}>
-        <Text style={notificationStyles.ifNotNotification}>Transaction</Text>
+        <Text style={notificationStyles.ifNotNotification}>{t('Transaction')}</Text>
         <ScrollView
           style={{height: 900, backgroundColor: '#F8F8F9'}}
           refreshControl={
@@ -93,7 +93,7 @@ export function TransactionHistory() {
             }}>
             <NotifyIcon />
             <Text style={notificationStyles.emptyNotificationText}>
-              OOOPS! It’s Empty
+              {t("OOOPS! It's Empty")}
             </Text>
           </View>
         </ScrollView>
@@ -102,8 +102,8 @@ export function TransactionHistory() {
   }
 
   return (
-    <SafeAreaView style={{backgroundColor: '#FFF', flex: 1}}>
-      <Text style={transactionHistoryStyle.title}>Transaction</Text>
+    <SafeAreaView style={{backgroundColor: '#FFF'}}>
+      <Text style={transactionHistoryStyle.title}>{t('Transaction')}</Text>
       <ScrollView
         style={transactionHistoryStyle.screen}
         refreshControl={

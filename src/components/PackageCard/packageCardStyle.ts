@@ -73,7 +73,6 @@ const packageCardStyle = StyleSheet.create({
     fontSize: 12,
     lineHeight: 18,
     color: '#FFF',
-    width: 110,
   },
 });
 

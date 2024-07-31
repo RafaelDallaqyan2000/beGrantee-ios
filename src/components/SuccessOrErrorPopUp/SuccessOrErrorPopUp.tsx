@@ -5,24 +5,7 @@ import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import CanceledIcon from '../../icons/QRcodeScreen/CanceledIcon';
 import {ErrorIcon} from '../../icons/ErrorIcon';
-
-const popUpData = {
-  success: {
-    title: 'Payment Accepted',
-    info: 'Your transaction has accepted been completed. For more details, check your transaction history.',
-    icon: <SuccessIcon />,
-  },
-  rejected: {
-    title: 'Payment Rejected',
-    info: 'Your transaction was rejected. For more details, check your transaction history.',
-    icon: <ErrorIcon />,
-  },
-  cancelled: {
-    title: 'Payment Cancelled',
-    info: 'Your transaction was cancelled. For more details, check your transaction history.',
-    icon: <CanceledIcon />,
-  },
-};
+import { useTranslation } from 'react-i18next';
 
 type MessageType = {
   onContinue: () => void;
@@ -38,6 +21,7 @@ export function SuccessOrErrorPopUp({
   const cancelled = useSelector(
     (store: any) => store.reducer?.canceledTransaction,
   );
+  const {t} = useTranslation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,6 +32,24 @@ export function SuccessOrErrorPopUp({
       }
     }, 3000);
   }, []);
+
+  const popUpData: any = {
+    success: {
+      title: t('Payment Accepted'),
+      info: t('Your transaction has accepted been completed. For more details, check your transaction history.'),
+      icon: <SuccessIcon />,
+    },
+    rejected: {
+      title: t('Payment Rejected'),
+      info: t('Your transaction was rejected. For more details, check your transaction history.'),
+      icon: <ErrorIcon />,
+    },
+    cancelled: {
+      title: t('Payment Cancelled'),
+      info: t('Your transaction was cancelled. For more details, check your transaction history.'),
+      icon: <CanceledIcon />,
+    },
+  };
 
   const transactionDataToString = cancelled
     ? 'cancelled'

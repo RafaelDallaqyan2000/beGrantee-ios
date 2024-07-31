@@ -3,6 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import globalStyles from '../../../styles/globalStyles';
 import {welcomePopUpStyle} from './welcomePopUpStyle';
 import WelcomeScreenImage from '../../../images/WelcomeScreenImage';
+import { useTranslation } from "react-i18next";
 
 type WelcomeType = {
   visible: boolean;
@@ -11,6 +12,7 @@ type WelcomeType = {
 
 export function WelcomeScreen({visible}: WelcomeType) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const {t} = useTranslation();
 
   useEffect(() => {
     if (visible) {
@@ -35,11 +37,11 @@ export function WelcomeScreen({visible}: WelcomeType) {
           <View style={welcomePopUpStyle.header}>
             <Text style={globalStyles.screenTitle}>BeGrantee</Text>
             <Text style={welcomePopUpStyle.subTitle}>
-              All your benefits in one place
+              {t('All your benefits in one place')}
             </Text>
           </View>
           <View style={welcomePopUpStyle.imageContainer}>
-            <Text style={welcomePopUpStyle.text}>Welcome!</Text>
+            <Text style={welcomePopUpStyle.text}>{t('Welcome')}!</Text>
             <WelcomeScreenImage />
           </View>
         </SafeAreaView>

@@ -13,7 +13,7 @@ export const popUpStyle = StyleSheet.create({
     borderTopLeftRadius: 40,
     paddingVertical: 41,
     paddingHorizontal: 30,
-    shadowColor: '#c70707',
+    shadowColor: '#000000',
     width: window.width,
     shadowOffset: {
       width: 0,
@@ -30,5 +30,6 @@ export const popUpStyle = StyleSheet.create({
     right: 21,
     top: 3,
     padding: 10,
+    zIndex:100
   },
 });

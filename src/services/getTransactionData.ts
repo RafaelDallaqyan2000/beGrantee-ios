@@ -5,11 +5,13 @@ import {PackageAmountModel} from '../models/packages';
 interface TransactionType {
   date: Date;
   phone: number;
-  serviceId: number | string;
+  serviceGUID: number | string;
+  branchId: number | string;
   total: number | string;
-  connectionId: string;
   companyAmounts: PackageAmountModel[];
+  transactionIds: Array<any>
 }
+
 export function getTransactionData(props: TransactionType, token: string) {
   return axios
     .post(`${HOST}/api/payment/transaction`, props, {
@@ -44,6 +46,6 @@ export function cancelTransaction(
     .then(res => res.data.success)
     .catch(err => {
       console.log(err, 'error from CancelTransaction');
-      return err;
+      throw err;
     });
 }

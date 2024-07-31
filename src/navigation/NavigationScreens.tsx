@@ -1,23 +1,21 @@
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, NavigationContainerRef} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {useContext} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
+  ChooseLanguageScreen,
   PhoneNumberScreen,
   PrivacyPolicyWithHeader,
   TermsAndConditionsScreen,
   VerificationScreen,
 } from '../screens';
 import {AuthContext} from '../../App';
-// import {ServiceModel} from '../models/services';
-// import {LoadingScreen} from '../components/LoadingScreen/LoadingScreen';
-// import {ChooseCardPopup} from '../components';
-import {StyleSheet} from 'react-native';
 import {TabScreens} from './TabScreens.tsx';
 
 export interface VerificationScreenParams {
   phoneNumber: string;
   phoneCodeId: number;
+  getResendCode: any;
 }
 // export interface ServiceScreenParams {
 //   service: ServiceModel;
@@ -35,19 +33,22 @@ export type StackNavigatorParamList = {
   TeamsAndConditions: never;
   PrivacyPolicyWithHeader: never;
   TermsAndConditions: never;
+  ChooseLanguage: never;
 };
 
 const Stack = createStackNavigator<StackNavigatorParamList>();
+export const navigationRef = React.createRef<NavigationContainerRef>();
 
 export function NavigationScreens() {
   const {token} = useContext(AuthContext);
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <Stack.Navigator>
           {!token ? (
             <Stack.Group screenOptions={{headerShown: false}}>
+              <Stack.Screen name="ChooseLanguage" component={ChooseLanguageScreen} />
               <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen} />
 
               <Stack.Screen
@@ -98,15 +99,3 @@ export function NavigationScreens() {
     </SafeAreaProvider>
   );
 }
-
-const style = StyleSheet.create({
-  titleStyle: {
-    color: '#333333',
-    fontFamily: 'NotoSansArmneian-SemiBold',
-    fontWeight: '600',
-    fontSize: 24,
-    lineHeight: 32,
-    paddingTop: 15,
-    textAlign: 'center',
-  },
-});

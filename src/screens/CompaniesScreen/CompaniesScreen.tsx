@@ -10,6 +10,7 @@ import {NotifyIcon} from '../../icons';
 import {LoadingCompaniesScreen} from '../../LoadingScreens';
 import {ErrorScreen} from '../../components';
 import {window } from "../index.ts";
+import { useTranslation } from 'react-i18next';
 
 
 export function CompaniesScreen() {
@@ -17,6 +18,7 @@ export function CompaniesScreen() {
   const [loadingCompanyScreen, setLoadingCompanyScreen] = useState(true);
   const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
+  const {t} = useTranslation();
 
   const {
     data: companies,
@@ -73,7 +75,7 @@ export function CompaniesScreen() {
           }}>
           <NotifyIcon />
           <Text style={notificationStyles.emptyNotificationText}>
-            OOOPS! It’s Empty
+            {("OOOPS! It's Empty")}
           </Text>
         </View>
       </ScrollView>

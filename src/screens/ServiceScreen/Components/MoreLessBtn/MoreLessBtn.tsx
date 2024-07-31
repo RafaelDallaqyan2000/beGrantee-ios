@@ -4,6 +4,7 @@ import {serviceScreenStyle} from '../../serviceScreenStyle';
 import DropUpDownIcon from '../../../../icons/ServiceDetails/DropUpDownIcon';
 import React from 'react';
 import {connect} from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 type MoreLessBtnType = {
   showMoreInServiceScreen: boolean;
@@ -14,12 +15,15 @@ function MoreLessBtnComponent({
   showMoreInServiceScreen,
   handleBtnClick,
 }: MoreLessBtnType) {
+
+  const {t} = useTranslation();
+
   return (
     <View
       style={{
         position: 'absolute',
         bottom: 0,
-        zIndex: 1000,
+        zIndex: 1000000,
       }}>
       {showMoreInServiceScreen ? <OpacityMoreLessButton /> : null}
       <View style={serviceScreenStyle.showMoreContainer} />
@@ -27,7 +31,7 @@ function MoreLessBtnComponent({
         style={serviceScreenStyle.showMoreButton}
         onPress={handleBtnClick}>
         <Text style={serviceScreenStyle.showMoreButtonText}>
-          Show {showMoreInServiceScreen ? 'More' : 'Less'}
+          {t('Show')} {showMoreInServiceScreen ? t('More') : t('Less')}
         </Text>
         <View
           style={{
