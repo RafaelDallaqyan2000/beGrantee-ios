@@ -23,7 +23,7 @@ function MoreLessBtnComponent({
       style={{
         position: 'absolute',
         bottom: 0,
-        zIndex: 1000,
+        zIndex: 1000000,
       }}>
       {showMoreInServiceScreen ? <OpacityMoreLessButton /> : null}
       <View style={serviceScreenStyle.showMoreContainer} />

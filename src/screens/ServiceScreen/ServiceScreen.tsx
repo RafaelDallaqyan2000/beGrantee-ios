@@ -82,7 +82,7 @@ function ServiceScreenContainer({
       setShowErrorScreen(true);
       setLoadingScreen(false);
     },
-  });
+  });  
 
   const checkShowMoreBtn: any = {
     '1':
@@ -125,6 +125,18 @@ function ServiceScreenContainer({
     
   return (
     <SafeAreaView style={serviceScreenStyle.screen}>
+      <ScrollView
+        style={serviceScreenStyle.refetchControlContainer}
+        refreshControl={
+          <RefreshControl
+            refreshing={loadingService}
+            onRefresh={refetchServiceDetails}
+            progressBackgroundColor={'#FFF'}
+            colors={['#3875F6', 'red']}
+          />
+      }>
+          <View style={serviceScreenStyle.refetchControl}/>
+      </ScrollView>
       <SafeAreaView style={serviceScreenStyle.companyLogoContainer}>
       {serviceDetailsData?.logo ? (
           <Image
@@ -146,15 +158,7 @@ function ServiceScreenContainer({
       </SafeAreaView>
       <ScrollView
         scrollEnabled={false}
-        style={serviceScreenStyle.topScreen}
-        refreshControl={
-          <RefreshControl
-            refreshing={loadingService}
-            onRefresh={refetchServiceDetails}
-            progressBackgroundColor={'#FFF'}
-            colors={['#3875F6', 'red']}
-          />
-        }>
+        style={serviceScreenStyle.topScreen}>
         {serviceDetailsData?.coverPhoto ? (
           <>
             {loadCoverPhoto && <ActivityIndicator size="large" color="#888888" style={{height: showMoreInServiceScreen ? 200 : 150}}/> }
@@ -171,7 +175,6 @@ function ServiceScreenContainer({
         ) : (
           <View style={{height: 300, backgroundColor: '#F3F6FE'}} />
         )}
-        
       </ScrollView>
       <View style={serviceScreenStyle.mainContainer}>
         {
@@ -185,7 +188,7 @@ function ServiceScreenContainer({
           style={[
             serviceScreenStyle.container,
             {
-              height: window.height + (showMoreInServiceScreen ? -122 : -60),
+              height: window.height + (showMoreInServiceScreen ? -132 : -80),
             },
           ]}>
           <View style={serviceScreenStyle.titleContainer}>

@@ -10,12 +10,27 @@ export const serviceScreenStyle = StyleSheet.create({
     zIndex: 1000
   },
 
+  refetchControlContainer: {
+    // backgroundColor: "rgba(250, 0, 250, 1)",
+    zIndex: 10000,
+    top: 0, 
+    left: 0,
+    position: 'absolute',
+    
+  },
+
+  refetchControl: {
+    width: window.width,
+    height: 300,
+    backgroundColor: "rgba(250, 250, 250, 0)", 
+    zIndex: 0
+  },
+
   topScreen: {
     position: 'relative',
     overflow: 'hidden',
     width: window.width,
     flexGrow: 0,
-    zIndex: 10,
     flexShrink: 1,
   },
 
@@ -23,7 +38,7 @@ export const serviceScreenStyle = StyleSheet.create({
     position: 'relative',
     marginBottom: -200,
     marginTop: -50,
-    zIndex: 10,
+    zIndex: 10000,
     borderRadius: 48,
   },
 
@@ -37,7 +52,7 @@ export const serviceScreenStyle = StyleSheet.create({
   companyLogoContainer: {
     margin: 30,
     borderRadius: 50,
-    zIndex: 1000,
+    zIndex: 10000000,
     position: "absolute"
   },
 
